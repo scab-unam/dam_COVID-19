@@ -16,7 +16,7 @@ Figures:
 
 - [CFRs for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.png)
 
-- [CFRs for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_ProvincesChinaUKAustralia_fromFirstReport_JHU.png)
+- [CFRs for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_ProvincesChinaUK_fromFirstReport.png)
 
 (b) [Base code with general functions](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_baseCode.py) 
 
