@@ -5,7 +5,16 @@
 (Last modified: MAHV, Apri 9, 2020)
 
 
-### Case-fatality ratios and deaths vs cases (updates automatically with the JHU data base)
+## Initial mortality and recovery in reported cases of COVID-19 a few weeks into the pandemic
+### Carlos Ignacio Herrera-Nolasco$^1$, Alejandro Joel Herrera-McKiernan$^2$, 
+### Emilio Arieli Herrera-McKiernan$^3$, Eugenia O'Reilly-Regueiro$^4$,
+### Marco Arieli Herrera-Valdez$^1$
+
+#### $^1$ Departamento de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México
+#### $^2$ Escuela Primaria República de Guatemala, Secretaría de Educación Pública, México
+#### $^3$ Escuela Secundaria Vicente Guerrero, Secretaría de Educación Pública, Mexico
+#### $^4$ Instituto de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México
+
 1. [Python code with CFR analysis](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.py) 
 Figures:
 - [Cases vs deaths per 1000 habitants for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cases-deaths_JHU.png)
