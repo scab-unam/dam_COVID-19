@@ -7,10 +7,10 @@
 
 ### Case-fatality ratios and deaths vs cases (updates automatically with the JHU data base)
 1. [Python code with CFR analysis](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.py) 
-https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cases-deaths_JHU.png
+[Cases vs deaths per 1000 habitants for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cases-deaths_JHU.png)
 
 2. [Base code with general functions](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_baseCode.py) 
-https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.png
+[CFRs for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.png)
 
 
 
