@@ -23,11 +23,28 @@ def getIndsRegions(countries, regions):
 def sortDataByCountry(df,nHeaderCols=4):
     """
     Sort data from the same country
+    Output:
+    x --> Sorted data
+    places --> countries sorted as in x
     """
     iCoun= df.iloc[:,1].to_numpy().argsort()
     x = df.iloc[iCoun,nHeaderCols:].to_numpy()
     places = df.iloc[iCoun,1].to_numpy()
     return x, places
+
+def gatherDataSingleCountry(df,country, nHeaderCols=4):
+    """
+    Gather data from the same country
+    """
+    cc = df.iloc[:,1].to_numpy()
+    countries = np.unique(df.iloc[:,1].to_numpy())
+    nCountries = len(countries);
+    x = list()
+    iC= np.where(cc== country)[0]
+    a =df.iloc[iC,nHeaderCols:].to_numpy()
+    a.sum(0)
+    return a, iC
+
 
 def gatherDataByCountry(df,nHeaderCols=4):
     """
@@ -42,6 +59,19 @@ def gatherDataByCountry(df,nHeaderCols=4):
         a =df.iloc[iC,nHeaderCols:].to_numpy()
         x.append(a.sum(0))
     return np.array(x)
+
+def findCaseStarts(places,cases):
+    """
+    Find the indices of at which the first cases are observed in each location from the list places.
+    """
+    startInds = list()
+    for n in range(len(places)):
+        ii= np.where(cases[n]>0)[0]
+        if len(ii)>0:
+              startInds.append(ii.min())
+        else:
+              startInds.append(len(cases[n])-1)
+    return np.array(startInds)
 
 # -------------------
 # Ratios by array. Correction in cases there are zeros in the denominators
