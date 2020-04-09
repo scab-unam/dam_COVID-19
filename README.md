@@ -19,6 +19,6 @@
 
 - [CFRs for some countries from the day the first case was reported locally](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr_fromFirstLocalReport.png)
 
-- [CFRs for some countries taking into account local reports by provinces](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr_ProvincesChinaUKAustralia_fromFirstReport.png) Note the differences between the CFR from the total cases and the average CFR from the provinces. 
+- [CFRs for some countries taking into account local reports by provinces](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr_ProvincesChinaUK_fromFirstReport.png) Note the differences between the CFR from the total cases and the average CFR from the provinces. 
 
 (c) [Base code with general functions](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_baseCode.py) 
