@@ -138,10 +138,6 @@ cfrAnalysis= '''The case fatality ratio is an approximation for the probability 
 In fact, it is an upper bound for the proportion of deaths due to infection, assuming that people that have not been confirmed do not have a higher probability of dying because of the infection'''
 print(cfrAnalysis)
 #
-
-cfr= correctedArrayRatio(totDeaths,totCases)
-regions=[R1,LatinAmerica+Africa,R3+R4,R2]
-#
 def plotCFRTS(cfr,dates,regions,countries, convFactor=1000, move2start=1):
     cfr=100*cfr
     ii = getIndsRegions(countries, regions)
@@ -154,27 +150,32 @@ def plotCFRTS(cfr,dates,regions,countries, convFactor=1000, move2start=1):
     for n in range(len(regions)):
         ax.append(figu.add_subplot(rows,cols,n+1))
         region=ii[n];
+        ax[n].set_xticks(ticks)
         for nn in range(len(region)):
+            thisCFR=cfr[region[nn]]
             if move2start:
-                startInd = np.minimum( np.where(region[nn]>0)[0].min(),0)
-                ax[n].plot(cfr[region[nn]][startInd],'-',label=countries[region[nn]])
+                startInd = np.maximum( np.where(thisCFR>0)[0].min(),0)
+                ax[n].plot(thisCFR[startInd:],'-',label=countries[region[nn]])
+                ax[n].set_xlabel('Days from first reported case')
             else:
                 ax[n].plot(cfr[region[nn]],'-',label=countries[region[nn]])
+                ax[n].set_xticklabels(dates[ticks],{'fontsize':8})
+                for label in ax[n].get_xticklabels():
+                    label.set_rotation(0)
+                    label.set_horizontalalignment('center')
+                    label.set_fontsize(8)
         #ax[n].set_xlim(ximin,len(dates))
         ax[n].set_ylim(0,15);
         ax[n].legend(ncol=5,loc='upper left',fontsize=8)
-        ax[n].set_xticks(ticks)
-        ax[n].set_xticklabels(dates[ticks],{'fontsize':8})
-        for label in ax[n].get_xticklabels():
-            label.set_rotation(0)
-            label.set_horizontalalignment('center')
-            label.set_fontsize(8)
     figu.subplots_adjust(left=0.075,bottom=0.075,right=0.97,top=0.95,wspace=0.2,hspace=0.25)
     gr.ion(); gr.draw(); gr.show()
     return figu
-
-figu=plotCFRTS(cfr,dates,regions,countries, convFactor=1000, move2start=0)
-strCFR='tsam_COVID19_cfr_JHU.png'
+#
+cfr= correctedArrayRatio(totDeaths,totCases)
+regions=[R1,LatinAmerica+Africa,R3+R4,R2]
+#
+figu=plotCFRTS(cfr,dates,regions,countries, convFactor=1000, move2start=1)
+strCFR='tsam_COVID19_cfr_JHU_fromFirstReport.png'
 figu.savefig('./'+strCFR)
 # ---------------------------------------------
 
@@ -183,12 +184,79 @@ figu.savefig('./'+strCFR)
 # Analysis of CFRs within countries where there are reports by provinces
 # UK, China, Australia
 # ---------------------------------------------
+
 # China
+China= {'Country name':'China'}
+China['cfrTotCases']=cfr[np.where(countries=='China')[0][0]]
+China['cases'], China['indsCases']= gatherDataSingleCountry(cases,'China')
+China['deaths'], China['indsDeaths']= gatherDataSingleCountry(deaths,'China')
+China['cfr'] = correctedArrayRatio(China['deaths'],China['cases'])
+China['provinces']=cases.iloc[China['indsCases'],0].to_numpy()
+China['nProvinces'] = len(China['provinces'])
+China['startDaysCases']= findCaseStarts(places=China['provinces'],cases=China['cases'])
+#
+UK =  {'Country name':'UK'}
+UK['cfrTotCases']=cfr[np.where(countries=='United Kingdom')[0][0]]
+UK['cases'], UK['indsCases']= gatherDataSingleCountry(cases,'United Kingdom')
+UK['deaths'], UK['indsDeaths']= gatherDataSingleCountry(deaths,'United Kingdom')
+UK['cfr'] = correctedArrayRatio(UK['deaths'],UK['cases'])
+UK['provinces']=cases.iloc[UK['indsCases'],0].to_numpy()
+UK['nProvinces'] = len(UK['provinces'])
+UK['startDaysCases']= findCaseStarts(places=UK['provinces'],cases=UK['cases'])
+#
+Australia =  {'Country name':'Australia'}
+Australia['cfrTotCases']=cfr[np.where(countries=='Australia')[0][0]]
+Australia['cases'], Australia['indsCases']= gatherDataSingleCountry(cases,'Australia')
+Australia['deaths'], Australia['indsDeaths']= gatherDataSingleCountry(deaths,'Australia')
+Australia['cfr'] = correctedArrayRatio(Australia['deaths'],Australia['cases'])
+Australia['provinces']=cases.iloc[Australia['indsCases'],0].to_numpy()
+Australia['nProvinces'] = len(Australia['provinces'])
+Australia['startDaysCases']= findCaseStarts(places=Australia['provinces'],cases=Australia['cases'])
+#
+def plotCFRTS_Provinces(places,dates,move2start=1):
+    figu = gr.figure(figsize=(15,9))
+    figu.suptitle('Percentage of dead/confirmed between %s-%s'''%(dates[0],dates[-1]))
+    ax=list(); gr.ioff()
+    cols=1
+    rows = len(places)
+    for n in range(rows*cols):
+        ax.append(figu.add_subplot(rows,cols,n+1))
+        place = places[n]
+        ticks= np.arange(0,nDays,7)
+        si = place['startDaysCases'].min()
+        for nn in range(len(place['provinces'])):
+            thisCFR=100*place['cfr'][nn]
+            ax[n].set_xticks(ticks)
+            if move2start==1:
+                ax[n].plot(thisCFR[si:],'-',label=place['provinces'][nn])
+                ax[n].set_xlabel('Days from first reported case')
+            else:
+                ticks= np.arange(si,nDays,7)
+                ax[n].plot(thisCFR[si:],'-',label=place['provinces'][nn])
+                ax[n].set_xticklabels(dates[ticks],{'fontsize':8})
+                for label in ax[n].get_xticklabels():
+                    label.set_rotation(0)
+                    label.set_horizontalalignment('center')
+                    label.set_fontsize(8)
+        avgCFR=100*place['cfr'].mean(0)
+        if move2start:
+            ax[n].plot(avgCFR[si:],'k-',alpha=1, lw=3,label='%s Average CFR from provinces'%place['Country Name'])
+            ax[n].plot(100*place['cfrTotCases'][si:],'k-',alpha=0.35, lw=5,label='CFR from total cases')
+        else:
+            ax[n].plot(avgCFR,'k-',alpha=1, lw=3,label=place['provinces'][nn])
+            ax[n].plot(100*place['cfrTotCases'],'k-',alpha=0.35, lw=5,label='CFR from total cases')
+        ax[n].set_ylim(0,10);
+        ax[n].legend(ncol=6,loc='upper center',fontsize=8)
+    figu.subplots_adjust(left=0.075,bottom=0.075,right=0.97,top=0.95,wspace=0.2,hspace=0.25)
+    gr.ion(); gr.draw(); gr.show()
+    return figu
 
-casesChina, indsCasesChina= gatherDataSingleCountry(cases,'China')
-deathsChina, indsCasesChina= gatherDataSingleCountry(deaths,'China')
-cfrChina = correctedArrayRatio(deathsChina,casesChina)
+places = [China,Australia,UK]
+#
+figu=plotCFRTS_Provinces(places,dates,move2start=0)
+strCFR='tsam_COVID19_cfr_ProvincesChinaUK_fromFirstReport.png'
+figu.savefig('./'+strCFR)
+# ---------------------------------------------
+strProvinces="""The
 
-casesUK, indsCasesUK= gatherDataSingleCountry(cases,'United Kingdom')
-deathsUK, indsUK= gatherDataSingleCountry(deaths,'United Kingdom')
-cfrUK = correctedArrayRatio(deathsUK,casesUK)
+"""
