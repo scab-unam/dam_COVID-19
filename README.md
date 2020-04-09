@@ -11,7 +11,7 @@ Figures:
 - [Cases vs deaths per 1000 habitants for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cases-deaths_JHU.png)
 - [CFRs for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.png)
 (b) [Base code with general functions](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_baseCode.py) 
-(c) JuPyTeR notebook 
+(c) [JuPyTeR notebook COVID-19](cfr_Jan-April_2020.ipynb)
 
 
 
