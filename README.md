@@ -11,19 +11,14 @@
 
 (a)[JuPyTeR notebook COVID-19](COVID-19_cfr_Jan-April_2020.ipynb) and its [html version](COVID-19_cfr_Jan-April_2020.html)
 
-(b)[Python code with CFR analysis](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.py) 
+(b)[Python code with CFR analysis](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr.py) and illustrating figures.
 
-- [Cases vs deaths per 1000 habitants for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cases-deaths1000_JHU.png)
+- [Cases vs deaths per 1000 habitants for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cases-deaths1000.png)
 
-- [CFRs for some countries from the first case in China](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU_fromFirstCaseInChina.png)
+- [CFRs for some countries from the first case in China](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr_fromFirstCaseInChina.png)
 
-- [CFRs for some countries from the day the first case was reported locally](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU_fromFirstLocalReport.png)
+- [CFRs for some countries from the day the first case was reported locally](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr_fromFirstLocalReport.png)
 
-- [CFRs for some countries taking into account local reports by provinces](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_ProvincesChinaUKAustralia_fromFirstReport.png) Note the differences between the CFR from the total cases and the average CFR from the provinces. 
+- [CFRs for some countries taking into account local reports by provinces](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr_ProvincesChinaUKAustralia_fromFirstReport.png) Note the differences between the CFR from the total cases and the average CFR from the provinces. 
 
 (c) [Base code with general functions](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_baseCode.py) 
-
-
-
-
-
