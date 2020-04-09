@@ -11,13 +11,13 @@
 
 (a)[Python code with CFR analysis](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.py) 
 
-- [Cases vs deaths per 1000 habitants for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cases-deaths_JHU.png)
+- [Cases vs deaths per 1000 habitants for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cases-deaths1000_JHU.png)
 
-- [CFRs for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.png)
+- [CFRs for some countries from the first case in China](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU_fromFirstCaseInChina.png)
 
-- [CFRs for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_ProvincesChinaUK_fromFirstCaseInChina.png)
+- [CFRs for some countries from the day the first case was reported locally](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU_fromFirstLocalReport.png)
 
-- [CFRs for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_ProvincesChinaUK_fromFirstLocalReport.png)
+- [CFRs for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_ProvincesChinaUKAustralia_fromFirstReport.png)
 
 (b) [Base code with general functions](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_baseCode.py) 
 
