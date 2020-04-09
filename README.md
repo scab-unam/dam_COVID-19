@@ -7,7 +7,7 @@
 
 #### 1. Initial exploration of the fatality associated to reported cases during the first weeks of the COVID-19 pandemic 
 
-(Herrera-Nolasco, Herrera-McKiernan, Herrera-McKiernan, O'Reilly-Regueiro, Herrera-Valdez, *In preparation*)
+(Herrera-Nolasco CI, Herrera-McKiernan AJ, Herrera-McKiernan EA, O'Reilly-Regueiro E, Herrera-Valdez MA, *In preparation*)
 
 (a)[Python code with CFR analysis](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.py) 
 
