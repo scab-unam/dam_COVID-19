@@ -6,10 +6,8 @@
 
 
 ### Case-fatality ratios and deaths vs cases (updates automatically with the JHU data base)
-[Python code with CFR analysis:](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsa_COVID-19_cfr.py) 
-
-
-[Base code with general functions:](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID-19_baseCode.py) 
+1. [Python code with CFR analysis](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID-19_cfr_JHU.py) 
+2. [Base code with general functions](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID-19_baseCode.py) 
 
 
 
