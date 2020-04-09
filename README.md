@@ -9,7 +9,9 @@
 
 (Herrera-Nolasco CI, Herrera-McKiernan AJ, Herrera-McKiernan EA, O'Reilly-Regueiro E, Herrera-Valdez MA, *In preparation*)
 
-(a)[Python code with CFR analysis](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.py) 
+(a)[JuPyTeR notebook COVID-19](COVID-19_cfr_Jan-April_2020.ipynb) and its [html version](COVID-19_cfr_Jan-April_2020.html)
+
+(b)[Python code with CFR analysis](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.py) 
 
 - [Cases vs deaths per 1000 habitants for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cases-deaths1000_JHU.png)
 
@@ -19,9 +21,8 @@
 
 - [CFRs for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_ProvincesChinaUKAustralia_fromFirstReport.png)
 
-(b) [Base code with general functions](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_baseCode.py) 
+(c) [Base code with general functions](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_baseCode.py) 
 
-(c) [JuPyTeR notebook COVID-19](COVID-19_cfr_Jan-April_2020.ipynb) and its [html version](COVID-19_cfr_Jan-April_2020.html)
 
 
 
