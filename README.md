@@ -10,7 +10,6 @@
 (Herrera-Nolasco, Herrera-McKiernan, Herrera-McKiernan, O'Reilly-Regueiro, Herrera-Valdez, *In preparation*)
 
 (a)[Python code with CFR analysis](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU.py) 
-Figures:
 
 - [Cases vs deaths per 1000 habitants for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cases-deaths_JHU.png)
 
