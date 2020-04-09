@@ -17,7 +17,6 @@ def getIndsRegions(countries, regions):
     ii =list()
     for mm in range(len(regions)):
         reg = regions[mm]
-        print(reg)
         ii.append(getIndsSingleRegion(countries,reg))
     return ii
 #
@@ -48,9 +47,15 @@ def gatherDataByCountry(df,nHeaderCols=4):
 # Ratios by array. Correction in cases there are zeros in the denominators
 # -------------------
 def correctedArrayRatio(a,b):
+    """
+    correctedArrayRatio(a,b) calculates a/b from arrays a and b,
+    assuming that a is less than or equal to b,
+    and correcting for possible zeros in b.
+    In those cases, the value of b is set to 1, and the quotient is still 0
+    """
     bCorr= b.copy()
     bCorr[bCorr==0]=1
-    return a/np.maximum(b,bCorr)
+    return np.float64(a)/np.maximum(b,bCorr)
 
 def add_subplot_axes(ax,rect):
     fig = gr.gcf()

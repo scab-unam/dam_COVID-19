@@ -112,8 +112,8 @@ def plotCasesDeathsTS(casesTS,deathsTS,regions,countries, convFactor=1000):
                                 loc='lower right'))
         region=ii[n]
         for nn in range(len(region)):
-            cas=convFactor*casesTS[region[nn]]/Pops_Millions[countries[region[nn]]]
-            dea=convFactor*deathsTS[region[nn]]/Pops_Millions[countries[region[nn]]]
+            cas=convFactor*np.float64(casesTS[region[nn]])/Pops_Millions[countries[region[nn]]]
+            dea=convFactor*np.float64(deathsTS[region[nn]])/Pops_Millions[countries[region[nn]]]
             ax[n].plot(cas,dea,'-',label=countries[region[nn]])
             ax[n].set_xlabel(r'cases per %d habitants'%convFactor)
             ax[n].set_ylabel(r'deaths per %d habitants'%convFactor)
@@ -134,14 +134,16 @@ figu.savefig('./'+strCasesDeaths)
 # Case-Fatality ratio analysis.
 # Total cases
 # -------------------
-cfrAnalysis= '''The case fatality ratio is an approximation for the probability of death among cases in an epidemic. In fact, it is an upper bound for the proportion of deaths due to infection, assuming that people that have not been confirmed do not have a higher probability of dying because of the infection'''
+cfrAnalysis= '''The case fatality ratio is an approximation for the probability of death among cases in an epidemic.
+In fact, it is an upper bound for the proportion of deaths due to infection, assuming that people that have not been confirmed do not have a higher probability of dying because of the infection'''
 print(cfrAnalysis)
 #
 
 cfr= correctedArrayRatio(totDeaths,totCases)
 regions=[R1,LatinAmerica+Africa,R3+R4,R2]
 #
-def plotCFRTS(cfr,dates,regions,countries, convFactor=1000):
+def plotCFRTS(cfr,dates,regions,countries, convFactor=1000, move2start=1):
+    cfr=100*cfr
     ii = getIndsRegions(countries, regions)
     figu = gr.figure(figsize=(15,9))
     figu.suptitle('Percentage of dead/confirmed between %s-%s'''%(dates[0],dates[-1]))
@@ -151,13 +153,14 @@ def plotCFRTS(cfr,dates,regions,countries, convFactor=1000):
     ticks= np.arange(0,nDays,7)
     for n in range(len(regions)):
         ax.append(figu.add_subplot(rows,cols,n+1))
-        region=ii[n]; xmin=0
+        region=ii[n];
         for nn in range(len(region)):
-            ax[n].plot(100*cfr[region[nn]],'-',label=countries[region[nn]])
-            ximin = np.where(cfr[region[nn]]>0.01)[0].max()
-            print(xmin)
-        ximin= np.maximum(xmin,ximin)
-        ax[n].set_xlim(ximin,len(dates))
+            if move2start:
+                startInd = np.minimum( np.where(region[nn]>0)[0].min(),0)
+                ax[n].plot(cfr[region[nn]][startInd],'-',label=countries[region[nn]])
+            else:
+                ax[n].plot(cfr[region[nn]],'-',label=countries[region[nn]])
+        #ax[n].set_xlim(ximin,len(dates))
         ax[n].set_ylim(0,15);
         ax[n].legend(ncol=5,loc='upper left',fontsize=8)
         ax[n].set_xticks(ticks)
@@ -170,7 +173,22 @@ def plotCFRTS(cfr,dates,regions,countries, convFactor=1000):
     gr.ion(); gr.draw(); gr.show()
     return figu
 
-figu=plotCFRTS(cfr,dates,regions,countries, convFactor=1000)
+figu=plotCFRTS(cfr,dates,regions,countries, convFactor=1000, move2start=0)
 strCFR='tsam_COVID19_cfr_JHU.png'
 figu.savefig('./'+strCFR)
 # ---------------------------------------------
+
+
+# ---------------------------------------------
+# Analysis of CFRs within countries where there are reports by provinces
+# UK, China, Australia
+# ---------------------------------------------
+# China
+
+casesChina, indsCasesChina= gatherDataSingleCountry(cases,'China')
+deathsChina, indsCasesChina= gatherDataSingleCountry(deaths,'China')
+cfrChina = correctedArrayRatio(deathsChina,casesChina)
+
+casesUK, indsCasesUK= gatherDataSingleCountry(cases,'United Kingdom')
+deathsUK, indsUK= gatherDataSingleCountry(deaths,'United Kingdom')
+cfrUK = correctedArrayRatio(deathsUK,casesUK)
