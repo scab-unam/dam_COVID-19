@@ -9,7 +9,7 @@
 
 (Herrera-Nolasco CI, Herrera-McKiernan AJ, Herrera-McKiernan EA, O'Reilly-Regueiro E, Herrera-Valdez MA, *In preparation*)
 
-(a)[JuPyTeR notebook COVID-19](COVID-19_cfr_Jan-April_2020.ipynb) and its [html version](COVID-19_cfr_Jan-April_2020.html)
+(a)[JuPyTeR notebook COVID-19](COVID-19_cfr_Jan2020-.ipynb) and its [html version](COVID-19_cfr_Jan2020-.html)
 
 (b)[Python code with CFR analysis](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr.py) and illustrating figures.
 
