@@ -11,9 +11,9 @@ if urlData==1:
     urlCases = srcDir+'time_series_covid19_confirmed_global.csv'
     cases = pd.read_csv(urlCases,index_col=None)
     urlDeaths = srcDir+'time_series_covid19_deaths_global.csv'
-    deaths = pd.read_csv(urlDeaths,index_col=None)
+    deathCases = pd.read_csv(urlDeaths,index_col=None)
     urlRecov = srcDir+'time_series_covid19_recovered_global.csv'
-    recov = pd.read_csv(urlRecov,index_col=None)
+    recovCases = pd.read_csv(urlRecov,index_col=None)
 
 if 1:
     urlTests='https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/testing/'
@@ -34,7 +34,7 @@ if localData==1:
     deathsF='time_series_covid19_deaths_global.csv'
     recovF='time_series_covid19_recovered_global.csv'
     cases=pd.read_csv(srcDir+casesF)
-    deaths=pd.read_csv(srcDir+deathsF)
+    deathCases=pd.read_csv(srcDir+deathsF)
     recov=pd.read_csv(srcDir+recovF)
 
 # ------------------------------
@@ -68,7 +68,7 @@ nCountries = len(countries)
 # Gather same country data
 # -------------------
 gCases, countries_Cases= sortDataByCountry(cases, nHeaderCols)
-gDeaths,countries_Deaths = sortDataByCountry(deaths, nHeaderCols)
+gdeathCases,countries_deathCases = sortDataByCountry(deathCases, nHeaderCols)
 gRecov,countries_Recov = sortDataByCountry(recov, nHeaderCols)
 
 # -------------------
@@ -76,7 +76,7 @@ gRecov,countries_Recov = sortDataByCountry(recov, nHeaderCols)
 # -------------------
 # These arrays have the same size as the countries array (unique countries)
 totCases=gatherDataByCountry(df=cases,nHeaderCols=4)
-totDeaths=gatherDataByCountry(df=deaths,nHeaderCols=4)
+totDeathCases=gatherDataByCountry(df=deathCases,nHeaderCols=4)
 totRecov=gatherDataByCountry(df=recov,nHeaderCols=4)
 
 # -------------------
@@ -97,10 +97,10 @@ regions=[R1,LatinAmerica+Africa,R3+R4,R2]
 #
 ii = getIndsRegions(countries, regions)
 #
-def plotCasesDeathsTS(casesTS,deathsTS,regions,countries, convFactor=1000):
+def plotCasesdeathCasesTS(casesTS,deathCasesTS,regions,countries, convFactor=1000):
     ii = getIndsRegions(countries, regions)
     figu= gr.figure(figsize=(15,9))
-    figu.suptitle('''Deaths vs cases per %d habitants between %s-%s'''%(convFactor,dates[0],dates[-1]))
+    figu.suptitle('''Death cases vs cases per %d habitants between %s-%s'''%(convFactor,dates[0],dates[-1]))
     gr.ioff(); ax=list(); sax=list(); cols=2
     rows = np.int32(np.ceil(len(regions)/cols))
     ticks= np.arange(0,nDays,7)
@@ -113,11 +113,12 @@ def plotCasesDeathsTS(casesTS,deathsTS,regions,countries, convFactor=1000):
         region=ii[n]
         for nn in range(len(region)):
             cas=convFactor*np.float64(casesTS[region[nn]])/Pops_Millions[countries[region[nn]]]
-            dea=convFactor*np.float64(deathsTS[region[nn]])/Pops_Millions[countries[region[nn]]]
+            dea=convFactor*np.float64(deathCasesTS[region[nn]])/Pops_Millions[countries[region[nn]]]
             ax[n].plot(cas,dea,'-',label=countries[region[nn]])
             ax[n].set_xlabel(r'cases per %d habitants'%convFactor)
-            ax[n].set_ylabel(r'deaths per %d habitants'%convFactor)
+            ax[n].set_ylabel(r'Death cases per %d habitants'%convFactor)
             sax[n].plot(cas,dea,'-',label=countries[region[nn]])
+
         ymm= ax[n].get_ylim()[1]/3
         xmm= ax[n].get_xlim()[1]/2
         sax[n].set_ylim(0.0,ymm);  sax[n].set_xlim(0.0,xmm); sax[n].set_xticklabels([])
@@ -126,9 +127,9 @@ def plotCasesDeathsTS(casesTS,deathsTS,regions,countries, convFactor=1000):
     gr.ion(); gr.draw(); gr.show()
     return figu
 
-figu=plotCasesDeathsTS(casesTS=totCases,deathsTS=totDeaths,regions=regions,countries=countries)
-strCasesDeaths='tsam_COVID19_cases-deaths1000_JHU.png'
-figu.savefig('./'+strCasesDeaths)
+figu=plotCasesdeathCasesTS(casesTS=totCases,deathCasesTS=totDeathCases,regions=regions,countries=countries)
+strCasesdeathCases='tsam_COVID19_JHU_cases-deathCases1000.png'
+figu.savefig('./'+strCasesdeathCases)
 
 # -------------------
 # Case-Fatality ratio analysis.
@@ -171,7 +172,7 @@ def plotCFRTS(cfr,dates,regions,countries, move2start=1):
     gr.ion(); gr.draw(); gr.show()
     return figu
 #
-cfr= correctedArrayRatio(totDeaths,totCases)
+cfr= correctedArrayRatio(totDeathCases,totCases)
 regions=[R1,LatinAmerica+Africa,R3+R4,R2]
 # ---------------------------------------------
 # All relative to the starting days of the pandemia
@@ -195,8 +196,8 @@ figu.savefig('./'+strCFR)
 China= {'Country name':'China'}
 China['cfrTotCases']=cfr[np.where(countries=='China')[0][0]]
 China['cases'], China['indsCases']= gatherDataSingleCountry(cases,'China')
-China['deaths'], China['indsDeaths']= gatherDataSingleCountry(deaths,'China')
-China['cfr'] = correctedArrayRatio(China['deaths'],China['cases'])
+China['deathCases'], China['indsdeathCases']= gatherDataSingleCountry(deathCases,'China')
+China['cfr'] = correctedArrayRatio(China['deathCases'],China['cases'])
 China['provinces']=cases.iloc[China['indsCases'],0].to_numpy()
 China['nProvinces'] = len(China['provinces'])
 China['startDaysCases']= findCaseStarts(places=China['provinces'],cases=China['cases'])
@@ -204,8 +205,8 @@ China['startDaysCases']= findCaseStarts(places=China['provinces'],cases=China['c
 UK =  {'Country name':'UK'}
 UK['cfrTotCases']=cfr[np.where(countries=='United Kingdom')[0][0]]
 UK['cases'], UK['indsCases']= gatherDataSingleCountry(cases,'United Kingdom')
-UK['deaths'], UK['indsDeaths']= gatherDataSingleCountry(deaths,'United Kingdom')
-UK['cfr'] = correctedArrayRatio(UK['deaths'],UK['cases'])
+UK['deathCases'], UK['indsdeathCases']= gatherDataSingleCountry(deathCases,'United Kingdom')
+UK['cfr'] = correctedArrayRatio(UK['deathCases'],UK['cases'])
 UK['provinces']=cases.iloc[UK['indsCases'],0].to_numpy()
 UK['nProvinces'] = len(UK['provinces'])
 UK['startDaysCases']= findCaseStarts(places=UK['provinces'],cases=UK['cases'])
@@ -213,8 +214,8 @@ UK['startDaysCases']= findCaseStarts(places=UK['provinces'],cases=UK['cases'])
 Australia =  {'Country name':'Australia'}
 Australia['cfrTotCases']=cfr[np.where(countries=='Australia')[0][0]]
 Australia['cases'], Australia['indsCases']= gatherDataSingleCountry(cases,'Australia')
-Australia['deaths'], Australia['indsDeaths']= gatherDataSingleCountry(deaths,'Australia')
-Australia['cfr'] = correctedArrayRatio(Australia['deaths'],Australia['cases'])
+Australia['deathCases'], Australia['indsdeathCases']= gatherDataSingleCountry(deathCases,'Australia')
+Australia['cfr'] = correctedArrayRatio(Australia['deathCases'],Australia['cases'])
 Australia['provinces']=cases.iloc[Australia['indsCases'],0].to_numpy()
 Australia['nProvinces'] = len(Australia['provinces'])
 Australia['startDaysCases']= findCaseStarts(places=Australia['provinces'],cases=Australia['cases'])
@@ -246,7 +247,7 @@ def plotCFRTS_Provinces(places,dates,move2start=1):
                     label.set_fontsize(8)
         avgCFR=100*place['cfr'].mean(0)
         if move2start:
-            ax[n].plot(avgCFR[si:],'k-',alpha=1, lw=3,label='%s Average CFR from provinces'%place['Country Name'])
+            ax[n].plot(avgCFR[si:],'k-',alpha=1, lw=3,label='%s Average CFR from provinces'%place['Country name'])
             ax[n].plot(100*place['cfrTotCases'][si:],'k-',alpha=0.35, lw=5,label='CFR from total cases')
         else:
             ax[n].plot(avgCFR,'k-',alpha=1, lw=3,label=place['provinces'][nn])
@@ -259,10 +260,137 @@ def plotCFRTS_Provinces(places,dates,move2start=1):
 
 places = [China,Australia,UK]
 #
-figu=plotCFRTS_Provinces(places,dates,move2start=0)
-strCFR='tsam_COVID19_cfr_ProvincesChinaUKAustralia_fromFirstReport.png'
+figu=plotCFRTS_Provinces(places,dates,move2start=1)
+strCFR='tsam_COVID19_JHU_cfr_ProvincesChinaUKAustralia_fromFirstReport.png'
 figu.savefig('./'+strCFR)
 # ---------------------------------------------
-strProvinces="""The
+strProvinces="""The"""
 
-"""
+# ----------------------------------
+# Age cfrs and inference about probability of death due to COVID-19
+# ----------------------------------
+SKorea={'ageCFR': np.array([0,0,0,0.001,0.001,0.004,0.015,0.063,0.116]),'CFR_2020?':0.02,'Country name':'Korea, South'}
+Italy={'ageCFR': np.array([0,0,0,0.003,0.004,0.01,0.035,0.128,0.202]),'CFR_20200317':0.072,'Country name':'Italy'}
+China['ageCFR'] = np.array([0,0.002,0.002,0.002,0.004,0.013,0.036,0.08,0.14])
+China['CFR_20200211'] = 0.02
+aGroups=np.arange(0,90,10)
+
+ages = np.arange(0,90)
+f11=gr.figure(figsize=(11,5)); gr.ioff(); rows =1;cols=1
+f11.suptitle('CFR by age')
+lshift=2.5;  ax=f11.add_subplot(rows,cols,1)
+for n in range(len(ageCountries)):
+    ax.bar(aGroups+ (n*lshift), 100*ageCountries[n]['ageCFR'],width=2,align='edge',label=ageCountries[n]['Country name']);
+ax.legend(loc='upper left')
+gr.ion(); gr.draw();  gr.show()
+f11Name='tsam_COVID19_JHU_cfr+propDeathCasesByAge_China+SKorea+Italy.png'
+f11.savefig(f11Name)
+
+# -------------------------------------------
+# Calculation for proportions of death by age group for different ages and prop deathCases by age group using Bayes' theorem
+# -------------------------------------------
+ageCountries=[SKorea,Italy,China]
+for n in range(len(ageCountries)):
+    C = ageCountries[n]
+    print(C['Country name'])
+    ageCFRweights = C['ageCFR'].sum()
+    C['ageDeadCaseProps'] = C['ageCFR']/ageCFRweights
+    C['cfrTotCases']=cfr[np.where(countries==C['Country name'])[0][0]]
+    C['totCases'] = totCases[np.where(countries==C['Country name'])[0][0]]
+    C['totDeathCases'] = totDeathCases[np.where(countries==C['Country name'])[0][0]]
+    C['totDeathCases_ageProps'] = np.zeros((len(aGroups),len(C['totDeathCases'])),'int64')
+    for nn in range(len(aGroups)):
+        C['totDeathCases_ageProps'][nn,:]= C['ageDeadCaseProps'][nn] * C['totCases']* C['cfrTotCases']
+        print(C['totDeathCases_ageProps'][nn])
+
+
+a0s = [74,70,72]; aMaxs=[1.4*0.12,1.3*0.202,1.3*0.14]
+pMaxs=[0.76,0.68,0.68]
+f10=gr.figure(figsize=(13,11)); gr.ioff();
+f10.suptitle('Comparison between CFRs by age and proportion of deaths by age (among confirmed)')
+axCFR=list(); axDP=list(); rows =len(ageCountries);cols=2
+for n in range(len(ageCountries)):
+    C=ageCountries[n]
+    axCFR.append(f10.add_subplot(rows,cols,2*n+1))
+    axCFR[n].text(0,0.1,C['Country name'])
+    axCFR[n].bar(aGroups, C['ageCFR'],width=8,align='edge',label='CFR '
+                 +C['Country name']);
+    axCFR[n].plot(ages, sigmoid(a=ages,a0=a0s[n],aMax=aMaxs[n],n=9))
+    axCFR[n].legend(loc='upper left')
+    axDP.append(f10.add_subplot(rows,cols,2*n+2))
+    axDP[n].text(0,0.1,C['Country name'])
+    axDP[n].bar(aGroups, C['ageDeadProps'],width=8,align='edge',label='P(COVID-19 dead by age) '+ageCountries[n]['Country name']);
+    axDP[n].plot(ages, sigmoid(a=ages,a0=a0s[n],aMax=pMaxs[n],n=9))
+    axDP[n].legend(loc='upper left')
+gr.ion(); gr.draw();
+f10Name='tsam_COVID19_JHU_cfr+propDeathCasesByAge_China+SKorea+Italy.png'
+f10.savefig(f10Name)
+
+
+
+# ------------------------------------------
+# Comparison of death estimates by age and deaths reported
+# ------------------------------------------
+ages = np.arange(0,90)
+f12=gr.figure(figsize=(13,9)); gr.ioff(); rows =3;cols=1
+ax=list()
+lshift=0.1*W;
+ticks= np.arange(0,nDays,7)
+convFactor =1
+for n in range(len(ageCountries)):
+    ax.append(f12.add_subplot(rows,cols,n+1))
+    C = ageCountries[n]
+    print(C['Country name'])
+    ax[n].plot(C['totDeathCases'],'k--', alpha=1, lw=1,label='Deaths reported '+ C['Country name']);
+    ax[n].plot(C['totDeathCases_ageProps'].sum(0),'k',lw=1,label='Sum of estimates '+ C['Country name']);
+    for nn in range(len(aGroups)):
+        ax[n].plot(C['totDeathCases_ageProps'][nn],label=C['Country name']+ '[%d,%d)]'%(aGroups[nn],aGroups[nn]+10));
+    ax[n].legend(loc='upper left',ncol=3, fontsize=8)
+    ax[n].set_xticklabels(dates[ticks],{'fontsize':8})
+    for label in ax[n].get_xticklabels():
+        label.set_rotation(0)
+        label.set_horizontalalignment('center')
+        label.set_fontsize(8)
+
+f12.suptitle('P(death) due to COVID-19 by age')
+gr.ion(); gr.draw();  gr.show()
+
+f12Name='tsam_COVID19_JHU_cfr+propDeathCasesByAgeTS.png'
+f12.savefig(f12Name)
+
+# -----------------------------------------------
+# Estimation of cases by age in Mexico
+# -----------------------------------------------
+Mexico = dict()
+Mexico['cfr'] =cfr[np.where(countries=='Mexico')[0][0]]
+Mexico['totCases']=totCases[np.where(countries=='Mexico')[0][0]]
+Mexico['totDeathCases']=totDeathCases[np.where(countries=='Mexico')[0][0]]
+Mexico['startInd'] = np.where(Mexico['totCases']>0)[0].min()
+Mexico['popMillions']= Pops_Millions['Mexico']
+
+convFactors=[1,8,12,16];
+f13=gr.figure(figsize=(13,9)); gr.ioff(); rows =3;cols=1;ax=list()
+ticks= np.arange(0,nDays,3)
+m=1
+pConfirmation = convFactors[m] * Mexico['totCases']/Mexico['popMillions']
+for n in range(len(ageCountries)):
+    ax.append(f13.add_subplot(rows,cols,n+1))
+    C = ageCountries[n]
+    for nn in range(len(aGroups)):
+        ff = Mexico['totCases'] * Mexico['cfr'] *C['ageDeadCaseProps'][nn]
+        ax[n].plot(ff,label='Mexico [%d,%d)]'%(aGroups[nn],aGroups[nn]+10));
+        ax[n].legend(loc='upper left',ncol=3, fontsize=8)
+        ax[n].set_xticks(ticks)
+        ax[n].set_xticklabels(dates[ticks],{'fontsize':8})
+        for label in ax[n].get_xticklabels():
+            label.set_rotation(0)
+            label.set_horizontalalignment('center')
+            label.set_fontsize(8)
+    ax[n].set_title('Estimación  basada en las proporciones por edad de %s'%C['Country name'])
+    ax[n].plot(Mexico['totDeathCases'],'r',lw=2,label='Deaths Mexico');
+    #ax[n].plot(ff.sum(0),'k',label='Deaths Mexico');
+
+gr.ion(); gr.draw();  gr.show()
+#f13.suptitle('Estimation of deaths due to COVID-19 by age using CFR data from other countries')
+f13Name='tsam_COVID19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico.png'
+f13.savefig(f13Name)
