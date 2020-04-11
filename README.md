@@ -25,4 +25,6 @@
 
 - [CFRs for some countries taking into account local reports by provinces](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr_ProvincesChinaUK_fromFirstReport.png) Note the differences between the CFR from the total cases and the average CFR from the provinces. 
 
+- [Estimation of death cases in Mexico for different age groups](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico.png)
+
 
