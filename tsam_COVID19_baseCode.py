@@ -9,6 +9,17 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 #                     height=1., # height : 1 inch
 #                     loc=3)
 # Indexing and gathering of data
+def findFirstCaseDates(a):
+    fIndex = list()
+    for m in range(len(a)):
+        i =  np.where(a[m]>0)[0]
+        if len(i)>0:
+            ii =i.min()
+        else:
+            ii = len(a[m])-1
+        fIndex.append(ii)
+    return np.array(fIndex)
+    
 def getIndsSingleRegion(countries, region):
     i = [np.where(countries==region[nn])[0][0] for nn in range(len(region))]
     return i
@@ -76,6 +87,10 @@ def findCaseStarts(places,cases):
 # -------------------
 # Ratios by array. Correction in cases there are zeros in the denominators
 # -------------------
+def sigmoid(a, aMax=0.1,a0=60.0,n=2):
+    aa = a**n
+    return aMax* aa /(aa + a0**n)
+
 def correctedArrayRatio(a,b):
     """
     correctedArrayRatio(a,b) calculates a/b from arrays a and b,

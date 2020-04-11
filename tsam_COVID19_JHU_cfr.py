@@ -69,7 +69,7 @@ nCountries = len(countries)
 # -------------------
 gCases, countries_Cases= sortDataByCountry(cases, nHeaderCols)
 gdeathCases,countries_deathCases = sortDataByCountry(deathCases, nHeaderCols)
-gRecov,countries_Recov = sortDataByCountry(recov, nHeaderCols)
+gRecov,countries_Recov = sortDataByCountry(recovCases, nHeaderCols)
 
 # -------------------
 # Sum the counts from each country and construct a new array
@@ -77,7 +77,45 @@ gRecov,countries_Recov = sortDataByCountry(recov, nHeaderCols)
 # These arrays have the same size as the countries array (unique countries)
 totCases=gatherDataByCountry(df=cases,nHeaderCols=4)
 totDeathCases=gatherDataByCountry(df=deathCases,nHeaderCols=4)
-totRecov=gatherDataByCountry(df=recov,nHeaderCols=4)
+totRecov=gatherDataByCountry(df=recovCases,nHeaderCols=4)
+
+# -------------------
+# Delays among the first cases
+# -------------------
+
+
+# An attempt to describe the order of appearance of cases
+iFC=findFirstCaseDates(totCases)
+iFD=findFirstCaseDates(totDeathCases)
+iFR=findFirstCaseDates(totRecov)
+jj = iFC.argsort()
+siC = iFC[jj]
+siD = iFD[jj]
+siR = iFR[jj]
+# As many as countries
+for mm in range(nCountries):
+    print(mm)
+    print(countries[jj[mm]], dates[siC[mm]], dates[siD[mm]], dates[siR[mm]])
+    print('Delays %d first case, %d first death, %d first recovery'%(siC[mm],siD[mm]-siC[mm],siR[mm]-siC[mm]))
+
+cCases, bins = np.histogram(iFC,np.arange(0,iFC.max()))
+cDeathCases, bins = np.histogram(iFD-iFC,np.arange(0,iFC.max()))
+cRecov, bins = np.histogram(iFR-iFC,np.arange(0,iFC.max()))
+#
+fDelays= gr.figure(figsize=(13,10)); gr.ioff(); rows=3; cols=1; ax=list()
+fDelays.suptitle('Delays in first case report, first death, and first recovery, all countries',fontsize=13)
+for m in range(rows*cols):
+    ax.append(fDelays.add_subplot(rows,cols,m+1))
+ax[0].bar(bins[:-1],cCases,width=0.8)
+ax[1].bar(bins[:-1],cDeathCases,width=0.8)
+ax[2].bar(bins[:-1],cRecov,width=0.8)
+ax[0].set_title('Days from first case reported in the pandemic',fontsize=10)
+ax[1].set_title('Days between first death and first case reported (all countries)',fontsize=10)
+ax[2].set_title('Days between first death and first recovery reported (all countries)',fontsize=10)
+gr.ion(); gr.draw(); gr.show()
+fDelays.savefig('tsam_COVID19_JHU_delaysAllCountries.png')
+
+
 
 # -------------------
 # Search regions to illustrate the case-fatality ratios
@@ -130,6 +168,9 @@ def plotCasesdeathCasesTS(casesTS,deathCasesTS,regions,countries, convFactor=100
 figu=plotCasesdeathCasesTS(casesTS=totCases,deathCasesTS=totDeathCases,regions=regions,countries=countries)
 strCasesdeathCases='tsam_COVID19_JHU_cases-deathCases1000.png'
 figu.savefig('./'+strCasesdeathCases)
+
+
+
 
 # -------------------
 # Case-Fatality ratio analysis.
