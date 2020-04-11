@@ -16,14 +16,18 @@
 
 - [Delays between case reports, and between first death and first recovery with respect to the first report in all countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_delaysAllCountries.png)
 
-- [Cases vs deaths per 1000 habitants for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cases-deaths1000.png)
+- [Cases vs deaths per 1000 habitants for some countries](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cases-deathCases1000.png)
 
-- [CFRs for some countries from the first case in China](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr_fromFirstCaseInChina.png)
+- [CFRs for some countries from the first case in China](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU_fromFirstCaseInChina.png)
 
-- [CFRs for some countries from the day the first case was reported locally](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr_fromFirstLocalReport.png)
+- [CFRs for some countries from the day the first case was reported locally](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU_fromFirstLocalReport.png)
 
-- [CFRs for some countries taking into account local reports by provinces](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr_ProvincesChinaUK_fromFirstReport.png) Note the differences between the CFR from the total cases and the average CFR from the provinces. 
+- [CFRs for China taking into account local reports by provinces](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr_ProvincesChina_fromFirstLocalReport) Note the differences between the CFR from the total cases and the average CFR from the provinces. 
 
-- [Estimation of death cases in Mexico for different age groups](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico.png)
+- [Estimation of death cases in Mexico for different age groups with a sub report factor of 1](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor1.png)
+
+- [Estimation of death cases in Mexico for different age groups with a sub report factor of 10](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor10.png)
+
+- [Estimation of death cases in Mexico for different age groups with a sub report factor of 12](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor12.png)
 
 
