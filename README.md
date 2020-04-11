@@ -10,7 +10,7 @@
 
 (a) Delay and CFR analysis of case, death, and recovery reports from around the world. 
 
-[JuPyTeR notebook](tsam_COVID-19_cfr_Jan2020-.ipynb), its [html version](tsam_COVID-19_cfr_Jan2020-.html), and the [Python  code](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr.py). The [base code with general functions](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_baseCode.py) 
+[JuPyTeR notebook](tsam_COVID-19_JHU_cfr_Jan2020-.ipynb), its [html version](tsam_COVID-19_JHU_cfr_Jan2020-.html), and the [Python  code](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr.py). The [base code with general functions](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_baseCode.py) 
 
 (b) Illustrating figures.
 
