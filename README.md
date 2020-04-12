@@ -22,7 +22,9 @@
 
 - [CFRs for some countries from the day the first case was reported locally](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_cfr_JHU_fromFirstLocalReport.png)
 
-- [CFRs for China taking into account local reports by provinces](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr_ProvincesChina_fromFirstLocalReport) Note the differences between the CFR from the total cases and the average CFR from the provinces. 
+- [CFRs for China taking into account local reports by provinces](tsam_COVID19_JHU_cfr_ProvincesChina_fromFirstLocalReport.png) Note the differences between the CFR from the total cases and the average CFR from the provinces. 
+
+- [CFRs from China, South Korea, and Italy, by age](tsam_COVID19_JHU_cfr+propDeathCases_ByAge_China+SKorea+Italy_OneFigure.png) Note the similarities between the weights of the CFRs by age from the different countries and consider their possible divergences in terms of the age structure of their populations, access to care, testing for COVID-19, etcetera. 
 
 - [Estimation of death cases in Mexico for different age groups with a sub report factor of 1](https://raw.githubusercontent.com/scab-unam/tsamCOVID-19/master/tsam_COVID19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor1.png)
 
