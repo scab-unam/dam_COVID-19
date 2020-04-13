@@ -1,7 +1,19 @@
-import pandas as pd
+import os
 import numpy as np
-import matplotlib.pylab as gr
+import pandas as pd
 import datetime
+import matplotlib.pylab as gr
+small={'family' : 'normal','weight' : 'normal','size'   : 8}
+medium={'family' : 'normal','weight' : 'normal','size'   : 10}
+large={'family' : 'normal','weight' : 'bold','size'   : 13}
+gr.rc('font', size=small['size'], weight='normal')          # controls default text sizes
+gr.rc('axes', titlesize=small['size'])     # fontsize of the axes title
+gr.rc('axes', labelsize=medium['size'])    # fontsize of the x and y labels
+gr.rc('xtick', labelsize=small['size'])    # fontsize of the tick labels
+gr.rc('ytick', labelsize=small['size'])    # fontsize of the tick labels
+gr.rc('legend', fontsize=small['size'])    # legend fontsize
+gr.rc('figure', titlesize=large['size'])  # fontsize of the figure title
+
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 # Example:
 # inset_axes = inset_axes(parent_axes,
@@ -9,6 +21,43 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 #                     height=1., # height : 1 inch
 #                     loc=3)
 # Indexing and gathering of data
+
+
+strReference="""Data obtained from https://github.com/CSSEGISandData/COVID-19/"""
+print(strReference)
+
+def getCSSEGISandData(urlData=1):
+    if urlData==1:
+        localData=1-urlData
+        srcDir='https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/'
+        urlCases = srcDir+'time_series_covid19_confirmed_global.csv'
+        cases = pd.read_csv(urlCases,index_col=None)
+        urlDeaths = srcDir+'time_series_covid19_deaths_global.csv'
+        deathCases = pd.read_csv(urlDeaths,index_col=None)
+        urlRecov = srcDir+'time_series_covid19_recovered_global.csv'
+        recovCases = pd.read_csv(urlRecov,index_col=None)
+
+    if localData==1:
+        srcDir='./COVID-19/csse_covid_19_data/csse_covid_19_time_series/'
+        casesF='time_series_covid19_confirmed_global.csv'
+        deathsF='time_series_covid19_deaths_global.csv'
+        recovF='time_series_covid19_recovered_global.csv'
+        cases=pd.read_csv(srcDir+casesF)
+        deathCases=pd.read_csv(srcDir+deathsF)
+        recov=pd.read_csv(srcDir+recovF)
+    return cases,deathCases,recovCases
+
+def getTestData():
+    urlTests='https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/testing/'
+    testsF='covid-testing-all-observations.csv'
+    tests = pd.read_csv(urlTests+testsF,index_col=None)
+    return test
+    #world population Data
+def getTestData():
+    urlWorldPop='https://stats.oecd.org/sdmx-json/data/DP_LIVE/.POP.../OECD?contentType=csv&detail=code&separator=comma&csv-lang=en'
+    worldPops = pd.read_csv(urlWorldPop,index_col=None)
+
+
 def findFirstCaseDates(a):
     fIndex = list()
     for m in range(len(a)):
@@ -19,7 +68,7 @@ def findFirstCaseDates(a):
             ii = len(a[m])-1
         fIndex.append(ii)
     return np.array(fIndex)
-    
+
 def getIndsSingleRegion(countries, region):
     i = [np.where(countries==region[nn])[0][0] for nn in range(len(region))]
     return i
