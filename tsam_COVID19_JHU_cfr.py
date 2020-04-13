@@ -45,7 +45,7 @@ gRecov,countries_Recov = sortDataByCountry(recovCases, nHeaderCols)
 wcCases=gatherDataByCountry(df=cases,nHeaderCols=4)
 wcDeathCases=gatherDataByCountry(df=deathCases,nHeaderCols=4)
 wcRecovCases=gatherDataByCountry(df=recovCases,nHeaderCols=4)
-
+wcCFR= correctedArrayRatio(totDeathCases,totCases)
 # -------------------
 # Delays among the first cases
 # -------------------
@@ -102,13 +102,13 @@ ax.set_xticks(ticks)
 ax.set_xticklabels(dates[ticks])
 ax.legend(loc='upper left')
 for label in ax.get_xticklabels():
-    label.set_rotation(90)
+    label.set_rotation(45)
     label.set_horizontalalignment('center')
     label.set_fontsize(8)
 gr.ion(); gr.draw()
 
 n=10; print(r'%d countries reported within the first %d days from $d_0$'%(len(siC[siC<n+1]),n))
-countries[jj[siC<n+1]]
+countries[iArrivalReports[siC<n+1]]
 
 """
 The first countries that reported cases of COVID-19 on January 22, 2020 ($d_0$)
@@ -124,14 +124,9 @@ These data reflect the delay in reports from different countries relative to ð‘
 # --------------------------------------------
 # Histograms of the first arrivals for cases, deaths, recoveries
 # --------------------------------------------
-cCases, bins = np.histogram(iFC,np.arange(0,iFC.max()))
-cDeathCases, bins = np.histogram(iFD-iFC,np.arange(0,iFC.max()))
-cRecov, bins = np.histogram(iFR-iFC,np.arange(0,iFC.max()))
-#
 cCases, binsC = np.histogram(iFC,np.arange(0,(iFD-iFC).max()))
 cDeathCases, binsD = np.histogram(iFD-iFC,np.arange(0,(iFD-iFC).max()))
 cRecovCases, binsR = np.histogram(iFR-iFC,np.arange(0,(iFD-iFC).max()))
-#
 def plotReportingDelays():
     fDelays= gr.figure(figsize=(7,10)); gr.ioff(); rows=3; cols=1;
     ax=list(); tAx=list()
@@ -146,12 +141,15 @@ def plotReportingDelays():
     ax[1].bar(binsD[:-1],cDeathCases,width=0.8,label='Death')
     ax[2].bar(binsR[:-1],cRecovCases,width=0.8,label='Recoveries')
     ax[0].set_xlabel('Days from $d_0$')
-    ax[1].set_xlabel('Days from first case reported (same country)')
-    ax[2].set_xlabel('Days from first case reported (same country)')
+    ax[1].set_xlabel('Days first case reported (same country)')
+    ax[2].set_xlabel('Days first case reported (same country)')
     for m in range(rows*cols):
         ax[m].set_yticks(np.arange(0,np.maximum(cRecovCases.max()+1,cCases.max()),2))
         ax[m].set_ylabel('# Countries',rotation=90)
-        tAx[m].legend(loc='upper left')
+        if m>0:
+            ax[m].legend(loc='upper left')
+        if m<1:
+            tAx[m].legend(loc='upper left')
     fDelays.subplots_adjust(left=0.075,bottom=0.075,right=0.9,top=0.95,wspace=0.1,hspace=0.25)
     gr.ion(); gr.draw(); gr.show()
     fDelays.savefig('tsam_COVID19_JHU_delaysAllCountries.png')
@@ -159,7 +157,7 @@ def plotReportingDelays():
 
 fDelays= plotReportingDelays()
 n=7; print(r'%d countries reported within the first %d days from $d_0$'%(len(siC[siC<n+1]),n))
-countries[jj[(siD-siC) <n+1]]
+countries[iArrivalReports[(siD-siC) <n+1]]
 strDelays = '''
 The delays between the first case reported and the first death reported within a single country have a wide distribution, between 0 and 76 days.
 However, the bulk of the distribution can be found between 0 and 30 days, with a mode at 16 days. In consideration of the time course of the infection by SARS-CoV-2 reported in the literature \citep{}, the delay between death and contagion can be 21 or more days \citep{}.
@@ -174,16 +172,6 @@ The delays between the first recovery and the first case reported within a singl
 Pops_Millions = {'China':1439323776, 'Japan':126476461,'Korea, South':51269185, 'Indonesia':273523615, 'Singapore':5850342, 'Mexico':128932753,
 'US':331002651, 'Canada':37742154, 'Argentina':45195774, 'Brazil':212559417, 'Colombia':50882891, 'Niger':24206644, 'Algeria':43851044, 'Egypt':102334404, 'South Africa':59308690,'Spain':46754778,'Italy':60461826,'France':67886011,'Germany':83783942, 'Australia':25499884,'United Kingdom':67886011,'Iran':83992949,'Israel':8655535}
 #
-# Setup regions
-R1=['China','Japan','Korea, South','Indonesia','Singapore','Australia']
-R2=['United Kingdom','Spain','Italy','France','Germany']
-#America=['Mexico','US','Argentina','Brazil','Colombia','Chile']
-LatinAmerica=['Argentina','Brazil','Colombia','Mexico']
-Africa=['Niger','Algeria','Egypt','South Africa']
-R3=['US','Canada']
-MiddleEast =['Iran','Israel']
-#MiddleEast =['Iran','Lebanon', 'West Bank and Gaza','Israel']
-regions=[R1,R2+MiddleEast+R3,LatinAmerica+Africa]
 
 #
 def plotCasesDeathsTS(casesTS,deathsTS,regions,countries, convFactor=1000,saveFig=1):
@@ -226,11 +214,20 @@ def plotCasesDeathsTS(casesTS,deathsTS,regions,countries, convFactor=1000,saveFi
         figu.savefig('./'+figName)
     return figu
 
-#
+# --------------------------
+# Setup regions
+# --------------------------
+R1=['China','Japan','Korea, South','Indonesia','Singapore','Australia']
+R2=['United Kingdom','Spain','Italy','France','Germany']
+LatinAmerica=['Argentina','Brazil','Colombia','Mexico']
+Africa=['Niger','Algeria','Egypt','South Africa']
+R3=['US','Canada']
+MiddleEast =['Iran','Israel']
+regions=[R1,R2+MiddleEast+R3,LatinAmerica+Africa]
+# --------------------------
+
 ii = getIndsRegions(countries, regions)
 figu=plotCasesDeathsTS(casesTS=totCases,deathsTS=totDeathCases,regions=regions,countries=countries, convFactor=10**6)
-
-
 
 
 # -------------------
@@ -274,16 +271,16 @@ def plotCFRTS(cfr,dates,regions,countries, move2start=1):
     gr.ion(); gr.draw(); gr.show()
     return figu
 #
-cfr= correctedArrayRatio(wcDeathCases,wcCases)
+wcCFR= correctedArrayRatio(wcDeathCases,wcCases)
 regions=[R1,LatinAmerica+Africa,R3+R4,R2]
 # ---------------------------------------------
 # All relative to the starting days of the pandemia
-figu=plotCFRTS(cfr,dates,regions,countries, move2start=0)
+figu=plotCFRTS(wcCFR,dates,regions,countries, move2start=0)
 strCFR='tsam_COVID19_cfr_JHU_fromFirstCaseInChina.png'
 figu.savefig('./'+strCFR)
 # ---------------------------------------------
 # From the day the first case was reported
-figu=plotCFRTS(cfr,dates,regions,countries, move2start=1)
+figu=plotCFRTS(wcCFR,dates,regions,countries, move2start=1)
 strCFR='tsam_COVID19_cfr_JHU_fromFirstLocalReport.png'
 figu.savefig('./'+strCFR)
 # ---------------------------------------------
@@ -296,7 +293,6 @@ figu.savefig('./'+strCFR)
 
 # China
 China= {'Country name':'China'}
-China['cfrwcCases']=cfr[np.where(countries=='China')[0][0]]
 China['cases'], China['indsCases']= gatherDataSingleCountry(cases,'China')
 China['deathCases'], China['indsdeathCases']= gatherDataSingleCountry(deathCases,'China')
 China['cfr'] = correctedArrayRatio(China['deathCases'],China['cases'])
@@ -305,7 +301,6 @@ China['nProvinces'] = len(China['provinces'])
 China['startDaysCases']= findCaseStarts(places=China['provinces'],cases=China['cases'])
 #
 UK =  {'Country name':'UK'}
-UK['cfrwcCases']=cfr[np.where(countries=='United Kingdom')[0][0]]
 UK['cases'], UK['indsCases']= gatherDataSingleCountry(cases,'United Kingdom')
 UK['deathCases'], UK['indsdeathCases']= gatherDataSingleCountry(deathCases,'United Kingdom')
 UK['cfr'] = correctedArrayRatio(UK['deathCases'],UK['cases'])
@@ -316,7 +311,6 @@ UK['provinces'][6]= 'Great Britain'
 print(UK['provinces'])
 #
 Australia =  {'Country name':'Australia'}
-Australia['cfrwcCases']=cfr[np.where(countries=='Australia')[0][0]]
 Australia['cases'], Australia['indsCases']= gatherDataSingleCountry(cases,'Australia')
 Australia['deathCases'], Australia['indsdeathCases']= gatherDataSingleCountry(deathCases,'Australia')
 Australia['cfr'] = correctedArrayRatio(Australia['deathCases'],Australia['cases'])
