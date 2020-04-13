@@ -749,15 +749,14 @@ Mexico['delayFromReport0']=np.where(Mexico['totCases']>0)[0].min()
 print('First case reported %d days after Report 0'%Mexico['delayFromReport0'])
 
 
-# In[67]:
+# In[72]:
 
 
 def estimateDeathsByAgeMexico(Mexico, dates, subReportFactor=1):
     si = Mexico['delayFromReport0']
     ticks= np.arange(0,len(dates),7)
     casesMexico = subReportFactor * Mexico['totCases']
-    #pConfirmation = casesMexico/Mexico['popMillions']
-    f13=gr.figure(figsize=(13,9)); gr.ioff(); rows =3;cols=1;ax=list()
+    f13=gr.figure(figsize=(7,9)); gr.ioff(); rows =3;cols=1;ax=list()
     for n in range(len(ageCountries)):
         ax.append(f13.add_subplot(rows,cols,n+1))
         C = ageCountries[n]
@@ -784,7 +783,7 @@ def estimateDeathsByAgeMexico(Mexico, dates, subReportFactor=1):
 
 # ### Estimates with a conversion factor of 1
 
-# In[68]:
+# In[73]:
 
 
 f13_1 = estimateDeathsByAgeMexico(Mexico, dates,subReportFactor=1)
@@ -792,7 +791,7 @@ f13_1 = estimateDeathsByAgeMexico(Mexico, dates,subReportFactor=1)
 
 # ### Estimates with a conversion factor of 10
 
-# In[70]:
+# In[74]:
 
 
 f13_10 = estimateDeathsByAgeMexico(Mexico, dates,subReportFactor=10)
@@ -800,8 +799,14 @@ f13_10 = estimateDeathsByAgeMexico(Mexico, dates,subReportFactor=10)
 
 # ### Estimates with a conversion factor of 12
 
-# In[71]:
+# In[75]:
 
 
 f13_12 = estimateDeathsByAgeMexico(Mexico, dates,subReportFactor=12)
+
+
+# In[ ]:
+
+
+
 
