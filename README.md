@@ -16,7 +16,7 @@
 
 - [Delays between case reports, and between first death and first recovery with respect to the first report in all countries](tsam_COVID19_JHU_delaysAllCountries.png)
 
-- [Cases vs deaths per 1000 habitants for some countries](tsam_COVID19_JHU_cases-death_x1000000.png)
+- [Cases vs deaths per 1000 habitants for some countries](tsam_COVID19_JHU_cases-deaths_x1000000_JHU.png)
 
 - [CFRs for some countries from the first case in China](tsam_COVID19_cfr_JHU_fromFirstCaseInChina.png)
 
