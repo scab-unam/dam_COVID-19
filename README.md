@@ -10,24 +10,24 @@
 (a) Delay and CFR analysis of case, death, and recovery reports from around the world.
 Illustrating figures.
 
-- [Delays between case reports, and between first death and first recovery with respect to the first report in all countries](tsam_COVID19_figures/tsam_COVID19_JHU_delaysAllCountries.png)
+- [Delays between case reports, and between first death and first recovery with respect to the first report in all countries](tsam_Covid19_figures/tsam_Covid19_JHU_delaysAllCountries.png)
 
-- [Cases vs deaths per 1000 habitants for some countries](tsam_COVID19_figures/tsam_COVID19_JHU_cases-deaths_x1000000_JHU.png)
+- [Cases vs deaths per 1000 habitants for some countries](tsam_Covid19_figures/tsam_Covid19_JHU_cases-deaths_x1000000_JHU.png)
 
-- [CFRs for some countries from the first case in China](tsam_COVID19_figures/tsam_COVID19_cfr_JHU_fromFirstCaseInChina.png)
+- [CFRs for some countries from the first case in China](tsam_Covid19_figures/tsam_Covid19_cfr_JHU_fromFirstCaseInChina.png)
 
-- [CFRs for some countries from the day the first case was reported locally](tsam_COVID19_figures/tsam_COVID19_JHU_cfr_fromFirstLocalCase.png)
+- [CFRs for some countries from the day the first case was reported locally](tsam_Covid19_figures/tsam_Covid19_JHU_cfr_fromFirstLocalCase.png)
 
-- [CFRs for China taking into account local reports by provinces](tsam_COVID19_figures/tsam_COVID19_JHU_cfr_ProvincesChina_fromFirstLocalReport.png) Note the differences between the CFR from the total cases and the average CFR from the provinces.
+- [CFRs for China taking into account local reports by provinces](tsam_Covid19_figures/tsam_Covid19_JHU_cfr_ProvincesChina_fromFirstLocalReport.png) Note the differences between the CFR from the total cases and the average CFR from the provinces.
 
-- [CFRs from China, South Korea, and Italy, by age](tsam_COVID19_figures/tsam_COVID19_JHU_cfr+propDeathCases_ByAge_China+SKorea+Italy_OneFigure.png) Note the similarities between the weights of the CFRs by age from the different countries and consider their possible divergences in terms of the age structure of their populations, access to care, testing for COVID-19, etcetera.
+- [CFRs from China, South Korea, and Italy, by age](tsam_Covid19_figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge_China+SKorea+Italy_OneFigure.png) Note the similarities between the weights of the CFRs by age from the different countries and consider their possible divergences in terms of the age structure of their populations, access to care, testing for Covid-19, etcetera.
 
 **Inference of death cases for Mexico**
-- [Estimation of death cases in Mexico for different age groups with a sub report factor of 1](tsam_COVID19_figures/tsam_COVID19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor1.png)
+- [Estimation of death cases in Mexico for different age groups with a sub report factor of 1](tsam_Covid19_figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor1.png)
 
-- [Estimation of death cases in Mexico for different age groups with a sub report factor of 10](tsam_COVID19_figures/tsam_COVID19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor10.png)
+- [Estimation of death cases in Mexico for different age groups with a sub report factor of 10](tsam_Covid19_figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor10.png)
 
 (b) Code
-[JuPyTeR notebook](tsam_COVID-19_JHU_cfr_Jan2020-.ipynb), its [html version](tsam_COVID-19_JHU_cfr_Jan2020-.html), and the [Python  code](tsam_COVID-19_JHU_cfr_Jan2020-.py). The [base code with general functions](tsam_COVID19_baseCode.py)
+[JuPyTeR notebook](tsam_Covid-19_JHU_cfr_Jan2020-.ipynb), its [html version](tsam_Covid-19_JHU_cfr_Jan2020-.html), and the [Python  code](tsam_Covid-19_JHU_cfr_Jan2020-.py). The [base code with general functions](tsam_Covid19_baseCode.py)
 
 _(Created: MAHV, 20200301. Last modified: MAHV, 20200412)_
