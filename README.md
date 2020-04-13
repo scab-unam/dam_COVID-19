@@ -4,7 +4,7 @@
 (Last modified: MAHV, Apri 12, 2020)
 
 
-#### 1. Fatality associated to reported cases during the first weeks of the COVID-19 pandemic 
+#### 1. Fatality associated to reported cases during the first weeks of the Covid-19 pandemic 
 
 (Herrera-Nolasco CI, Herrera-McKiernan AJ, Herrera-McKiernan EA, O'Reilly-Regueiro E, Herrera-Valdez MA, *In preparation*)
 
