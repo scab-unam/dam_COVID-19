@@ -31,3 +31,4 @@ Illustrating figures.
 (b) Code 
 [JuPyTeR notebook](tsam_COVID-19_JHU_cfr_Jan2020-.ipynb), its [html version](tsam_COVID-19_JHU_cfr_Jan2020-.html), and the [Python  code](tsam_COVID-19_JHU_cfr_Jan2020-.py). The [base code with general functions](tsam_COVID19_baseCode.py) 
 
+# Created: MAHV, 20200301
