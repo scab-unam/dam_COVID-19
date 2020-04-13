@@ -1,7 +1,6 @@
 # Time series analysis and modeling of the dynamics of Covid-19
 ## [Marco Arieli Herrera-Valdez](https://mahv13.wordpress.com)
 ### [Laboratorio de Fisiología de Sistemas](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=5&cad=rja&uact=8&ved=2ahUKEwi9p4KJidroAhUMi6wKHYrSBWcQFjAEegQIAhAB&url=https%3A%2F%2Fmarcoh48.wixsite.com%2Ffisiologiasistemasfc&usg=AOvVaw1RFgV1gOqxbpBJT3Bl6WEq), [Facultad de Ciencias](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwjbiNnQrtvoAhUJA6wKHVI0BXMQFjAAegQIGRAD&url=http%3A%2F%2Fwww.fciencias.unam.mx%2F&usg=AOvVaw1dMRMU_F-IcpmaB1y1H4px), [UNAM](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwivy6_irtvoAhUDaq0KHQVoCcAQFjAAegQIGhAD&url=https%3A%2F%2Fwww.unam.mx%2F&usg=AOvVaw0YWCGJ7FEpDwkcT3EYH-aM)
-(Created: MAHV, 20200301. Last modified: MAHV, April 12, 2020)
 
 
 #### 1. Fatality associated to reported cases during the first weeks of the Covid-19 pandemic
@@ -30,3 +29,5 @@ Illustrating figures.
 
 (b) Code
 [JuPyTeR notebook](tsam_COVID-19_JHU_cfr_Jan2020-.ipynb), its [html version](tsam_COVID-19_JHU_cfr_Jan2020-.html), and the [Python  code](tsam_COVID-19_JHU_cfr_Jan2020-.py). The [base code with general functions](tsam_COVID19_baseCode.py)
+
+_(Created: MAHV, 20200301. Last modified: MAHV, 20200412)_
