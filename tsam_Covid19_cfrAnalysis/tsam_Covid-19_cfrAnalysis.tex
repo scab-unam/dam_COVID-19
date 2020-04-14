@@ -1,5 +1,5 @@
 \documentclass[8pt]{article}
-\input{mahvLaTeXPreamble}
+\input{mahvPreamble}
 \input{mahvLaTeXCommands}
 \usepackage[utf8]{inputenc}
 \setstretch{1.3}
@@ -36,6 +36,8 @@ $\email$ marcoh@ciencias.unam.mx, eugenia@im.unam.mx
 \section{Introduction}
 The sampling for cases and deaths from those cases in many countries are biased by the numbers of people in need for critical care that sought medical attention, by local policies triage, and by different numbers of tests \textit{per capita} administered by different governments. 
 
+Delays between case reports and deaths... bias in the delay and under reporting...
+
 \section{Methods and data sources} 
 
 The data was downloaded from the repository for the 2019 Novel Coronavirus Visual Dashboard operated by the Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)  (\url{github.com/CSSEGISandData/COVID-19}). 
@@ -44,13 +46,23 @@ A JuPyTeR notebook with the analysis and calculations performed here can be foun
 
 The data considered in this analysis is between January 22 ($d_0$) and April 12, 2020 ($d_f$).
 
+CFR ratios by age were obtained from \citep{}
+
+%To account for the uncertainty in the delays between confirmation of cases and a deaths, the time series of deaths were divided by the time series of cases by shifting the data between 14 and 35 days, which correspond to possible delays between reports in the case of short and long time courses of disease, respectively. Notice that it is impossible for these calculations to account for under-reporting of cases.
 
 \section{Results}
 
 
 \begin{figure}[h]
     \centering
+    \begin{minipage}{0.5\textwidth}
+    (a)\\
     \includegraphics[width=\textwidth]{figures/tsam_Covid-19_JHU_delaysAllCountries}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+    (b)\\
+    \includegraphics[width=\textwidth]{figures/tsam_Covid19_JHU_caseDeathsDelays.png}
+    \end{minipage}
     \caption{From top to bottom respectively, delays (in days) between the first case reports of COVID-19 in different countries (top) relative to $d_0$, between the first death and the first case report, and  between the first recovery and the first case report 
     in each country.}
     \label{fig:caseDelays}
