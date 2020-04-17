@@ -1,5 +1,6 @@
 import os
 import numpy as np
+import urllib
 import pandas as pd
 import datetime
 import matplotlib.pylab as gr
@@ -22,6 +23,10 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 #                     loc=3)
 # Indexing and gathering of data
 
+
+
+datosAbiertosCovid19Mexico='http://187.191.75.115/gobmx/salud/datos_abiertos/datos_abiertos_covid19.zip'
+datosMexico=pd.read_csv(datosAbiertosCovid19Mexico, compression='zip',encoding='latin-1')
 
 strReference="""Data obtained from https://github.com/CSSEGISandData/COVID-19/"""
 print(strReference)
