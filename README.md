@@ -28,6 +28,6 @@ Illustrating figures.
 - [Estimation of death cases in Mexico for different age groups with a sub report factor of 10](tsam_Covid19_figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor10.png)
 
 (b) Code
-[JuPyTeR notebook](tsam_Covid-19_JHU_cfr_Jan2020-.ipynb), its [html version](tsam_Covid-19_JHU_cfr_Jan2020-.html), and the [Python  code](tsam_Covid-19_JHU_cfr_Jan2020-.py). The [base code with general functions](tsam_Covid19_baseCode.py)
+[JuPyTeR notebook](tsam_Covid-19_JHU_cfrAnalysis/tsam_Covid-19_JHU_cfr_Jan2020-.ipynb), its [html version](tsam_Covid-19_JHU_cfrAnalysis/tsam_Covid-19_JHU_cfr_Jan2020-.html), and the [Python  code](tsam_Covid-19_JHU_cfrAnalysis/tsam_Covid-19_JHU_cfr_Jan2020-.py). The [base code with general functions](tsam_Covid19_baseCode.py)
 
-_(Created: MAHV, 20200301. Last modified: MAHV, 20200412)_
+_(Created: MAHV, 20200301. Last modified: MAHV, 20200416)_
