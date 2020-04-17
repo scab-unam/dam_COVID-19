@@ -49,7 +49,6 @@ wcCFR= correctedArrayRatio(totDeathCases,totCases)
 # -------------------
 # Delays among the first cases
 # -------------------
-
 # Order of appearance of cases from the reports
 iFC=findFirstCaseDates(wcCases)
 iFD=findFirstCaseDates(wcDeathCases)
