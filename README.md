@@ -15,11 +15,11 @@
 (a) Delay and CFR analysis of case, death, and recovery reports from around the world.
 Illustrating figures.
 
-- [Delays between case reports, and between first death and first recovery with respect to the first report in all countries](tsam_Covid19_figures/tsam_Covid19_JHU_delaysAllCountries.png)
+- [Delays between case reports, and between first death and first recovery with respect to the first report in all countries](tsam_Covid19_cfrAnalysis/figures/tsam_Covid19_JHU_delaysAllCountries.png)
 
 
 **Inference of death cases for Mexico**
-- [Estimation of death cases in Mexico for different age groups with a sub report factor of 10](tsam_Covid19_figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor10.png)
+- [Estimation of death cases in Mexico for different age groups with a sub report factor of 10](tsam_Covid19_cfrAnalysis/figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor10.png)
 
 
 _(Created: MAHV, 20200301. Last modified: MAHV, 20200416)_
