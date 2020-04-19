@@ -8,18 +8,18 @@
 (a) [Estimating the starting time and peak of the Covid-19 epidemic in Mexico](tsam_Covid19_models/figures/Covid19_Mexico_InitialFit_Herrera-Valdez+Herrera-Nolasco_2020.png)
 
 
-#### 2. [Fatality associated to reported cases during the first weeks of the Covid-19 pandemic](tsam_Covid19_cfrAnalysis/tsam_Covid19_cfrAnalysis_ReadMe.md)
+#### 2. [Fatality associated to reported cases during the first weeks of the Covid-19 pandemic](tsam_Covid19_analysis/tsam_Covid19_cfrAnalysis_ReadMe.md)
 
 (Herrera-Nolasco CI, Herrera-McKiernan AJ, Herrera-McKiernan EA, O'Reilly-Regueiro E, Herrera-Valdez MA, *In preparation*)
 
 (a) Delay and CFR analysis of case, death, and recovery reports from around the world.
 Illustrating figures.
 
-- [Delays between case reports, and between first death and first recovery with respect to the first report in all countries](tsam_Covid19_cfrAnalysis/figures/tsam_Covid19_JHU_delays_AllCountries.png)
+- [Delays between case reports, and between first death and first recovery with respect to the first report in all countries](tsam_Covid19_analysis/figures/tsam_Covid19_JHU_delays_AllCountries.png)
 
 
 **Inference of death cases for Mexico**
-- [Estimation of death cases in Mexico for different age groups with a sub report factor of 10](tsam_Covid19_cfrAnalysis/figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor10.png)
+- [Estimation of death cases in Mexico for different age groups with a sub report factor of 10](tsam_Covid19_analysis/figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor10.png)
 
 
 _(Created: MAHV, 20200301. Last modified: MAHV, 20200416)_

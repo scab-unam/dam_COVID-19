@@ -2,6 +2,7 @@ import os
 import numpy as np
 import urllib
 import pandas as pd
+import requests, zipfile, StringIO
 import datetime
 import matplotlib.pylab as gr
 small={'family' : 'normal','weight' : 'normal','size'   : 8}
@@ -24,10 +25,10 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 # Indexing and gathering of data
 
 
-
 datosAbiertosCovid19Mexico='http://187.191.75.115/gobmx/salud/datos_abiertos/datos_abiertos_covid19.zip'
 datosMexico=pd.read_csv(datosAbiertosCovid19Mexico, compression='zip',encoding='latin-1')
-
+mexReference="""Data for Mexico obtained from http://187.191.75.115/gobmx/salud/datos_abiertos/datos_abiertos_covid19.zip"""
+print(mexReference)
 strReference="""Data obtained from https://github.com/CSSEGISandData/COVID-19/"""
 print(strReference)
 
@@ -43,7 +44,7 @@ def getCSSEGISandData(urlData=1):
         recovCases = pd.read_csv(urlRecov,index_col=None)
 
     if localData==1:
-        srcDir='./COVID-19/csse_covid_19_data/csse_covid_19_time_series/'
+        srcDir='./Covid-19/csse_covid_19_data/csse_covid_19_time_series/'
         casesF='time_series_covid19_confirmed_global.csv'
         deathsF='time_series_covid19_deaths_global.csv'
         recovF='time_series_covid19_recovered_global.csv'
