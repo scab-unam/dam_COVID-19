@@ -2,7 +2,7 @@ import os
 import numpy as np
 import urllib
 import pandas as pd
-import requests, zipfile, StringIO
+import zipfile
 import datetime
 import matplotlib.pylab as gr
 small={'family' : 'normal','weight' : 'normal','size'   : 8}

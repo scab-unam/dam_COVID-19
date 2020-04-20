@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 APR 2020 11:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  19 APR 2020 23:23
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -24,32 +24,21 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
+(../mahvPreamble.tex
+(/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
-! LaTeX Error: File `mahvPreamble.tex' not found.
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: tex)
 
-Enter file name: 
-./tsam_Covid19_Mexico.tex:2: Emergency stop.
-<read *> 
-         
-l.2 \input{mahvPreamble}
-                        ^^M
-End of file on the terminal!
-
- 
-Here is how much of TeX's memory you used:
- 197 strings out of 493089
- 2165 string characters out of 6134842
- 53199 words of memory out of 5000000
- 3773 multiletter control sequences out of 15000+600000
- 3640 words of font info for 14 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 23i,0n,17p,147b,36s stack positions out of 5000i,500n,10000p,200000b,80000s
-./tsam_Covid19_Mexico.tex:2:  ==> Fatal error occurred, no output PDF file prod
-uced!
-LuaTeX not detected.
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
@@ -1123,7 +1112,7 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count196
 )
-(./mahvLaTeXCommands.tex
+(../mahvLaTeXCommands.tex
 (/usr/local/texlive/2015/texmf-dist/tex/latex/comment/comment.sty
 \CommentStream=\write6
 
@@ -1134,6 +1123,76 @@ Excluding comment 'comment') Include comment 'cond' Including 'cond' comment.
 Straight input of comment.cut. (./comment.cut)
 \colveccount=\count197
 )
+(/usr/local/texlive/2015/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+\c@KVtest=\count198
+\sf@farskip=\skip74
+\sf@captopadj=\dimen216
+\sf@capskip=\skip75
+\sf@nearskip=\skip76
+\c@subfigure=\count199
+\c@subfigure@save=\count200
+\c@lofdepth=\count201
+\c@subtable=\count202
+\c@subtable@save=\count203
+\c@lotdepth=\count204
+\sf@top=\skip77
+\sf@bottom=\skip78
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tkz-berge/tkz-berge.sty
+Package: tkz-berge 2011/06/01 1.00 c tkz-berge for named graphs
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tkz-graph/tkz-graph.sty
+Package: tkz-graph 2011/06/01 ctan v 1.00 base for graphs
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/etex-pkg/etex.sty
+Package: etex 2015/03/02 v2.1 eTeX basic definition package (PEB,DPC)
+\et@xins=\count205
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2015/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks47
+\XKV@tempa@toks=\toks48
+)
+\XKV@depth=\count206
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.0 (rcs-revision 1.1)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.
+code.tex
+File: pgflibraryarrows.code.tex 2013/09/23 v3.0.0 (rcs-revision 1.16)
+\arrowsize=\dimen217
+))
+\c@tkz@gr@a=\count207
+\c@tkz@gr@b=\count208
+\c@tkz@gr@c=\count209
+\c@tkz@gr@e=\count210
+\c@tkz@gr@d=\count211
+\c@tkz@gr@p=\count212
+\c@tkz@gr@i=\count213
+\c@tkz@gr@n=\count214
+\c@tkz@gr@ta=\count215
+\c@tkz@gr@tb=\count216
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tkz-berge/tkz-arith.sty
+Package: tkz-arith 2011/02/28 v 1.00 c integers numbers
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tkz-base/tkz-tools-arith.tex
+File: tkz-tool-arith.tex tkz-tool-arith 1.161 c
+))
+\c@tkz@bg@cnt=\count217
+\c@tkza@tmp=\count218
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarypetri.code.tex
+File: tikzlibrarypetri.code.tex 2013/07/17 v3.0.0 (rcs-revision 1.3)
+)
 
 LaTeX Warning: Unused global option(s):
     [8pt].
@@ -1141,29 +1200,29 @@ LaTeX Warning: Unused global option(s):
 (./tsam_Covid19_Mexico.aux)
 \openout1 = `tsam_Covid19_Mexico.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 16.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 9.19998pt on input line 11.
+(Font)              scaled to size 9.19998pt on input line 16.
 \AtBeginShipoutBox=\box77
-Package hyperref Info: Link coloring ON on input line 11.
+Package hyperref Info: Link coloring ON on input line 16.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1171,11 +1230,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count198
+\c@section@level=\count219
 )
-LaTeX Info: Redefining \ref on input line 11.
-LaTeX Info: Redefining \pageref on input line 11.
-LaTeX Info: Redefining \nameref on input line 11.
+LaTeX Info: Redefining \ref on input line 16.
+LaTeX Info: Redefining \pageref on input line 16.
+LaTeX Info: Redefining \nameref on input line 16.
 
 (./tsam_Covid19_Mexico.out) (./tsam_Covid19_Mexico.out)
 \@outlinefile=\write7
@@ -1197,7 +1256,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \microtypecontext on input line 11.
+LaTeX Info: Redefining \microtypecontext on input line 16.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1221,20 +1280,20 @@ Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 ABD: EverySelectfont initializing macros
 LaTeX Info: Redefining \selectfont on input line 126.
 )
-\CenteringLeftskip=\skip74
-\RaggedLeftLeftskip=\skip75
-\RaggedRightLeftskip=\skip76
-\CenteringRightskip=\skip77
-\RaggedLeftRightskip=\skip78
-\RaggedRightRightskip=\skip79
-\CenteringParfillskip=\skip80
-\RaggedLeftParfillskip=\skip81
-\RaggedRightParfillskip=\skip82
-\JustifyingParfillskip=\skip83
-\CenteringParindent=\skip84
-\RaggedLeftParindent=\skip85
-\RaggedRightParindent=\skip86
-\JustifyingParindent=\skip87
+\CenteringLeftskip=\skip79
+\RaggedLeftLeftskip=\skip80
+\RaggedRightLeftskip=\skip81
+\CenteringRightskip=\skip82
+\RaggedLeftRightskip=\skip83
+\RaggedRightRightskip=\skip84
+\CenteringParfillskip=\skip85
+\RaggedLeftParfillskip=\skip86
+\RaggedRightParfillskip=\skip87
+\JustifyingParfillskip=\skip88
+\CenteringParindent=\skip89
+\RaggedLeftParindent=\skip90
+\RaggedRightParindent=\skip91
+\JustifyingParindent=\skip92
 )
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1270,8 +1329,9 @@ LaTeX Info: Redefining \selectfont on input line 126.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count199
+\c@lstlisting=\count220
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: longtable package is loaded.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
@@ -1280,66 +1340,25 @@ Package caption Info: End \AtBeginDocument code.
 
 ABD: EveryShipout initializing macros
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 13.24796pt on input line 14.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 18.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/mt-cmr.cfg
-File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
-(RS)
-)
-LaTeX Font Info:    Try loading font information for U+msa on input line 19.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-(/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/mt-msa.cfg
-File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 19.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-(/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/mt-msb.cfg
-File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-)
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 19.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1ptm.fd
-File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
-)
-(/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/mt-ptm.cfg
-File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
-)
-LaTeX Font Info:    Try loading font information for U+ifsym on input line 19.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/ifsym/uifsym.fd)
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 19.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 19.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 25.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 4.59999pt on input line 25.
+(Font)              scaled to size 13.24796pt on input line 34.
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 34.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 13.24796pt on input line 34.
 
 (./tsam_Covid19_Mexico_cfrInferenciaMuertesPorEdad.tex
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 11.03998pt on input line 2.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 3.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 2.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 11.03998pt on input line 3.
-
-Overfull \hbox (3.39854pt too wide) in paragraph at lines 3--3
-[][]\T1/phv/b/n/12 Estimaciones y mod-e-laje es-tocás-tico de dinámica de propa
--gación en una población
- []
-
+(Font)              scaled to size 11.03998pt on input line 2.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 5.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 7.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.19998pt on input line 5.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 5.
+(Font)              scaled to size 9.19998pt on input line 7.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 7.
+
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -1348,53 +1367,179 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
+(/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 7.
 
-LaTeX Warning: Reference `cfrPDEdadChinaKSItalia' on page 1 undefined on input 
-line 12.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 7.
 
-
-LaTeX Warning: Reference `cfrPDEdadChinaKSItalia' on page 1 undefined on input 
-line 12.
-
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 15.
+(Font)              scaled to size 8.27998pt on input line 14.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <9> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 15.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 14.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.27998pt on input line 15.
+(Font)              scaled to size 8.27998pt on input line 14.
 
-<../tsam_Covid19_figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge_China+SKorea
-+Italy_OneFigure.png, id=8, 794.97pt x 361.35pt>
-File: ../tsam_Covid19_figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge_China+S
-Korea+Italy_OneFigure.png Graphic file (type png)
+<../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_reportArrivals_AllCountries.
+png, id=10, 794.97pt x 650.43pt>
+File: ../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_reportArrivals_AllCount
+ries.png Graphic file (type png)
 
-<use ../tsam_Covid19_figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge_China+SK
-orea+Italy_OneFigure.png>
-Package pdftex.def Info: ../tsam_Covid19_figures/tsam_Covid19_JHU_cfr+propDeath
-Cases_ByAge_China+SKorea+Italy_OneFigure.png used on input line 17.
-(pdftex.def)             Requested size: 430.00462pt x 195.46243pt.
+<use ../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_reportArrivals_AllCountr
+ies.png>
+Package pdftex.def Info: ../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_repo
+rtArrivals_AllCountries.png used on input line 16.
+(pdftex.def)             Requested size: 258.00539pt x 211.09943pt.
+
+<../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_delays_caseDeaths.png, id=12
+, 505.89pt x 650.43pt>
+File: ../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_delays_caseDeaths.png G
+raphic file (type png)
+
+<use ../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_delays_caseDeaths.png>
+Package pdftex.def Info: ../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_dela
+ys_caseDeaths.png used on input line 20.
+(pdftex.def)             Requested size: 171.99922pt x 221.14326pt.
+
+Overfull \hbox (8.43083pt too wide) in paragraph at lines 14--22
+[]\T1/phv/m/n/10 (-20) . [][] $[]$$[]$ 
+ []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-./tsam_Covid19_Mexico_cfrInferenciaMuertesPorEdad.tex:21: Undefined control seq
-uence.
-l.21 ... para el caso de MÃ©xico (\figrefestimates
-                                                  _sp}).
-? 
-./tsam_Covid19_Mexico_cfrInferenciaMuertesPorEdad.tex:21: Emergency stop.
-l.21 ... para el caso de MÃ©xico (\figrefestimates
-                                                  _sp}).
-End of file on the terminal!
+[1
 
- 
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge_Chi
+na+SKorea+Italy_OneFigure.png, id=29, 794.97pt x 361.35pt>
+File: ../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAg
+e_China+SKorea+Italy_OneFigure.png Graphic file (type png)
+
+<use ../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge
+_China+SKorea+Italy_OneFigure.png>
+Package pdftex.def Info: ../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_cfr+
+propDeathCases_ByAge_China+SKorea+Italy_OneFigure.png used on input line 37.
+(pdftex.def)             Requested size: 258.00539pt x 117.27745pt.
+
+<../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_Es
+timatesMexico_subReportFactor12.png, id=30, 505.89pt x 650.43pt>
+File: ../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_cfr+propDeathCasesByAge
+TS_EstimatesMexico_subReportFactor12.png Graphic file (type png)
+
+<use ../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeT
+S_EstimatesMexico_subReportFactor12.png>
+Package pdftex.def Info: ../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_cfr+
+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor12.png used on input line 
+41.
+(pdftex.def)             Requested size: 171.99922pt x 221.14326pt.
+
+Overfull \hbox (5.46858pt too wide) in paragraph at lines 35--43
+[]\T1/phv/m/n/10 (-20) . []$[]$$[]$ 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Reference `fig:estimates_sp' on page 2 undefined on input line 4
+5.
+
+) (./tsam_Covid19_Mexico_modeloGruposInfecciosos.tex
+Overfull \hbox (2.39537pt too wide) in paragraph at lines 6--7
+\T1/pcr/m/n/10 models / figures / Covid19 _ Mexico _ InitialFit _ Herrera-[]Val
+dez + Herrera-[]Nolasco _
+ []
+
+[2 <../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_reportArrivals_AllCountri
+es.png> <../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_delays_caseDeaths.pn
+g>]
+
+Package natbib Warning: Citation `Herrera' on page 3 undefined on input line 8.
+
+
+
+<../tsam_Covid19_models/figures/Covid19_Mexico_InitialFit_Herrera-Valdez+Herrer
+a-Nolasco_2020.png, id=39, 794.97pt x 361.35pt>
+File: ../tsam_Covid19_models/figures/Covid19_Mexico_InitialFit_Herrera-Valdez+H
+errera-Nolasco_2020.png Graphic file (type png)
+
+<use ../tsam_Covid19_models/figures/Covid19_Mexico_InitialFit_Herrera-Valdez+He
+rrera-Nolasco_2020.png>
+Package pdftex.def Info: ../tsam_Covid19_models/figures/Covid19_Mexico_InitialF
+it_Herrera-Valdez+Herrera-Nolasco_2020.png used on input line 18.
+(pdftex.def)             Requested size: 430.00462pt x 195.46243pt.
+ [3 <../tsam_Covid19_analysis/figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge
+_China+SKorea+Italy_OneFigure.png> <../tsam_Covid19_analysis/figures/tsam_Covid
+19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor12.png>]
+
+LaTeX Warning: Reference `' on page 4 undefined on input line 23.
+
+
+Overfull \hbox (32.30125pt too wide) in paragraph at lines 56--57
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [4 <../tsam_Covid19_models/figures/Covid19_Mexico_InitialFit_Herrera-Valdez+H
+errera-Nolasco_2020.png>]
+No file tsam_Covid19_Mexico.bbl.
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 49.
+Package atenddvi Info: Last page = 5.
+[5]
+Package atveryend Info: Executing hook `AfterLastShipout' on input line 49.
+ (./tsam_Covid19_Mexico.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 49.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 49.
+Package rerunfilecheck Info: File `tsam_Covid19_Mexico.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 49.
+ ) 
 Here is how much of TeX's memory you used:
- 24037 strings out of 493089
- 425417 string characters out of 6134842
- 551852 words of memory out of 5000000
- 27003 multiletter control sequences out of 15000+600000
- 42136 words of font info for 88 fonts, out of 8000000 for 9000
+ 25822 strings out of 493089
+ 460934 string characters out of 6134842
+ 608188 words of memory out of 5000000
+ 28703 multiletter control sequences out of 15000+600000
+ 29771 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,54p,515b,373s stack positions out of 5000i,500n,10000p,200000b,80000s
-./tsam_Covid19_Mexico_cfrInferenciaMuertesPorEdad.tex:21:  ==> Fatal error occu
-rred, no output PDF file produced!
+ 57i,12n,75p,860b,1045s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
+/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
+2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/20
+15/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf
+-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dist/f
+onts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on tsam_Covid19_Mexico.pdf (5 pages, 467446 bytes).
+PDF statistics:
+ 106 PDF objects out of 1000 (max. 8388607)
+ 78 compressed objects within 1 object stream
+ 18 named destinations out of 1000 (max. 500000)
+ 14886 words of extra memory for PDF output out of 17280 (max. 10000000)
+

@@ -1,7 +1,12 @@
 \documentclass[8pt]{article}
-\input{mahvPreamble}
-\input{mahvLaTeXCommands}
+\input{../mahvPreamble}
+\input{../mahvLaTeXCommands}
 \usepackage[utf8]{inputenc}
+\usepackage[position=top]{subfig}
+\usepackage{tkz-berge}
+\usetikzlibrary{arrows,petri,topaths}
+\tikzstyle{vertex}=[circle, draw, inner sep=3pt, minimum size=5pt]
+\newcommand{\vertex}{\node[vertex]}
 \setstretch{1.3}
 %
 \title{Dinámica inicial de la epidemia de Covid-19 en en mundo y en México }
@@ -10,27 +15,35 @@
 %
 \begin{document}
 %
-\begin{flushleft}
-\begin{Large}
-{Estimaciones y análisis de la dinámica inicial de la mortalidad de casos epidemia de Covid-19 en México a partir de los datos mundiales}
-\end{Large}\\
-\smallskip
-\begin{large}
-Carlos Ignacio Herrera-Nolasco$^1$, Eugenia O'Reilly-Regueiro$^{4,\email}$,
-Marco Arieli Herrera-Valdez$^{1,\email}$
-\end{large}\\
-\smallskip
-$^1$ Departamento de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México\\
-$^4$ Instituto de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México\\
-$\email$ marcoh@ciencias.unam.mx, eugenia@im.unam.mx
-\end{flushleft}
-
-
+%\begin{flushleft}
+%\begin{Large}
+%{Estimaciones y análisis de la dinámica inicial de la mortalidad de casos epidemia de Covid-19 en México a partir de los datos mundiales}
+%\end{Large}\\
+%\smallskip
+%\begin{large}
+%Carlos Ignacio Herrera-Nolasco$^1$, Eugenia O'Reilly-Regueiro$^{4,\email}$,
+%Marco Arieli Herrera-Valdez$^{1,\email}$
+%\end{large}\\
+%\smallskip
+%$^1$ Departamento de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México\\
+%$^4$ Instituto de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México\\
+%$\email$ marcoh@ciencias.unam.mx, eugenia@im.unam.mx
+%\end{flushleft}
+%
+% ---------------------------------------------------------
+\section*{Análisis de la dinámica inicial de la pandemia de Covid-19, estimaciones y mecanismos de propagación con base a modelos estocásticos}
+Carlos Ignacio Herrera-Nolasco, Eugenia O'Reilly-Regueiro, Sergio Iván López Ortega, Marco Arieli Herrera-Valdez. 
 
 \input{tsam_Covid19_Mexico_cfrInferenciaMuertesPorEdad.tex}
 
-\paragraph{Acknowledgments:} 
+\input{tsam_Covid19_Mexico_modeloGruposInfecciosos}
+% ---------------------------------------------------------
+
+%\paragraph{Acknowledgments:} 
+
 
 \newpage
-\section{Appendix}
+%\section{Appendix}
+\bibliographystyle{plainnat}
+\bibliography{../Covid-19,epidemiology}
 \end{document}
