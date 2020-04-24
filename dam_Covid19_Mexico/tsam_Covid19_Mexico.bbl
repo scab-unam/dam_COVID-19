@@ -1,0 +1,26 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[CI~Herrera-Nolasco(2020)]{herrera2020pNIW}
+MA~Herrera-Valdez CI~Herrera-Nolasco, SI López-Ortega.
+\newblock A stochastic model for the study of infectious disease dynamics.
+\newblock \emph{In revision}, 2020.
+
+\bibitem[Herrera-Nolasco(2020)]{herrera2020tesis}
+CI~Herrera-Nolasco.
+\newblock Modelo probabilista de dinámica de propagación de infecciones.
+\newblock \emph{Tesis de Licenciatura en Matemáticas, UNAM}, 2020.
+
+\bibitem[Zhou et~al.(2020)Zhou, Yu, Du, Fan, Liu, Liu, Xiang, Wang, Song, Gu,
+  et~al.]{zhou2020clinical}
+Fei Zhou, Ting Yu, Ronghui Du, Guohui Fan, Ying Liu, Zhibo Liu, Jie Xiang,
+  Yeming Wang, Bin Song, Xiaoying Gu, et~al.
+\newblock Clinical course and risk factors for mortality of adult inpatients
+  with covid-19 in wuhan, china: a retrospective cohort study.
+\newblock \emph{The Lancet}, 2020.
+
+\end{thebibliography}

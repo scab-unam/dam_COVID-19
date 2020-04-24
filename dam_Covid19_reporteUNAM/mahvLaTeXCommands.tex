@@ -1,0 +1,288 @@
+% ------------------------------------------------
+% Abbreviations and other commands
+% ------------------------------------------------
+\newcommand{\lrRound}[1]{\left(#1\right)}
+\newcommand{\lrSquare}[1]{\left[#1\right]}
+\newcommand{\lrSet}[1]{\left\{#1\right\}}
+\newcommand{\lrAbs}[1]{\left|#1\right|}
+\newcommand{\lrNorm}[1]{\left\|#1\right\|}
+\newcommand{\prob}[1]{\mathbf{P}\left\{ #1\right\}}
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\potassium}{{K$^+$}}
+\newcommand{\kalium}{{K$^+$}}
+\newcommand{\hydrogen}{{H$^+$}}
+\newcommand{\sodium}{{Na$^+$}}
+\newcommand{\natrium}{{Na$^+$}}
+\newcommand{\calcium}{{Ca$^{2+}$}}
+\newcommand{\chloride}{{Cl$^{-}$}}
+\newcommand{\magnessium}{{Mg$^{2+}$}}
+\newcommand{\concRatio}[1]{ \frac{ [{#1}]_{0} }{ [{#1}]_{1}} } 
+\newcommand{\extConc}[1]{[#1]_{0}}
+\newcommand{\intConc}[1]{[#1]_{1}}
+\newcommand{\concNa}{[Na]}
+\newcommand{\concCa}{[Ca]}
+\newcommand{\concCl}{[Cl]}
+\newcommand{\concK}{[K]}
+\newcommand{\felis}{{{$I_{cyc}$}}}
+\newcommand{\icyc}{{{$I_{cyc}$}}}
+\newcommand{\Avogadro}{N_{\mathrm{A}}}
+\newcommand{\absTemp}{\mathrm{T}}
+\newcommand{\GasConstant}{\mathrm{R}}
+\newcommand{\Faraday}{\mathrm{F}}
+\newcommand{\hPlanck}{\mathrm{h}}
+\newcommand{\kBoltzmann}{\mathrm{k}}
+\newcommand{\kT}{\mathrm{kT}}
+\newcommand{\qElementary}{\mathrm{q}}
+\newcommand{\hqovertwokT}[1]{\frac{\mathrm{e_0}#1}{2\mathrm{kT}}}
+\newcommand{\hqoverkT}[1]{\frac{\bathroom{e_0}#1}{\mathrm{kT}}}
+\def\qovertwokT{\mathrm{\frac{e_0}{2kT}}}
+\def\qoverkT{\mathrm{\frac{e_0}{kT}}}
+\newcommand{\trace}[1]{{\mathrm{Tr}(#1)}}
+\newcommand{\tSm}{{\mathrm{Sm}}}
+\newcommand{\tSy}{{\mathrm{Sy}}}
+\newcommand{\tSt}{{\mathrm{St}}}
+\newcommand{\tF}{{\mathrm{F}}}
+\newcommand{\tLFP}{{\mathrm{LFP}}}
+\newcommand{\tATP}{{\mathrm{ATP}}}
+\newcommand{\tADP}{{\mathrm{ADP}}}
+\newcommand{\tCaATP}{{\mathrm{CaATP}}}
+\newcommand{\tP}{{\mathrm{P}}}
+\newcommand{\tNa}{{\mathrm{Na}}}
+\newcommand{\tNaK}{{\mathrm{NaK}}}
+\newcommand{\tNaKa}{{\mathrm{NaKa}}}
+\newcommand{\tNaP}{{\mathrm{NaP}}}
+\newcommand{\tNaT}{{\mathrm{NaT}}}
+\newcommand{\tNaH}{{\mathrm{NaH}}}
+\newcommand{\tNaCa}{{\mathrm{NaCa}}}
+\newcommand{\tNaKCl}{{\mathrm{NaKCl}}}
+\newcommand{\tKCl}{{\mathrm{KCl}}}
+\newcommand{\tCa}{{\mathrm{Ca}}}
+\newcommand{\tCl}{{\mathrm{Cl}}}
+\newcommand{\tCaL}{{\mathrm{CaL}}}
+\newcommand{\tE}{{\mathrm{E}}}
+\newcommand{\tExtra}{{\mathrm{Extra}}}
+\newcommand{\tExt}{{\mathrm{Ext}}}
+\newcommand{\tI}{{\mathrm{I}}}
+\newcommand{\tGlu}{{\mathrm{GluA}}}
+\newcommand{\tAMPA}{{\mathrm{AMPA}}}
+\newcommand{\tGABA}{{\mathrm{GABA}}}
+\newcommand{\tGabaA}{{\mathrm{GabaA}}}
+\newcommand{\tACh}{{\mathrm{ACh}}}
+\newcommand{\tS}{{\mathrm{S}}}
+\newcommand{\tSK}{{\mathrm{SK}}}
+\newcommand{\tH}{{\mathrm{H}}}
+\newcommand{\tK}{{\mathrm{K}}}
+\newcommand{\tKaD}{{\mathrm{KaD}}}
+\newcommand{\tKD}{{\mathrm{KD}}}
+\newcommand{\tL}{{\mathrm{L}}}
+\newcommand{\INa}{{I_\mathrm{Na}}}
+\newcommand{\INaT}{{I_\mathrm{NaT}}}
+\newcommand{\ICa}{{I_{\mathrm{Ca}}}}
+\newcommand{\ICaL}{{I_{\mathrm{CaL}}}}
+\newcommand{\IKD}{{I_{\mathrm{KD}}}}
+\newcommand{\IKaD}{{I_{\mathrm{KaD}}}}
+\newcommand{\IK}{{I_{\mathrm{K}}}}
+\newcommand{\IAMPA}{{I_{\mathrm{AMPA}}}}
+\newcommand{\INMDA}{{I_{\mathrm{NMDA}}}}
+\newcommand{\IGABA}{{I_{\mathrm{GABA}}}}
+\newcommand{\INaKATP}{{I_{\mathrm{NaK}}}}
+\newcommand{\INaK}{{I_{\mathrm{NaK}}}}
+\newcommand{\INaKa}{{I_{\mathrm{NaKa}}}}	
+\newcommand{\INaCaX}{{I_{\mathrm{NaCa}}}}
+\newcommand{\ILeak}{{I_{\mathrm{L}}}}
+\newcommand{\stimtop}{{\textit{Top}}}
+\newcommand{\stimup}{{\textit{Up}}}
+\newcommand{\stimdown}{{\textit{Down}}}
+\newcommand{\diffop}[2]{{\partial_{#1} #2}}
+%
+\newcommand{\splitPage}[4]{
+\begin{minipage}{#1\textwidth}
+{#2}
+\end{minipage}%
+\begin{minipage}{#3\textwidth}
+{#4}
+\end{minipage}
+}
+
+\newcommand{\figref}[1]{{Fig.~\ref{#1}}}
+\newcommand{\figtworefs}[2]{{Figs.~\ref{#1}~and~\ref{#2}}}
+\newcommand{\figrefs}[2]{{Figs.~\ref{#1}-\ref{#2}}}
+\newcommand{\req}[1]{{Eq.~\eqref{#1}}}
+\newcommand{\rtwoeqs}[2]{{Eqs.~\eqref{#1}~and~\eqref{#2}}}
+\newcommand{\reqs}[2]{{Eqs.~\eqref{#1}-\eqref{#2}}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+\newcommand{\smalleq}[1]
+{\begin{equation}{\small #1}\end{equation}}
+\newcommand{\smalleqna}[1]{ 
+  \begin{small} 
+    \begin{eqnarray} #1 \end{eqnarray} 
+  \end{small}
+}
+\newcommand{\tinyeqna}[1]{ 
+  \begin{tiny} 
+    \begin{eqnarray} #1 \end{eqnarray} 
+  \end{tiny}
+}
+% LaTeX beamer
+\newcommand{\slide}[1]{\begin{frame}#1\end{frame}}
+\newcommand{\from}[1]{{\tiny From #1.}}
+\newcommand{\fuente}[1]{{\tiny #1}}
+\newcommand{\source}[1]{{\tiny #1}}
+\newcommand{\sS}[3]{{{#1}_{#2}^{#3}}}
+
+\newcommand{\email}{\textrm{\Letter}}
+\newcommand{\corrAuthor}{\textrm{\Letter}}
+\newcommand{\insp}{{National Institute of Public Health}}
+\newcommand{\cisei}{{Center for Research on Infectious Diseases}}
+\newcommand{\imate}{{Mathematics Institute}}
+\newcommand{\unam}{{National Autonomous University of Mexico}}
+\newcommand{\ua}{{University of  Arizona}}
+\newcommand{\uprc}{{University of Puerto Rico in Cayey}}
+\newcommand{\mbi}{{Mathematical Biosciences Institute}}
+\newcommand{\osu}{{Ohio State University}}
+\newcommand{\asu}{{Arizona State University}}
+\newcommand{\sols}{{School of Life Sciences}}
+\newcommand{\smss}{{School of Mathematical Sciences and Statistics}}
+\newcommand{\mcmsc}{{Mathematical, Computational, and Modelling Sciences Center}}
+\newcommand{\shesc}{School of Human Evolution and Social Change}
+%
+ \newcommand{\INSP}{{Instituto Nacional de Salud Pública}}
+\newcommand{\CISEI}{{Centro de Investigación Sobre Enfermedades Infecciosas}}
+\newcommand{\UNAM}{{Universidad Nacional Aut\'onoma de M\'exico}}
+\newcommand{\IM}{{Instituto de Matem\'aticas}}
+\newcommand{\IF}{{Instituto de F\'isica}}
+\newcommand{\FC}{{Facultad de Ciencias}}
+\newcommand{\DM}{{Departamento de Matem\'aticas}}
+% \newcommand{\ua}{{Universidad de  Arizona}}
+% \newcommand{\asu}{{Universidad Estatal de Arizona}}
+% \newcommand{\uprc}{{Universidad de Puerto Rico en Cayey}}
+% \newcommand{\mbi}{{Instituto de Biociencias Matem\UTF{00C3}\UTF{00A1}ticas}}
+% \newcommand{\osu}{{Universidad Estatal de Ohio}}
+% ------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Edits and reviews
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\aquimequede}{
+\vspace{1cm} \textcolor{red}
+{\textbf{AQUI ME QUEDE}} \\
+\vspace{1cm}}
+\newcommand{\mahv}[1]{\textcolor{gray}{$^{MAHV:}$}\textcolor{orange}{#1} }
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Colored sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\headcolor}[1]{\textcolor{Bittersweet}{#1}}
+\newcommand{\colorsection}[1]{\section*{\headcolor{#1}}}
+\newcommand{\colorsubsection}[1]{\subsection*{\headcolor{#1}}}
+\newcommand{\colorparagraph}[1]{\paragraph{\headcolor{#1}}}
+\definecolor{lightGray}{rgb}{0.92,0.92,0.92}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figure settings and inclusion/exclusion of figures from the compilation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\figu}[3]{
+\begin{figure}{\begin{center}#3\end{center}}\caption{#1}\label{#2}\end{figure}}
+\newcommand{\tablFigu}[3]{
+\begin{table}\caption{#1}\label{#2}\begin{center}{#3}\end{center}\end{table}}
+%
+\newcommand{\smallcaption}[1]{\begin{small}\caption{{#1}}\end{small}}
+%\renewcommand{\caption}[1]{\caption{\begin{small}#1\end{small}}}
+\usepackage{comment}
+%\excludecomment{cond}
+\includecomment{cond}
+\newcommand{\showfigs}[1]{}
+\begin{cond}
+\renewcommand{\showfigs}[1]{\begin{center}#1\end{center}}
+\end{cond}
+
+% --------------------------------------
+% mahvMacros
+% --------------------------------------
+% For supplements
+% --------------------------------------
+%\newcommand{\hbAppendixPrefix}{A}
+%
+%\renewcommand{\thefigure}{\hbAppendixPrefix\arabic{figure}}
+%\setcounter{figure}{0}
+%\renewcommand{\thetable}{\hbAppendixPrefix\arabic{table}} 
+%\setcounter{table}{0}
+%\renewcommand{\theequation}{\hbAppendixPrefix\arabic{equation}} 
+%\setcounter{equation}{0}
+
+
+\newenvironment{suppFig}[4]{
+  \begin{figure}[h]
+    \begin{center}
+      {\includegraphics[#4]{#3}} \caption{\small #1} \label{#2}
+    \end{center}
+  \end{figure}}
+
+\newenvironment{tab}[3]{
+\begin{table}
+\begin{center}
+{#3} \caption{\small #1} \label{#2}
+\end{center}
+\end{table}}
+
+% Operators
+\DeclareMathOperator{\Tr}{Tr}
+\newcommand{\re}[1]{ {\mathfrak{Re}} \left( {#1} \right)}
+\newcommand{\im}[1]{ {\mathfrak{Im}} \left( {#1} \right)}
+% Transpose upperscript
+\newcommand{\transp}[1]{#1^{\mathsmaller T}}
+
+% Column vectors. Usage:
+% \colvector{a\\b\\c\\d\\e}
+\newcommand{\colvector}[1]{\begin{pmatrix}#1\end{pmatrix}} 
+
+% Column vectors. Usage:
+% \colvec{5}{a}{b}{c}{d}{e}
+\newcount\colveccount
+\newcommand*\colvec[1]{
+        \global\colveccount#1
+        \begin{pmatrix}
+        \colvecnext
+}
+\def\colvecnext#1{
+        #1
+        \global\advance\colveccount-1
+        \ifnum\colveccount>0
+                \\
+                \expandafter\colvecnext
+        \else
+                \end{pmatrix}
+        \fi
+}
+
+% ----------------------------------
+% Code listing 
+% ----------------------------------
+%\lstdefinestyle{customPython}{
+%  language=Python,
+%  belowcaptionskip=1\baselineskip,
+%  breaklines=true,
+%  %frame=L,
+%  xleftmargin=\parindent,
+%  showstringspaces=false,
+%  basicstyle=\footnotesize\ttfamily,
+%  keywordstyle=\bfseries\color{green!40!black},
+%  commentstyle=\itshape\color{purple!40!black},
+%  identifierstyle=\color{blue},
+%  stringstyle=\color{orange},
+%}
+
+%\newcommand<>{\hover}[1]{\uncover#2{%
+% \begin{tikzpicture}[remember picture,overlay]%
+% \draw[fill,opacity=0.4] (current page.south west)
+% rectangle (current page.north east);
+% \node at (current page.center) {#1};
+% \end{tikzpicture}}
+%}

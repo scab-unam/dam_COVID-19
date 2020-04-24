@@ -1,0 +1,195 @@
+%\input{tcilatex}
+
+
+%\documentclass{article}
+\documentclass[addpoints,answers,10pt]{exam}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+%\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb}
+%\usepackage{fullpage}
+\usepackage{geometry}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta}
+\newcommand{\here}[2]{\tikz[remember picture]{\node[inner sep=0](#2){#1}}}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=4.00.0.2312}
+%TCIDATA{Created=Sat Jun 01 15:05:36 2002}
+%TCIDATA{LastRevised=Friday, October 02, 2009 13:05:58}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="General\Blank Document">}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+%This is where you can print out your solutions
+
+%\printanswers
+\noprintanswers
+
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+%\newtheorem{axiom}[theorem]{Axiom}
+%\newtheorem{case}[theorem]{Case}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{conclusion}[theorem]{Conclusion}
+%\newtheorem{condition}[theorem]{Condition}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{criterion}[theorem]{Criterion}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{exercise}[theorem]{Exercise}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{problem}[theorem]{Problem}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{solution}[theorem]{Solution}
+%\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%
+\providecommand{\lrSet}[1]{\left\{#1\right\}}
+\providecommand{\lrRound}[1]{\left(#1\right)}
+\providecommand{\lrSquare}[1]{\left[#1\right]}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+%\input{tcilatex}
+%\pagestyle{fancy}
+\geometry{left=2cm,right=2cm,top=2cm,bottom=1cm}
+%\setlength\headwidth{\textwidth}
+%\renewcommand{\footrulewidth}{0pt}
+%\renewcommand{\headrulewidth}{2pt}
+% ----------------------------------------------------
+\begin{document}
+\pointpoints{punto}{puntos}
+\vqword{Problema}
+\vpword{Max}
+\vsword{Puntos}
+
+\lhead{\textbf{Posgrado en Ciencias Matemáticas, UNAM\\Examen de Admisi\'on de \'Algebra Lineal, 2020}}
+\rhead{Código \rule{3cm}{1pt}}
+
+\bigskip
+\begin{minipage}{0.6\textwidth}
+\paragraph{Instrucciones.} Escriba su nombre y un código de 2 números y 2 letras, todos distintos, en la lista de asistentes a este examen. Escriba una hoja de respuestas y entréguela junto con el resto de su trabajo escribiendo su código en cada página. Tiene un máximo de dos horas para entregar sus respuestas. Comience a escribir las respuestas de su examen al menos 15 minutos antes de la hora límite. Sólo las respuestas contenidas en la hoja de respuestas serán consideradas para la calificación. 
+Favor de no escribir en la tabla de la derecha.
+\end{minipage}%
+\begin{minipage}{0.1\textwidth}
+\hfill
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+\gradetablestretch{1.1}
+\addpoints	
+\gradetable[v][questions]
+\end{minipage}
+
+\paragraph{Preguntas}
+% ------------------
+\begin{questions}
+% ------------------
+
+% ------------------
+\question[10] 
+Si $A=\left( 
+\begin{array}{rr}
+-5 & 18 \\ 
+-6 & 7 %
+\end{array}
+\right)$ encuentre una expresión generalizada para $A^n$, para $n \in \mathbb{N}$. 
+
+% ------------------
+%\question 
+%\begin{parts} 
+%\part[10] Sea $A \in M_{n}\lrRound{\mathbb{K}}$ no invertible.  Demuestre que existe $B\in M_n\lrRound{\mathbb{K}}$  no nula  tal que $AB=0.$
+%\part[10] Si $A=\left( 
+%\begin{array}{rrr}
+%1 & 4 & 7\\ 
+%2 & 1 & 2\\
+%4 & 3 & 5\\
+%\end{array}
+%\right)$, encuentre $B \in M_{3}\lrRound{\mathbb{R}}$   tal que $AB=0.$
+%\end{parts}
+
+
+% ------------------
+\question Sea $T: \mathbb{R}^{2} \rightarrow \mathbb{R}^{2}: u \mapsto Au$, con $A$ simétrica. 
+\begin{parts}
+\part[10] ?`Son perpendiculares los vectores propios de $A$? Argumente formalmente su respuesta.
+\part[10] Calcule los valores y vectores propios de $A=\left( 
+\begin{array}{rr}
+1 & 1 \\ 
+1& -5 %
+\end{array}
+\right).$
+\part[10] Explique qué representan los valores propios de $A$ e ilustre con un dibujo. Pista: considere las imágenes de los puntos $\lrSet{(1,0), (0,1), (-1,0), (0,-1)}$ bajo $T$.  \\
+\end{parts} 
+
+
+% ------------------
+\question Sean $b \in \mathbb{R}^{n}$ y $A=\lrSquare{a_{1} \quad ... \quad a_{n}} \in M_{n}\lrRound{\mathbb{R}}$. Defina 
+\[
+A_i(b) =(a_{1} \ldots \here{b}{fromhere}\ldots a_{n})
+\]
+\begin{tikzpicture}[remember picture, overlay]
+\node[font=\scriptsize, below right=12pt of fromhere] (tohere) {$i$-ésima entrada};
+\draw[Stealth-] ([yshift=-4pt]fromhere.south) |- (tohere);
+\end{tikzpicture}
+
+como la matriz $A$ con la $i$-ésima columna reemplazada por el vector $b$. 
+\begin{parts}
+\part[5] Pruebe que $A~I_{i}(x)=A_{i}(b)$ para todo $x \in \mathbb{R}^{n}$. 
+\part[10] Usando el inciso anterior, demuestre la regla de Cramer: Si $A$ es invertible, la única solución de $Ax=b$ tiene entradas de la forma
+$$x_{i} = \frac{\det A_{i}(b)}{\det A}.$$ 
+Pista: $\det I_{i}(x) = x_{i}$.
+\end{parts}
+
+% ------------------
+\question Sea $\mathcal{B}=\lrSet{\mathbf{b_{1}},\ldots,\mathbf{b_{n}}}$ una base ordenada para un espacio vectorial $V$ sobre $\mathbb{R}$. 
+\begin{parts}
+\part[10] Demuestre que el mapeo de coordenadas 
+$\mathbf{x} \mapsto \lrSquare{ \mathbf{x}}_{\mathcal{B}}$ es una transformación lineal $V\rightarrow \mathbb{R}^n$. 
+\part[10] Explique por qué el vector de $\mathcal{B}$-coordenadas de una combinación lineal de vectores $\mathbf{u_{1}},\ldots,\mathbf{u_{p}}~\in~V$ es la misma combinación lineal de los vectores de coordenadas $\lrSet{\lrSquare{\bf{u_{i}}}_{\mathcal{B}}:i=1,...,n}$
+\end{parts}
+
+
+% ------------------
+\question Sea 
+$$T: C(\mathbb{R},\mathbb{R}) \rightarrow C(\mathbb{R},\mathbb{R}) : f(x) \mapsto \frac{f(x) + f(-x)}{2}$$ 
+\begin{parts}
+\part[10] Demuestre que $T$ es lineal
+\part[10] Encuentre el n\'{u}cleo y la imagen de $T$
+\end{parts}
+
+% ------------------
+\question[20] Sea $V$ un espacio vectorial sobre $\mathbb{C}$,  con producto interno, y de dimensi\'on $n$. Sea $T$ un operador lineal en $V$. Demuestre que si $\{v_1,\dots ,v_n\}$ es una base ortonormal de $V$ y su imagen bajo $T$ es otra base ortonormal de $V$, entonces $\norm{T(v)}=\norm{v}$ para todo $v\in V$.
+
+
+
+% ------------------
+%\question Considere el espacio vectorial $V=M_{n}\lrRound{\mathbb{R}}$ sobre $\mathbb{R}$, y un operador $T:V\rightarrow V$ definido por $T(A)=A^t$. 
+%\begin{parts}
+%\part[5] 
+%Pruebe que $1$ y $-1$ son los únicos valores propios de $T$.
+%\part[5] 
+%Describa los vectores propios correspondientes.
+%\part[10] 
+%Encuentre una base $\mathcal{B}$ tal que $[T]_{\mathcal{B}}$ sea diagonal.
+%\end{parts}
+
+
+% ------------------
+%\question[10] Considere el subespacio $W$ de $\mathbb{R}^3$ definido como el generado por los vectores $v_1=(1,0,-1)$, ${v_2=(2,-3,0)}$, $v_3=(-5,1,-3)$.  Encuentre una transformaci\'on lineal  $T:\mathbb{R}^3\rightarrow \mathbb{R}^4$ tal que $W$ sea el n\'ucleo de $T$.
+
+\end{questions}
+
+
+% ------------------
+\paragraph{Notación y definiciones.} 
+$M_{m}\lrRound{\mathbb{K}}$ es el espacio de matrices de $m\times m$  con coeficientes en $\mathbb{K}$.   Dada una base $\mathcal{B}=\lrSet{\mathbf{b}_{i}:i=1,...,n}$ de un espacio vectorial $V$ y un vector $\mathbf{x}\in V$, las $\mathcal{B}$-coordenadas de x son los pesos $c_{1}$,...., $c_{n}$ tales que $\mathbf{x}= c_{1}\mathbf{b}_{1}+\ldots+c_{n}\mathbf{b}_{n}$. $C(\mathbb{R},\mathbb{R}) $ es el espacio de funciones contínuas de $\mathbb{R}$ en $\mathbb{R}$. 
+
+
+
+\end{document}
