@@ -4,12 +4,14 @@ import urllib
 import pandas as pd
 import zipfile
 import datetime
+from ipywidgets import widgets
+
 import matplotlib.pylab as gr
 small={'family' : 'normal','weight' : 'normal','size'   : 8}
 medium={'family' : 'normal','weight' : 'normal','size'   : 10}
 large={'family' : 'normal','weight' : 'bold','size'   : 13}
 gr.rc('font', size=small['size'], weight='normal')          # controls default text sizes
-gr.rc('axes', titlesize=small['size'])     # fontsize of the axes title
+gr.rc('axes', titlesize=medium['size'])     # fontsize of the axes title
 gr.rc('axes', labelsize=medium['size'])    # fontsize of the x and y labels
 gr.rc('xtick', labelsize=small['size'])    # fontsize of the tick labels
 gr.rc('ytick', labelsize=small['size'])    # fontsize of the tick labels
@@ -142,6 +144,23 @@ def findCaseStarts(places,cases):
 # -------------------
 # Ratios by array. Correction in cases there are zeros in the denominators
 # -------------------
+def findHDistance(t,x,y,m,M,nPts=100):
+    if (len(t)!=len(x)) | (len(x)!=len(y) ):
+        return
+    v = np.linspace(m,M,nPts)
+    d=list()
+    for n in range(len(v)):
+        a = np.where(x>v[n])[0][0]
+        b = np.where(y>v[n])[0][0]
+        d.append(b-a)
+    return np.array(d)
+
+def findMode(x):
+    xbins = np.unique(x)
+    counts,bins =np.histogram(x,xbins)
+    return x[counts.argmax()]
+
+
 def sigmoid(a, aMax=0.1,a0=60.0,n=2):
     aa = a**n
     return aMax* aa /(aa + a0**n)

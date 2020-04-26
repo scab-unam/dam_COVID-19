@@ -12,9 +12,14 @@
 # #### $^3$ Escuela Secundaria Vicente Guerrero, Secretaría de Educación Pública, México
 # #### $^4$ Instituto de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México
 # 
-# Last modified: MAHV, 20200411
+# Last modified: MAHV, 20200424
 # 
 # ### Abstract
+# The time series of cases, recoveries, and deaths during a pandemic are usually contaminated by different problems including under report,  and delays that in many cases can be justified by late reactions by government agencies. 
+# However, it should be possible to find general characteristics, and also important differences between the dynamics observed in different countries. Both could be important macroscopic markers to understand the global dynamics as a function of the local (country) dynamics of the disease caused by the pandemic pathogen. 
+# In an attempt to extract general information from the global dynamics of COVID-19 cases, we analyzed the time series of cases, recoveries, and deaths reported up until April 24, 2020, and focused on delays between different types of reports, with special attention to the relationships between cases and fatalities.
+# The first countries to report cases also reported fatalities within short or no delay. However, as more countries reported cases, consistent delay patterns showing a relatively constant delay between cases and recoveres, and between cases and fatalities within cases.  We also found a consistent contribution to of the case fatalities by age in countries like China, South Korea, and Italy, which have different health care systems, different mitigation capacities, and different population structures. 
+# 
 # 
 # 
 # ### Methods and data sources
@@ -23,17 +28,18 @@
 # 
 # 
 
-# Module imports (all basic functions and other module specs can be found in [tsam_COVID19_baseCode.py](tsam_COVID19_baseCode.py)
+# Module imports (all basic functions and other module specs can be found in [dam_COVID19_baseCode.py](dam_COVID19_baseCode.py)
 
-# In[1]:
+# In[2]:
 
 
-from tsam_Covid19_baseCode import *
-cwd = os.getcwd()
+import sys
+sys.path.insert(1, '../')
+from dam_COVID19_baseCode import *
 get_ipython().magic(u'matplotlib inline')
 
 
-# In[2]:
+# In[3]:
 
 
 cases, deathCases,recovCases = getCSSEGISandData(urlData=1)
@@ -41,13 +47,13 @@ cases, deathCases,recovCases = getCSSEGISandData(urlData=1)
 
 # Let us first describe the data set. The data has been transposed so that the cases, deaths, and recovered the different regions of the world are stored in columns, each with the data from different dates starting from January 22, 2020. 
 
-# In[3]:
+# In[4]:
 
 
 cases.head(6)
 
 
-# In[4]:
+# In[5]:
 
 
 deathCases.tail(4)
@@ -55,7 +61,7 @@ deathCases.tail(4)
 
 # This means there are 4 columns before the time series begins, and the data contains 248 regions from the world. The data that can be used for calculations involving the cases in the epidemic can be found from the fifth row on.  Since the dates in the original data have only two numbers for the year, let us create a date range with the dates formatted with a four figures, and use the new dates later for the plots and illustrations.
 
-# In[5]:
+# In[132]:
 
 
 # ------------------------------
@@ -73,7 +79,7 @@ nDays = len(dates)
 print('Got data from %d days between %s and %s'%(nDays,dates[0],dates[-1]))
 
 
-# In[6]:
+# In[133]:
 
 
 # -------------------
@@ -94,7 +100,7 @@ print('Considering data from {d} countries'.format(d=nCountries))
 # - Case fatality ratios are calculated to analyse the epidemia in different provinces and contrast with whole country estimates
 # 
 
-# In[7]:
+# In[134]:
 
 
 # -------------------
@@ -117,52 +123,67 @@ totRecovCases=gatherDataByCountry(df=recovCases,nHeaderCols=4)
 # 
 # To get an idea of the initial the dynamics of the pandemic, we calculated the delays to the first case reports and compare to the first deaths reported by country. 
 
-# In[8]:
+# In[135]:
 
 
 # Describe the order of appearance of cases
-iFC=findFirstCaseDates(totCases)
-iFD=findFirstCaseDates(totDeathCases)
-iFR=findFirstCaseDates(totRecovCases)
-iArrival = iFC.argsort() 
+dFC=findFirstCaseDates(totCases)
+dFD=findFirstCaseDates(totDeathCases)
+dFR=findFirstCaseDates(totRecovCases)
+iArrival = dFC.argsort()
+for n in range(37):
+    print(countries[n],dFC[n],dFD[n],dFR[n],'rank: %dth'%iArrival[n])
+ 
 d0SortedCountries = countries[iArrival]
-siC = iFC[iArrival]
-siD = iFD[iArrival]
-siR = iFR[iArrival]
+sdFC = dFC[iArrival]
+sdFD = dFD[iArrival]
+sdFR = dFR[iArrival]
+
+
+# In[136]:
+
+
 # As many as countries
 print('%First case, & to first death & to first recovery \\\\')
 print('\hline &&&\\\\')
 for mm in range(nCountries):
     #print('%s & %s & %s & %s\\\\'%(countries[jj[mm]], dates[siC[mm]], dates[siD[mm]], dates[siR[mm]]))
     #print('& %d & %d & %d \\\\ '%(siC[mm],siD[mm]-siC[mm],siR[mm]-siC[mm]))
-    sss = [d0SortedCountries[mm], dates[siC[mm]], siC[mm], dates[siD[mm]], siD[mm]-siC[mm], dates[siR[mm]], siR[mm]-siC[mm]]
+    sss = [d0SortedCountries[mm], dates[sdFC[mm]], sdFC[mm], dates[sdFD[mm]], sdFD[mm]-sdFC[mm], dates[sdFR[mm]], sdFR[mm]-sdFC[mm]]
     print('{s[0]} & {s[1]} ({s[2]})  & {s[3]} ({s[4]})  & {s[5]} ({s[6]}) \\\\'.format(s=sss))
     if (mm<nCountries-1):
-        if (siC[mm]<siC[mm+1]):
+        if (sdFC[mm]<sdFC[mm+1]):
             print('\hline ')
-
-
-# In[9]:
-
-
-siC
 
 
 # ## The time course of reports
 
-# In[30]:
+# In[137]:
 
 
-casesCountriesByDate= list()
-deathsCountriesByDate= list()
-recovsCountriesByDate= list()
+nCountriesFCByDate= list()
+nCountriesFDByDate= list()
+nCountriesFRByDate= list()
 for m in range(nDays):
-    casesCountriesByDate.append(len(np.where(siC==m)[0])) 
-    deathsCountriesByDate.append(len(np.where(siD==m)[0])) 
-    recovsCountriesByDate.append(len(np.where(siR==m)[0])) 
-casesCountriesByDate = np.array(casesCountriesByDate)
-deathsCountriesByDate = np.array(deathsCountriesByDate)
-recovsCountriesByDate = np.array(recovsCountriesByDate)
+    # Find the indices of those who reported their first case on day m
+    nCountriesFCByDate.append(len(np.where(dFC==m)[0])) 
+    # Find the indices of those who reported their first death on day m
+    nCountriesFDByDate.append(len(np.where(dFD==m)[0])) 
+    nCountriesFRByDate.append(len(np.where(dFR==m)[0])) 
+nCountriesFCByDate = np.array(nCountriesFCByDate)
+nCountriesFDByDate = np.array(nCountriesFDByDate)
+nCountriesFRByDate = np.array(nCountriesFRByDate)
+cumC=nCountriesFCByDate.cumsum()
+cumD=nCountriesFDByDate.cumsum()
+cumR=nCountriesFRByDate.cumsum()
+
+
+# In[138]:
+
+
+print(nCountriesFCByDate,len(nCountriesFCByDate))
+print(nCountriesFDByDate,len(nCountriesFDByDate))
+print(nCountriesFRByDate,len(nCountriesFRByDate))
 
 
 # The first countries that reported cases of COVID-19 on January 22, 2020 ($d_0$) were South Korea, China, Taiwan, US, Japan, and Thailand. Australia reported their first case 4 days later, together with Canada, on January 26, 2020. The first reports from Europe came 5 days later from Germany, on January 27. The first report in the Middle East came from the United Arab Emirates on January 29, 7 days after the first case reported. 
@@ -173,66 +194,69 @@ recovsCountriesByDate = np.array(recovsCountriesByDate)
 # Of interest to the authors, Mexico reported their first case 37 days later, on February 28, 2020, together with Nigeria, New Zealand, Lithuania, Iceland, and Belarous. The last country that reported cases was Sao Tome and Principe, on April 6th, 2020, 75 days after the first report.
 # 
 
-# In[37]:
+# ### Delays between first case, first recovery, and first death reports
+
+# In[139]:
 
 
-cCases, binsC = np.histogram(iFC,np.arange(0,(iFD-iFC).max()))
-cDeathCases, binsD = np.histogram(iFD-iFC,np.arange(0,(iFD-iFC).max()))
-cRecovCases, binsR = np.histogram(iFR-iFC,np.arange(0,(iFD-iFC).max()))
+#cFirstCases, binsC = np.histogram(dFC,np.arange(0,(iFD-iFC).max()))
+days = np.arange(nDays)
 
-def plotReportingDelays():
-    fDelays= gr.figure(figsize=(7,10)); gr.ioff(); rows=3; cols=1;
+def plotCaseArrivals():
+    shift=0.3; W=.7
+    fRepArrivals= gr.figure(figsize=(7,9)); 
+    gr.ioff(); rows=3; cols=1;
     ticks = np.arange(0,nDays,7)
     ax=list(); tAx=list()
-    fDelays.suptitle('Delays in first case report, first death, and first recovery, all countries')
-    for m in range(rows*cols):
-        ax.append(fDelays.add_subplot(rows,cols,m+1))
+    for m in range(cols*rows):
+        ax.append(fRepArrivals.add_subplot(rows,cols,m+1))
         tAx.append(ax[m].twinx())
-    tAx[0].plot(casesCountriesByDate.cumsum(),'b',lw=2, label='Cumulative # countries reporting cases')
-    tAx[0].plot(deathsCountriesByDate.cumsum(),'k',lw=2,label='Cumulative # countries reporting deaths')
-    tAx[0].plot(recovsCountriesByDate.cumsum(),'orange',lw=2, label='Cumulative # countries reporting recoveries')
-    ax[0].bar(binsC[:-1],cCases,width=0.8)
-    ax[1].bar(binsD[:-1],cDeathCases,width=0.8,label='Deaths')
-    ax[2].bar(binsR[:-1],cRecovCases,width=0.8,label='Recoveries')
-    ax[1].set_xlabel('Days first case reported (same country)')
-    ax[2].set_xlabel('Days first case reported (same country)')
-    ax[0].set_xticks(ticks)
-    ax[0].set_xticklabels(dates[ticks])
-    ax[0].legend(loc='upper left')
-    for label in ax[0].get_xticklabels():
+    tAx[0].plot(cumC,'b',lw=2, label='Cumulative # countries reporting cases')
+    tAx[1].plot(cumC,'b',lw=2, label='Cumulative # countries reporting cases')
+    tAx[1].plot(cumD,'k',lw=2,label='Cumulative # countries reporting deaths')
+    tAx[2].plot(cumC,'b',lw=2, label='Cumulative # countries reporting cases')
+    tAx[2].plot(cumD,'k',lw=2,label='Cumulative # countries reporting deaths')
+    tAx[2].plot(cumR,'orange',lw=2, label='Cumulative # countries reporting recoveries')
+    ax[0].bar(days,nCountriesFCByDate,color='blue',align='center',width=W,label='First case report')
+    ax[2].bar(days,nCountriesFDByDate,color='black',align='center',width=W,label='First death report')
+    ax[1].bar(days,nCountriesFRByDate,color='orange',align='center',width=W,label='First recovery report')
+    for m in range(cols*rows):
+        ax[m].set_xticks(ticks)
+        tAx[m].set_yticks(np.arange(0,nCountries+1,10))
+        ax[m].set_yticks(np.arange(0,nCountriesFCByDate.max()+1,2))
+        ax[m].set_ylabel('# Countries',rotation=90)
+        tAx[m].set_ylabel('# Countries',rotation=-90,labelpad=15)
+        ax[m].legend(loc='center left')
+        tAx[m].legend(loc='upper left')
+    ax[2].set_xticklabels(dates[ticks],{'fontsize':8})
+    for label in ax[2].get_xticklabels():
         label.set_rotation(45)
         label.set_horizontalalignment('center')
         label.set_fontsize(8)
-    for m in range(rows*cols):
-        ax[m].set_yticks(np.arange(0,np.maximum(cRecovCases.max()+1,cCases.max()),2))
-        ax[m].set_ylabel('# Countries',rotation=90)
-        if m>0:
-            ax[m].legend(loc='upper right')
-        if m<1:
-            tAx[m].legend(loc='upper left')
-    fDelays.subplots_adjust(left=0.075,bottom=0.075,right=0.9,top=0.95,wspace=0.1,hspace=0.25)
+        label.set_horizontaloffset=-15
+    for mm in range(rows*cols):
+        ax[mm].set_xlabel('Days from $d_0$')
+    fRepArrivals.subplots_adjust(left=0.075,bottom=0.075,right=0.9,top=0.95,wspace=0.1,hspace=0.25)
+    fRepArrivals.suptitle('Delays in first case report, first death, and first recovery, all countries')
     gr.ion(); gr.draw(); gr.show()
-    fDelays.savefig('tsam_Covid19_figures/tsam_Covid19_JHU_delays_AllCountries.png')
-    return fDelays
+    fRepArrivals.savefig('./figures_COVID19_dataAnalysis/tsam_Covid19_JHU_reportArrivals_AllCountries.png')
+    return fRepArrivals
 
-fDelays= plotReportingDelays()
-
-
-# In[39]:
+fRepArrivals= plotCaseArrivals()
 
 
-n=7; print(r'%d countries reported within the first %d days from $d_0$'%(len(siC[siC<n+1]),n))
-countries[iArrival[(siD-siC) <n+1]]
+# Approximately around 30 days after $d_0$, a relatively constant delay between first cases reported and the corresponding first recoveries and first deaths reported, lasting approximately 40 days. The biases in reports show up again after day 70 from $d_0$. In the beginning of the pandemic the biases are caused by short or no-delays between first cases and deaths. In the last portion of the period under consideration, the biases are caused by long delays in the first case, first recoveries, and first deaths.  
+# The large bar in the recoveries from February 12, 2020, is caused by a large adjustment in the reports from China and the first recoveries reported in other countries. The large bar from the deaths at on April 23, 2020, is caused by late reporting from Africa. 
+
+# In[140]:
+
+
+n=7; print(r'%d countries reported within the first %d days from $d_0$'%(len(sdFC[sdFC<n+1]),n))
+countries[iArrival[(sdFD-sdFC) <n+1]]
 
 
 # The difference between the curve of cumulative number of countries reporting cases and the cumulative number of countries reporting deaths is very similar for a large interval of days. 
 # The descriptive statistics of delay between death and case reports are as follows. 
-
-# In[38]:
-
-
-print('The most common delay between first death and first case report is %d days'%cDeathCases.argmax())
-
 
 # The delays between the first case reported and the first death reported within a single country have a wide distribution, between 0 and 76 days. 
 # However, the bulk of the distribution can be found between 0 and 30 days, with a mode at 16 days. In consideration of the time course of the infection by SARS-CoV-2 reported in the literature \citep{}, the delay between death and contagion can be 21 or more days \citep{}. 
@@ -241,95 +265,367 @@ print('The most common delay between first death and first case report is %d day
 # 
 # The delays between the first recovery and the first case reported within a single country are distributed between 0 and 38 days. However, for most countries this delay is between 0 and 27 days approximately, with two clear modes at 12 and 16 days.  
 
-# In[94]:
+# ### Simple estimation of the temporal bias induced by delays between first case, and first death or first recovery reports
+
+# In[141]:
 
 
-n=10; print(r'%d countries reported within the first %d days from $d_0$'%(len(siC[siC<n+1]),n))
-countries[iArrival[siC<n+1]]
+def findHDistance(t,x,y,m,M,nPts=100):
+    if (len(t)!=len(x)) | (len(x)!=len(y) ):
+        return 
+    v = np.linspace(m,M,nPts)
+    d=list()
+    for n in range(len(v)):
+        a = np.where(x>v[n])[0][0]
+        b = np.where(y>v[n])[0][0]
+        d.append(b-a)
+    return np.array(d)
+
+def findMode(x):
+    xbins = np.unique(x)
+    counts,bins =np.histogram(x,xbins)
+    return x[counts.argmax()] 
 
 
-# In[95]:
+# There is an interval where the delays are relatively constant. 
+
+# In[142]:
 
 
-n=30; print(r'%d countries reported within the first %d days from $d_0$'%(len(siC[siC<n+1]),n))
-countries[iArrival[siC<n+1]]
+v1 = 40; v2=150
+delaysCumFDC=findHDistance(days,cumC,cumD,v1,v2,nPts=v2-v1)
+delaysCumFRC=findHDistance(days,cumC,cumR,v1,v2,nPts=v2-v1)
+print(delaysCumFDC)
+print(delaysCumFRC)
+mm = findMode(delaysCumFDC)
+MM = findMode(delaysCumFRC)
+print('The most common delay between the cumulative reports of cases and deaths is %d'%mm)
+print('The most common delay between the cumulative reports of cases and recoveries is %d'%MM)
 
 
-# ### Simple estimation of the temporal bias induced by delays between death and case reports
-
-# In[41]:
-
-
-qs = np.arange(0,1,0.01)
-delaysCF = np.quantile(siD-siC,qs)
-print(delaysCF)
-medianDCdelay =np.median(siD-siC) 
-print('The median delay between first deadh and first case is %d days'%medianDCdelay)
-
-
-# In[93]:
+# In[143]:
 
 
 # 
-a = 50; b = 140
-cumC=casesCountriesByDate.cumsum()
-cumD=deathsCountriesByDate.cumsum()
+a = 50; b = 136
 ia_cumC = np.where(cumC>a)[0].min()
-ia_cumD = np.where(cumD>a)[0].min()
-ib_cumC = np.where(cumC<=b)[0].max()
-ib_cumD = np.where(cumD<=b)[0].max()
-bb=ib_cumD-ib_cumC
+ia_cumD = np.where(cumD>a)[0].min()-1
+ib_cumC = np.where(cumC>b)[0].min()
+ib_cumD = np.where(cumD>=b)[0].min()
+ia_cumR = np.where(cumR>a)[0].min()-1
+ib_cumR = np.where(cumR>=b)[0].min()
 aa=ia_cumD-ia_cumC
+bb=ib_cumD-ib_cumC
+cc=ia_cumR-ia_cumC
+dd=ib_cumR-ib_cumC
+print(ib_cumC, ib_cumR, cc,dd)
 print(ia_cumC,ib_cumC,ia_cumD,ib_cumD)
+delaysFDC =sdFD-sdFC
+delaysFRC =sdFR-sdFC
+#
 fRepDelay= gr.figure(figsize=(7,9)); gr.ioff()
-rows=2; cols=1
+rows=2; cols=2
 ax=fRepDelay.add_subplot(rows,cols,1); 
 bx=fRepDelay.add_subplot(rows,cols,2); 
+cx=fRepDelay.add_subplot(rows,cols,3); 
+dx=fRepDelay.add_subplot(rows,cols,4); 
 days = np.arange(nDays)
-cc = np.arange(nCountries)
+cC = np.arange(nCountries)
 ticks= np.arange(0,nDays,7)
-bx.plot(cc, siD-siC, '.', label='#case-death ')
-bx.plot(cc,medianDCdelay*np.ones(nCountries),label=r'%d days'%medianDCdelay)
+bx.plot(cC, delaysFDC, '.', label='#case-death ')
+bx.plot(cC, mm*np.ones(nCountries),label=r'%d days'%delaysFDC.mean())
+dx.plot(cC, delaysFRC, '.', label='#case-death ')
+dx.plot(cC, MM*np.ones(nCountries),label=r'%d days'%delaysFRC.mean())
 ax.plot(days,cumC,label='Cases')
 ax.plot(days,cumD, label='Deaths')
-ax.plot(days,a*np.ones(nDays),':',color='orange',alpha=0.35,label='Cases')
-ax.plot(days,b*np.ones(nDays),':',color='orange',alpha=0.35,label='Cases')
-ax.plot( days[ib_cumC:ib_cumD], b*np.ones(bb),'k',lw=5,alpha=0.35,label='Cases')
-ax.plot( days[ia_cumC:ia_cumD], a*np.ones(aa),'k',lw=5,alpha=0.35,label='Cases')
-str2='# Countries reporting cases or deaths'
+cx.plot(days,cumC,label='Cases')
+cx.plot(days,cumR, label='Recoveries')
+ax.plot(days,a*np.ones(nDays),':',color='orange',alpha=0.35)
+ax.plot(days,b*np.ones(nDays),':',color='orange',alpha=0.35)
+cx.plot(days,a*np.ones(nDays),':',color='orange',alpha=0.35)
+cx.plot(days,b*np.ones(nDays),':',color='orange',alpha=0.35)
+ax.plot( [days[ia_cumC],days[ia_cumC]], [cC[0],cC[-1]],':',color='orange',lw=1,alpha=0.35)
+ax.plot( [days[ia_cumD],days[ia_cumD]], [cC[0],cC[-1]],':',color='orange',lw=1,alpha=0.35)
+ax.plot( days[ib_cumC:ib_cumD], b*np.ones(bb),'k',lw=3,alpha=0.35)
+ax.plot( days[ia_cumC:ia_cumD], a*np.ones(aa),'k',lw=3,alpha=0.35)
+cx.plot( [days[ia_cumC],days[ia_cumC]], [cC[0],cC[-1]],':',color='orange',lw=1,alpha=0.35)
+cx.plot( [days[ia_cumR],days[ia_cumR]], [cC[0],cC[-1]],':',color='orange',lw=1,alpha=0.35)
+cx.plot( days[ib_cumC:ib_cumR], b*np.ones(dd),'k',lw=3,alpha=0.35)
+cx.plot( days[ia_cumC:ia_cumR], a*np.ones(cc),'k',lw=3,alpha=0.35)
 str1='Delay between first death and first case reports'
-bx.set_ylabel(str1)
-ax.set_xlabel(r'''Delay to first death and to first case''')
-ax.set_ylabel(str2)
-bx.set_xlabel(str2)
+str3='Delay between first recover and first case reports'
+str2='# Countries reporting'
+str4='# Countries reporting'
+bx.set_ylabel(str1); dx.set_ylabel(str3)
+ax.set_xlabel(r'''Delay to first death and first case from $d_0$''')
+cx.set_xlabel(r'''Delay to first recovery and first case from $d_0$''')
+bx.set_xlabel(str2); dx.set_xlabel(str2)
+ax.set_ylabel(str2); cx.set_ylabel(str4)
+ax.legend(loc='upper left')
+cx.legend(loc='upper left')
 gr.ion(); gr.draw()
-fRepDelay.savefig('./tsam_Covid19_figures/tsam_Covid19_JHU_delays_caseDeaths.png')
-q= np.arange(0,1.00001,0.01)
-print(aa,bb)
+fRepDelay.subplots_adjust(left=0.075,bottom=0.075,right=0.9,top=0.95,wspace=0.2,hspace=0.25)
+fRepDelay.savefig('./figures_COVID19_dataAnalysis/tsam_Covid19_JHU_delays_caseDeaths.png')
+
+#print(aa,bb)
 
 
-# In[ ]:
+# Now a comparison between those estimates of delays and the delays (not just the first case from the whole world)
+
+# In[144]:
 
 
+days = np.arange(nDays)
+qs = np.arange(0,1,0.01)
+delaysFDC = sdFD-sdFC
+qDelaysFDC = np.quantile(delaysFDC,qs)
+print('Quantiles for delays D-C:',qDelaysFDC)
+medianFDCdelay = np.int32(np.median(delaysFDC) )
+print('The median delay between first death and first case is %d days'%medianFDCdelay)
+print('The mode of the distribution for first death and case delays is %d'% findMode(dFD-dFC))
+print('The mode of the distribution for first recovery and case delays is %d'% findMode(dFR-dFC))
+print(np.sort(sdFD-sdFC))
+print(np.sort(sdFR-sdFC))
 
 
+# In[145]:
 
-# ## Cases vs deaths in some subsets of countries taking the delay into account
 
-# In[16]:
+# -----------------------------------
+"""Poincaré diagram to plot delays in reports from cumulative counts
+of first case to first recovery or death
+"""
+# -----------------------------------
+# prepare some data
+v1 = 33; v2=145
+delay=18
+iStart = np.where(cumC>v1)[0].min()
+iStop = np.where(cumC>v2)[0].min()
+x=cumC[iStart:iStop]
+y=cumD[iStart:iStop]
+dd0= days[iStart:iStop]
+#
+shift=2
+gDelay= gr.figure(figsize=(7,5)); gr.ioff()
+title="Delay between first case and first death"
+gDelay.suptitle(title)
+ax = gDelay.add_subplot(111)
+ax.plot(days, cumC, 'b', lw=1, alpha=1, label=r'First case report')
+ax.plot(days, cumD, 'k', lw=1, alpha=1, label=r'First death report')
+d1=delay-shift; d2=delay+shift
+ax.plot(days+d1, cumC, 'b', lw=1, alpha=0.5, label=r'First case report + %d days'%d1)
+ax.plot(days+d2, cumC, 'b', lw=1, alpha=0.5, label=r'First case report + %d days'%d2)
+ax.plot([0,d2+days.max()],[v1,v1],'k:',lw=1)
+ax.plot([0,d2+days.max()],[v2,v2],'k:',lw=1)
+ax.set_ylabel('# Countries reporting')
+ax.set_xlabel('Days from $d_0$')
+ax.legend()
+gr.ion(); gr.draw();gr.show()
+fName="./figures_COVID19_dataAnalysis/delaysCumFDC.png"
+gDelay.savefig(fName)
+
+
+# 
+
+# In[146]:
+
+
+#cFirstCases, binsC = np.histogram(dFC,np.arange(0,(iFD-iFC).max()))
+days = np.arange(nDays)
+cDelayDeaths2Case, binsD = np.histogram(dFD-dFC,days)
+cDelayRecovs2Case, binsR = np.histogram(dFR-dFC,days)
+days = np.arange(nDays)
+
+def plotReportingDelays():
+    fDelays= gr.figure(figsize=(7,10)); gr.ioff(); rows=2; cols=1;
+    ticks = np.arange(0,nDays,7)
+    ax=list(); tAx=list()
+    fDelays.suptitle('Delays in first case report, first death, and first recovery, all countries')
+    for m in range(rows*cols):
+        ax.append(fDelays.add_subplot(rows,cols,m+1))
+    tAx.append(ax[0].twinx())
+    ax[0].bar(binsD[:-1],cDelayDeaths2Case,width=0.8,label='Deaths')
+    ax[1].bar(binsR[:-1],cDelayRecovs2Case,width=0.8,label='Recoveries')
+    #
+    ax[0].set_xlabel('Days first case reported (same country)')
+    ax[1].set_xlabel('Days first case reported (same country)')
+
+    for m in range(rows*cols):
+        #ax[m].set_yticks(np.arange(0,np.maximum(cDelayRecovs2Case.max()+1,cumC.max()),2))
+        ax[m].set_ylabel('# Countries',rotation=90)
+        if m>0:
+            ax[m].legend(loc='upper right')
+        if m<1:
+            tAx[m].legend(loc='upper left')
+    fDelays.subplots_adjust(left=0.075,bottom=0.075,right=0.9,top=0.95,wspace=0.1,hspace=0.25)
+    gr.ion(); gr.draw(); gr.show()
+    fDelays.savefig('figures_COVID19_dataAnalysis/tsam_Covid19_JHU_delays_AllCountries.png')
+    return fDelays
+
+fDelays= plotReportingDelays()
+
+
+# In[147]:
+
+
+n=10; print(r'%d countries reported within the first %d days from $d_0$'%(len(sdFC[sdFC<n+1]),n))
+countries[iArrival[sdFC<n+1]]
+
+
+# In[148]:
+
+
+n=30; print(r'%d countries reported within the first %d days from $d_0$'%(len(sdFC[sdFC<n+1]),n))
+countries[iArrival[sdFC<n+1]]
+
+
+# ### Examples delays between death reports and case reports in  some countries 
+
+# In[195]:
 
 
 # -------------------
 # Search regions to illustrate the case-fatality ratios
 # -------------------
-Pops_Millions = {'China':1439323776, 'Japan':126476461,'Korea, South':51269185, 'Indonesia':273523615, 
+Pops_Millions = {'China':1439323776, 'Japan':126476461,'Korea, South':51269185, 'Indonesia':273523615,
+                 'Iran':83992949,'Israel':8655535,
                  'Singapore':5850342, 'Mexico':128932753,'US':331002651, 'Canada':37742154, 'Argentina':45195774,
                  'Brazil':212559417, 'Colombia':50882891, 'Niger':24206644, 'Algeria':43851044, 'Egypt':102334404, 
                  'South Africa':59308690,'Spain':46754778,'Italy':60461826,'France':67886011,'Germany':83783942, 
-                 'Australia':25499884,'United Kingdom':67886011,'Iran':83992949,'Israel':8655535}
+                 'Australia':25499884,'United Kingdom':67886011, 'Venezuela':28870195}
 
 
-# In[17]:
+# ### Analysis of the dynamics assuming SIR-like evolution
+# 
+# Assume that the population is divided in three subsets representing the non-infected and susceptible, the infected, and those that can no-longer participate in the chain of infections due to immunity or death. Let the densities of those subpopulations be represented by $x$, $y$, and $z$ respectively, with $1=x+y+z$. The dynamics for $(x,y,z)$ can be assume to follow 
+# \begin{eqnarray}
+# \partial_t y &=& \beta y \bigg( 1- z - y \bigg) - y \bigg(\gamma + \delta \bigg)\\
+# \partial_t z &=& \left( \gamma + \delta \right)y
+# \end{eqnarray}
+# 
+# 
+# If $h$ is the time step for sampling, let $y_{n}$ represent the number of cases at time $nh$. From data, the cumulative number of cases at step $nh$ can be written as 
+# $$C_{n} = \sum_{k=0}^{n} y_k$$
+# which means that the number of new cases (incidence) at time nh is 
+# $$y_n = C_n - C_{n-1}.$$
+# Similarly, for the cumulative recoveries and deaths, respectively
+# $$R_{n}+D_{n} = \sum_{k=0}^{n} z_k,$$
+# so 
+# $$z_n = (R_{n}-R_{n-1})+(D_{n}-D_{n-1}).$$
+# 
+# From the SIR classical formulation, assuming $\gamma$ is the rate of removal by recovery and acquisition of immunity and $\delta$ is the fatality rate due to infection, the time dependent change in the prevalence is given by
+# \begin{eqnarray}
+# \partial_t y &=& y  \beta \big( 1- z - y  \big) - \partial_t z
+# \end{eqnarray}
+# with $z$ representing the sum of the recoveries and deaths at time $t= kh$.
+# The change in $y$ can then be written as 
+# $$\partial_t y =  \beta y \bigg( \alpha -z - y  \bigg), $$
+# with $$\alpha = 1 -\frac{\gamma + \delta}{\beta}.$$
+# This means that the incidence and the prevalence are related cuadratically in the $(y,\partial_t y)$ plane.
+# Using the data, the change in $y$ can be written as 
+# $$\frac{y_{k+1}-y_{k}}{h} \approx \beta y \bigg( \alpha -z - y \bigg),$$
+# which means that 
+# $$y_{k+1}-y_{k} \approx h \beta y \bigg( \alpha -z - y \bigg).$$
+# 
+# #### Parameters for modeling 
+# From the equation for $z$,
+# $$\gamma + \delta = \frac{\partial_t z}{y} \approx \frac{z_{k+1}-z_k}{h y_k}$$ 
+# Also, 
+# $$\beta = \frac{\partial_t y + \partial_t z}{y \bigg( 1 -z - y  \bigg)} $$ 
+# 
+# 
+
+# #### Parabola describing the incidence as a function of the cases
+
+# In[721]:
+
+
+#def casePhasePlane(b=50.0, cou='Italy'):
+def casePhasePlane(cou='Italy',a=0.005,b=10):
+    cInd = np.where(countries==cou)[0][0]
+    tCases= np.float64(totCases[cInd,:])/Pops_Millions[cou]
+    tDeaths=np.float64(totDeathCases[cInd,:])/Pops_Millions[cou]
+    tRecovs=np.float64(totRecovCases[cInd,:])/Pops_Millions[cou]
+    y = tCases - tRecovs - tDeaths
+    z = tRecovs + tDeaths
+    dz=np.zeros(len(z))
+    dz[1:]= z[1:]-z[:1]
+    dy = np.zeros(len(y))
+    dy[1:]= y[1:]-y[:-1]
+    gammaDelta = dz/y
+    beta = (dy+dz)/((1-z-y)*y)
+    a = a+z
+    fy = b*y*(a-z-y) 
+    #
+    ff =gr.figure(figsize=(17,5)); gr.ioff(); rows=1; cols=3
+    ax1= ff.add_subplot(rows,cols,1); tax1= ax1.twinx()
+    ax2= ff.add_subplot(rows,cols,2); 
+    ax3= ff.add_subplot(rows,cols,3); 
+    ax1.plot(days, y,'o',markeredgecolor='blue', markerfacecolor='white',label=r'$y_k$')
+    #ax1.plot(days, tCases,'.',label=r'$(k,C_k)$')
+    tax1.plot(days, (1-z-y)*beta/gamma,'.',label=r'$\beta/\gamma$')
+    ax1.plot(days, tDeaths,'.',label=r'$D_k$')
+    ax1.plot(days, tRecovs,'.',label=r'$R_k$')
+    ax1.plot(days, z,'.',label=r'$z_k=D_k + R_k$')
+    ax2.plot(dy,y,'o',markeredgecolor='blue', markerfacecolor='white',label=r'$(y_k - y_{k-1}, y)$')
+    ax2.plot(fy,y,'.',color='orange',label=r'$(\beta (a-z-y)y,y)$')
+    ax3.plot(1-z-y,y,'.',label=r'$(1-z-y, y)$')
+    ax2.plot([0,0],[0,y.max()],'k:')
+    ax1.set_ylim(0,1.1* y.max())
+    ax2.set_ylim(0,1.1* y.max())    
+    ax2.set_xlim(dy.min(),1.3*dy.max())
+    ax1.set_xlabel(r'$t$ (days)');ax2.set_xlabel(r'$y_k - y_{k-1}$')
+    ax1.set_ylabel(r'$y_k$');ax2.set_ylabel(r'$y_k$')
+    ax2.legend(loc='lower right'); ax3.legend(loc='upper right'); 
+    ax1.legend(loc='center left'); tax1.legend(loc='upper left')
+    gr.ion(); gr.draw()
+    ff.suptitle('Phase plane, %s'%cou)
+    ff.subplots_adjust(left=0.075,bottom=0.075,right=0.9,top=0.92,wspace=0.2,hspace=0.25)
+    ff.savefig('figures_COVID19_dataAnalysis/tsam_Covid19_JHU_phasePlane+%s.png'%cou)
+    return y, z, dy, dz, beta, gammaDelta, ff
+
+def gammaDelta_Estimate(y, dz):
+    return (dz/y)
+
+def betaEstimate(y,z,dy, dz):
+    return (dy+dz)/((1-z-y)*y)
+
+
+# In[722]:
+
+
+y,z, dy,dz,beta,gammaDelta,ff=casePhasePlane(cou='Italy',a=0.0018,b=90)
+
+
+# In[723]:
+
+
+y,z, dy,dz,beta,gammaDelta,ff=casePhasePlane(cou='Spain',a=0.002,b=110)
+
+
+# In[728]:
+
+
+y,z, dy,dz,beta,gammaDelta,ff=casePhasePlane(cou='US',a=0.0023,b=70)
+
+
+# In[725]:
+
+
+#y,z, dy,dz,beta,gammaDelta,ff=casePhasePlane(cou='Italy',a=0.00175,b=90)
+y,z, dy,dz,beta,gammaDelta,ff=casePhasePlane(cou='China',a=0.00004,b=6000)
+#print((1-y-z)*beta/gammaDelta )
+
+
+# In[716]:
+
+
+y,z, dy,dz,beta,gammaDelta,ff=casePhasePlane(cou='Mexico',a=0.00006,b=4000)
+
+
+# ## Cases vs deaths in some subsets of countries taking the delay into account
+
+# In[42]:
 
 
 #
@@ -354,8 +650,8 @@ def plotCasesDeathsTS(casesTS,deathsTS,regions,countries, convFactor=1000,saveFi
         elif convFactor == 10**6:
             strDeaths = 'Deaths per million'
         for nn in range(len(region)):
-            cas[] =convFactor*np.float64(casesTS[region[nn]])/Pops_Millions[countries[region[nn]]]
-            dea=convFactor*np.float64(deathsTS[region[nn]])/Pops_Millions[countries[region[nn]]]
+            cas=convFactor*np.float64(casesTS[region[nn]]) /Pops_Millions[countries[region[nn]]]
+            dea=convFactor*np.float64(deathsTS[region[nn]]) /Pops_Millions[countries[region[nn]]]
             sax[n].plot(cas,dea,'-',label=countries[region[nn]])
             ax[n].plot(cas,dea,'-',label=countries[region[nn]])
             if convFactor <= 1000:
@@ -369,12 +665,12 @@ def plotCasesDeathsTS(casesTS,deathsTS,regions,countries, convFactor=1000,saveFi
     figu.subplots_adjust(left=0.075,bottom=0.075,right=0.97,top=0.95,wspace=0.2,hspace=0.25)
     gr.ion(); gr.draw(); gr.show()
     if saveFig>0:
-        figName='tsam_Covid19_figures/tsam_Covid19_JHU_cases-deaths_x%d_JHU.png'%convFactor
+        figName='figures/tsam_Covid19_JHU_cases-deaths_x%d_JHU.png'%convFactor
         figu.savefig('./'+figName)
     return figu
 
 
-# In[18]:
+# In[43]:
 
 
 # Setup regions
@@ -400,32 +696,84 @@ figu=plotCasesDeathsTS(casesTS=totCases,deathsTS=totDeathCases,regions=regions,c
 # The case-fatality ratios can be calculated by dividing each entry in the deaths data frame, by the corresponding entry in the cases data frame.
 # 
 
-# In[21]:
+# In[44]:
 
 
+def delayCorrectTSPair(a,b,delay=18):
+    nPts = len(a)
+    a = a[:-DCdelay]
+    b = b[DCdelay:]
+    return a,b
+
+DCdelay=14; DRdelay=14
+DC_totCases,DC_totDeaths=delayCorrectTSPair(totCases.transpose(),totDeathCases.transpose(),delay=DCdelay)
+RC_totCases,RC_totRecovs=delayCorrectTSPair(totCases.transpose(),totRecovCases.transpose(),delay=DRdelay)
+#
+DC_totCases = DC_totCases.transpose()
+DC_totDeaths= DC_totDeaths.transpose()
+RC_totCases = RC_totCases.transpose()
+RC_totRecovs= RC_totRecovs.transpose()
+
+
+# In[45]:
+
+
+def zeroCorrectCFR(c,d):
+    c[c==0]=1
+    print(c.shape,d.shape)
+    return d/c
+
+print(totCases.shape,totDeathCases.shape)
+print(DC_totCases.shape,DC_totDeaths.shape)
+cfr=zeroCorrectCFR(c=np.float64(totCases),d=totDeathCases)
+DC_cfr=zeroCorrectCFR(c=np.float64(DC_totCases),d=DC_totDeaths)
+print(cfr.shape,DC_cfr.shape)
+
+DC_cfr.max()
+
+
+# In[46]:
+
+
+# Local example for comparison of CFRs with and without delay
+DCdelay =0
 i = np.where(countries=='Spain')[0][0]
 locCases = totCases[i]
 locDeaths = totDeathCases[i]
-medianDCdelay =np.median(siD-siC) 
+DC_locCases= locCases[:-DCdelay]
+DC_locDeaths= locDeaths[DCdelay:]
+print(DC_locCases,DC_locDeaths)
+DC_locCFR =zeroCorrectCFR(c=np.int64(DC_locCases),d=DC_locDeaths)
+fLocalDC= gr.figure(figsize=(7,11)); 
+gr.ioff(); ax=list(); rows=4; cols=1
+for n in range(rows*cols):
+    ax.append(fLocalDC.add_subplot(rows,cols,n+1))
+    
+delayDays = np.arange(DCdelay,nDays)
+ax[0].plot(DC_locCases,DC_locDeaths,label='(C,D) delay-corrected, %s'%countries[i]) 
+ax[0].plot(locCases[DCdelay:],locDeaths[DCdelay:],label='(C,D) no correction, %s'%countries[i])
+ax[1].plot(delayDays,DC_locCases,label='shifted cases')
+ax[1].plot(delayDays,DC_locDeaths,label='deaths')
+ax[2].plot(delayDays[1:],DC_locCases[1:]-DC_locCases[:-1],label=r'$\Delta$ cases')
+ax[2].plot(delayDays[1:],DC_locDeaths[1:]-DC_locDeaths[:-1],label=r'$\Delta$ deaths')
+ax[3].plot(delayDays[1:],DC_locCFR,label=r'$\frac{D(t+\delta)}{C(t)}$')
 
-
-# In[22]:
-
-
-cfr= correctedArrayRatio(totDeathCases,totCases)
-
+for n in range(rows*cols):
+    ax[n].legend()
+gr.ion(); gr.draw()
 
 
 # Search regions to illustrate the case-fatality ratios
 
 # Function to plot the CFR in different subsets of countries chosen specifically to illustrate different dynamics
 
-# In[23]:
+# In[47]:
 
 
 #
 def plotCFRTS(cfr,dates,regions,countries,move2start=1):
     cfr=100*cfr
+    delayDays = np.arange(DCdelay,nDays)
     ii = getIndsRegions(countries, regions)
     figu = gr.figure(figsize=(7,9))
     figu.suptitle('Percentage of dead/confirmed between %s-%s'''%(dates[0],dates[-1]))
@@ -459,23 +807,23 @@ def plotCFRTS(cfr,dates,regions,countries,move2start=1):
 
 # Now let us plot the case fatality ratios of a few countries with reported cases. 
 
-# In[24]:
+# In[48]:
 
 
 # ---------------------------------------------
 # All relative to the starting days of the pandemia
-figu=plotCFRTS(cfr,dates,regions,countries, move2start=1)
-strCFR='tsam_Covid19_figures/tsam_Covid19_JHU_cfr_fromFirstLocalCase.png'
+figu=plotCFRTS(DC_cfr,dates,regions,countries, move2start=1)
+strCFR='figures/tsam_Covid19_JHU_cfr_fromFirstLocalCase.png'
 figu.savefig('./'+strCFR)
 
 
-# In[25]:
+# In[49]:
 
 
 # ---------------------------------------------
 # From the day the first case was reported
 figu=plotCFRTS(cfr,dates,regions,countries, move2start=0)
-strCFR='tsam_Covid19_figures/tsam_Covid19_JHU_cfr_relative2d0.png'
+strCFR='figures/tsam_Covid19_JHU_cfr_relative2d0.png'
 figu.savefig('./'+strCFR)
 # ---------------------------------------------
 
@@ -486,7 +834,7 @@ figu.savefig('./'+strCFR)
 # 
 # The countries where there are reports by province are China, United Kingdom, Australia, and Canada. To see this, print the list of countries including repetitions.
 
-# In[26]:
+# In[50]:
 
 
 countries_Cases
@@ -500,7 +848,7 @@ countries_Cases
 
 # China
 
-# In[27]:
+# In[51]:
 
 
 China= {'Country name':'China'}
@@ -515,7 +863,7 @@ China['startDaysCases']= findCaseStarts(places=China['provinces'],cases=China['c
 
 # UK
 
-# In[28]:
+# In[52]:
 
 
 UK =  {'Country name':'UK'}
@@ -533,7 +881,7 @@ print(UK['provinces'])
 
 # Australia
 
-# In[29]:
+# In[53]:
 
 
 Australia =  {'Country name':'Australia'}
@@ -554,7 +902,7 @@ Australia['startDaysCases']
 
 # Plot comparisons for the three places with averages by region and comparison with the whole country average
 
-# In[ ]:
+# In[54]:
 
 
 def plotCFRTS_Provinces(place,dates,move2start=1):
@@ -588,7 +936,7 @@ def plotCFRTS_Provinces(place,dates,move2start=1):
     else:
         ax.plot(avgCFR,'k-',alpha=1, lw=3,label='Average CFR from provinces in %s'%place['Country name'])
         ax.plot(100*place['cfrWC'],'k-',alpha=0.35, lw=5,label='CFR from total cases')
-        strCFR='tsam_Covid19_figures/tsam_Covid19_JHU_cfr_Provinces'+place['Country name']+'_fromFirstLocalReport.png'
+        strCFR='figures/tsam_Covid19_JHU_cfr_Provinces'+place['Country name']+'_fromFirstLocalReport.png'
     ax.set_ylim(0,10);
     ax.legend(ncol=4,loc='upper center',fontsize=8)
     figu.subplots_adjust(left=0.075,bottom=0.075,right=0.97,top=0.92,wspace=0.2,hspace=0.25)
@@ -597,20 +945,20 @@ def plotCFRTS_Provinces(place,dates,move2start=1):
     return figu
 
 
-# In[ ]:
+# In[55]:
 
 
 figuChina=plotCFRTS_Provinces(China,dates,move2start=0)
 
 
-# In[ ]:
+# In[56]:
 
 
 figuUK=plotCFRTS_Provinces(UK,dates,move2start=0)
 print(UK['provinces'])
 
 
-# In[ ]:
+# In[57]:
 
 
 figuAust=plotCFRTS_Provinces(Australia,dates,move2start=0)
@@ -628,7 +976,7 @@ figuAust=plotCFRTS_Provinces(Australia,dates,move2start=0)
 # 
 # There are reports of up to 20% of symptomatic cases, and in South Korea, for instance, about 50% of hospitalizations are people 60 years old or older, it is important to obtain numbers to estimate the size of a population in need for critical care. 
 
-# In[ ]:
+# In[58]:
 
 
 SKorea={'ageCFR': np.array([0,0,0,0.001,0.001,0.004,0.015,0.063,0.116]),'CFR_20200324':0.02,'Country name':'Korea, South'}
@@ -638,7 +986,7 @@ China['CFR_20200211'] = 0.02
 aGroups=np.arange(0,90,10)
 
 
-# In[ ]:
+# In[59]:
 
 
 def sigmoid(a, aMax=0.1,a0=60.0,n=2): 
@@ -646,7 +994,7 @@ def sigmoid(a, aMax=0.1,a0=60.0,n=2):
     return aMax* aa /(aa + a0**n)
 
 
-# In[ ]:
+# In[61]:
 
 
 ageCountries=[China, SKorea, Italy]
@@ -664,7 +1012,7 @@ ax.set_xticks(aGroups)
 ax.set_yticks(np.arange(0,20+1,2))
 ax.set_xlabel('Age groups')
 gr.ion(); gr.draw();  gr.show()
-f11Name='tsam_Covid19_figures/tsam_Covid19_JHU_cfrByAge_China+SKorea+Italy.png'
+f11Name='figures/tsam_Covid19_JHU_cfrByAge_China+SKorea+Italy.png'
 f11.savefig(f11Name)
 
 
@@ -682,7 +1030,7 @@ f11.savefig(f11Name)
 
 # A few sutile differences can be noted from these data. For instance, the CFRs for the first 3 groups in Italy and South Korea are very similar. In Italy, the percentage of dead cases is very large among the last two age groups, which in part is due to the fact that Italians implemented a triage system that sometimes denied respirators to patients with small chances of survival. 
 
-# In[ ]:
+# In[64]:
 
 
 ageCountries=[China,SKorea,Italy]
@@ -701,11 +1049,11 @@ for n in range(len(ageCountries)):
 
 
 
-# In[ ]:
+# In[78]:
 
 
 ages = np.arange(0,90)
-f10b=gr.figure(figsize=(11,5)); gr.ioff(); rows =1;cols=2
+f10b=gr.figure(figsize=(7,9)); gr.ioff(); rows =2;cols=1
 f10b.suptitle('Age related CFRs and their relative weights'); ax=list()
 for m in range(rows*cols):
     ax.append(f10b.add_subplot(rows,cols,m+1))
@@ -730,11 +1078,11 @@ ax[0].text(0,20,'CFRs by age (percent)')
 ax[1].text(0,60,'Contributions to death within cases by age (percent)')
 f10b.subplots_adjust(left=0.075,bottom=0.075,right=0.97,top=0.9,wspace=0.2,hspace=0.25)
 gr.ion(); gr.draw();  gr.show()
-f10bName='tsam_Covid19_figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge_China+SKorea+Italy_OneFigure.png'
+f10bName='figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge_China+SKorea+Italy_OneFigure.png'
 f10b.savefig(f10bName)
 
 
-# In[ ]:
+# In[69]:
 
 
 ages = np.arange(0,90)
@@ -761,13 +1109,13 @@ for n in range(len(ageCountries)):
 f12.subplots_adjust(left=0.075,bottom=0.075,right=0.97,top=0.95,wspace=0.2,hspace=0.25)
 gr.ion(); gr.draw();  gr.show()
 
-f12Name='tsam_Covid19_figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS.png'
+f12Name='figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS.png'
 f12.savefig(f12Name)
 
 print('%d days'%nDays)
 
 
-# In[ ]:
+# In[70]:
 
 
 print(SKorea['totDeathCases_ageProps'].sum(0)[-1])
@@ -777,7 +1125,7 @@ print(China['totDeathCases_ageProps'].sum(0)[-1])
 
 # ### Projections for Mexico
 
-# In[ ]:
+# In[71]:
 
 
 Mexico = dict()
@@ -790,7 +1138,7 @@ Mexico['delayFromReport0']=np.where(Mexico['totCases']>0)[0].min()
 print('First case reported %d days after Report 0'%Mexico['delayFromReport0'])
 
 
-# In[ ]:
+# In[72]:
 
 
 def estimateDeathsByAgeMexico(Mexico, dates, subReportFactor=1):
@@ -815,7 +1163,7 @@ def estimateDeathsByAgeMexico(Mexico, dates, subReportFactor=1):
             label.set_fontsize(8)
         ax[n].set_xlim(si,len(Mexico['totDeathCases']))
     f13.subplots_adjust(left=0.075,bottom=0.075,right=0.97,top=0.95,wspace=0.1,hspace=0.25)
-    f13Name='tsam_Covid19_figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor%d.png'%subReportFactor
+    f13Name='figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor%d.png'%subReportFactor
     gr.ion(); gr.draw();  gr.show()
     f13.savefig(f13Name)
     return f13
@@ -824,7 +1172,7 @@ def estimateDeathsByAgeMexico(Mexico, dates, subReportFactor=1):
 
 # ### Estimates with a conversion factor of 1
 
-# In[ ]:
+# In[73]:
 
 
 f13_1 = estimateDeathsByAgeMexico(Mexico, dates,subReportFactor=1)
@@ -832,7 +1180,7 @@ f13_1 = estimateDeathsByAgeMexico(Mexico, dates,subReportFactor=1)
 
 # ### Estimates with a conversion factor of 10
 
-# In[ ]:
+# In[74]:
 
 
 f13_10 = estimateDeathsByAgeMexico(Mexico, dates,subReportFactor=10)
@@ -840,7 +1188,7 @@ f13_10 = estimateDeathsByAgeMexico(Mexico, dates,subReportFactor=10)
 
 # ### Estimates with a conversion factor of 12
 
-# In[ ]:
+# In[75]:
 
 
 f13_12 = estimateDeathsByAgeMexico(Mexico, dates,subReportFactor=12)
