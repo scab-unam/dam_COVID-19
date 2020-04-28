@@ -126,7 +126,7 @@ def gatherDataByCountry(df,nHeaderCols=4):
         iC= np.where(cc== countries[n])[0]
         a =df.iloc[iC,nHeaderCols:].to_numpy()
         x.append(a.sum(0))
-    return np.array(x)
+    return np.array(x).transpose()
 
 def findCaseStarts(places,cases):
     """
