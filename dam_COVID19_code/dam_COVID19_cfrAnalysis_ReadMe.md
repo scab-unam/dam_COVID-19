@@ -13,7 +13,7 @@ Illustrating figures.
 
 - [Cases vs deaths per 1000 habitants for some countries](../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cases-deaths_x1000000_JHU.png)
 
-- [CFRs for some countries from the first case in China](../figures_COVID19_dataAnalysis/dam_COVID19_cfr_JHU_fromFirstCaseInChina.png)
+- [CFRs for some countries from the first case in China](../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr_relative2d0.png)
 
 - [CFRs for some countries from the day the first case was reported locally](../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr_fromFirstLocalCase.png)
 
