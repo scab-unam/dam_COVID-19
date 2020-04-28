@@ -1,0 +1,160 @@
+\documentclass[8pt]{article}
+\input{mahvPreamble}
+\input{mahvLaTeXCommands}
+\usepackage[utf8]{inputenc}
+\setstretch{1.3}
+%
+\title{Initial dynamics and general properties of case fatality ratios for Covid-19 a few weeks into the pandemic}
+\author{Marco Arieli Herrera-Valdez}
+\date{April 2020}
+%
+\begin{document}
+%
+\begin{flushleft}
+\begin{Large}
+{Initial mortality and recovery in reported cases of Covid-19 a few weeks into the pandemic}
+\end{Large}\\
+\smallskip
+\begin{large}
+Carlos Ignacio Herrera-Nolasco$^1$, Alejandro Joel Herrera-McKiernan$^2$, 
+Emilio Arieli Herrera-McKiernan$^3$, Eugenia O'Reilly-Regueiro$^{4,\email}$,
+Marco Arieli Herrera-Valdez$^{1,\email}$
+\end{large}\\
+\smallskip
+$^1$ Departamento de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México\\
+$^2$ Escuela Primaria República de Guatemala, Secretaría de Educación Pública, México\\
+$^3$ Escuela Secundaria Vicente Guerrero, Secretaría de Educación Pública, Mexico\\
+$^4$ Instituto de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México\\
+$\email$ marcoh@ciencias.unam.mx, eugenia@im.unam.mx
+\end{flushleft}
+
+\begin{abstract} The cases, deaths, and recoveries reported by country during the initial 13 weeks of the COVID-19 pandemic are examined to estimate general properties of the propagation dynamics of disease. To get a macroscopic description of the spatio-temporal dynamics of the pandemic, we first quantified the delays between the first case reports in different countries and the delays between those first cases and the first recovery and first death in that country, respectively. We found that confirmed cases of COVID-19 epidemic had been reported from all continents but Africa within 7 days of the first confirmed case report, and cases reported also in Africa only 7 days after. We also found that the delay between the first case and the first death reported within a single country varied but had a mode at 16 days. Similarly, the delay between first  recovery and first case reported had two modes, one at 12 days, and one at 16 days. 
+    We focus on the deaths by case as the most important, less unreliable indicator of the dynamics, and calculated the case fatality ratios for different countries. The case fatality ratios provide very similar estimates for the mortality rate in confirmed COVID-19 infections around the world, a reassuring feature that indicates that modeling and theoretical studies based on assumptions resting on case-fatality data may be of some utility to understand the underlying dynamics of this COVID-19 pandemic. 
+
+\end{abstract}
+
+\section{Introduction}
+The sampling for cases and deaths from those cases in many countries are biased by the numbers of people in need for critical care that sought medical attention, by local policies triage, and by different numbers of tests \textit{per capita} administered by different governments. 
+
+Delays between case reports and deaths... bias in the delay and under reporting...
+
+\section{Methods and data sources} 
+
+The data was downloaded from the repository for the 2019 Novel Coronavirus Visual Dashboard operated by the Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)  (\url{github.com/CSSEGISandData/COVID-19}). 
+All calculations were performed using Python version 3.82 (\url{www.python.org}) and the modules numpy (\url{numpy.org}), matplotlib (\url{https://matplotlib.org}), and pandas (\url{pandas.pydata.org}). 
+A JuPyTeR notebook with the analysis and calculations performed here can be found at (\url{scab-unam.github.io/tsam_Covid-19}).
+
+The data considered in this analysis is between January 22 ($d_0$) and April 12, 2020 ($d_f$).
+
+CFR ratios by age were obtained from \citep{}
+
+%To account for the uncertainty in the delays between confirmation of cases and a deaths, the time series of deaths were divided by the time series of cases by shifting the data between 14 and 35 days, which correspond to possible delays between reports in the case of short and long time courses of disease, respectively. Notice that it is impossible for these calculations to account for under-reporting of cases.
+
+\section{Results}
+
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+    (a)\\
+    \includegraphics[width=\textwidth]{figures/tsam_Covid19_JHU_delays_AllCountries}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+    (b)\\
+    \includegraphics[width=\textwidth]{figures/tsam_Covid19_JHU_delays_caseDeaths.png}
+    \end{minipage}
+    \caption{From top to bottom respectively, delays (in days) between the first case reports of COVID-19 in different countries (top) relative to $d_0$, between the first death and the first case report, and  between the first recovery and the first case report 
+    in each country.}
+    \label{fig:caseDelays}
+\end{figure}
+
+\subsection{Delays between first case reports, first deaths, and first recoveries}
+
+A total of 185 countries are considered in the data base, from which 175 had reported cases, up to the final report day $d_f$ 
+The first countries that reported cases of Covid-19 on January 22 (day 0), 2020 were South Korea, China, Taiwan, US, Japan, and Thailand (Table~\ref{tab:delaysInReport}). Australia reported their first case 4 days later, together with Canada, on January 26, 2020. The first reports from Europe were made  on January 27, 5 days after day 0, from Germany \citep{rothe2020transmission}. The first report in the Middle East was made from the United Arab Emirates on January 29, 7 days after the first case reported.  Therefore, the COVID-19 epidemic had been reported from all continents but Africa one week after the first case was reported, and the first report from Africa arrived 23 days later from Egypt, on February 14, 2020. Of interest to the authors, Mexico reported their first case 37 days later, on February 28, 2020, together with Nigeria, New Zealand, Lithuania, Iceland, and Belarus. The last country that reported cases during the time considered for this report was Yemen , on April 11, 2020, 75 days after the first report.
+
+Taking $d_0$ as a starting point that signaled the start of testing for Covid-19, these data indicate that confirmed  cases of COVID-19 were wide spread throughout the globe within 2 weeks of the first case, strongly suggesting that the dissemination of the SARS-CoV-2 virus among the human population occurred with a delay of approximately 2 weeks. 
+
+
+The delays between the first case reported and the first death reported within a single country have a wide distribution, between 0 and 76 days. 
+However, the bulk of the distribution can be found between 0 and 30 days, with a mode at 16 days. In consideration of the time course of the infection by SARS-CoV-2 reported in the literature \citep{}, the delay between death and contagion can be 21 or more days \citep{}. 
+
+Assuming that the testing started at least one week before the date of the first case reported, the data suggest that the epidemic in those countries contributing to left portion of the histogram had started at least 3 weeks before their report. The mode at 16 days fits within the 5-7 days incubation periods reported plus the 2 weeks to develop severe symptoms. For those countries that reported their first death at the mode or after, these data suggest that the epidemic started in those countries at least one week before their first case reported.
+
+The delays between the first recovery and the first case reported within a single country are distributed between 0 and 38 days. However, for most countries this delay is between 0 and 27 days approximately, with two clear modes at 12 and 16 days.  
+
+\subsection{Case fatality ratios}
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+    (a)\\
+    \includegraphics[width=\textwidth]{figures/tsam_Covid19_JHU_cases-deaths_x1000000_JHU.png}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+    (b)\\
+    \includegraphics[width=\textwidth]{figures/tsam_Covid19_JHU_cfr_fromFirstLocalCase.png}
+    \end{minipage}
+    \caption{(a) Deaths vs cases (per million people) in different countries. (b) CFRs relative to the first local report.}
+    \label{fig:casesDeaths1000}
+\end{figure}
+
+\subsubsection{Case fatality ratios are lower when calculated by province}
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.6\textwidth}
+    \includegraphics[width=\textwidth]{figures/tsam_Covid19_JHU_cfr_ProvincesChina_fromFirstLocalReport}
+    \end{minipage}%
+    \begin{minipage}{0.4\textwidth}
+    \caption{CFRs by province in China (top). The average CFR from the provinces is shown in black. The CFR from the total cases is shown as a gray thick line.}
+    \label{fig:cfrsProvinces}
+    \end{minipage}
+\end{figure}
+
+\subsubsection{CFRs increase with age, mostly for adults after 30 years old}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge_China+SKorea+Italy_OneFigure.png}
+    \caption{CFRs age in South Korea (top), Italy (middle), and China (bottom).}
+    \label{fig:cfrsAge}
+\end{figure}
+
+\subsubsection{Estimates of the time dependence of the CFR by age for South Korea, Italy, and China}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS.png}
+    \caption{Time series estimations of CFRs age in South Korea (top), Italy (middle), and China (bottom).}
+    \label{fig:cfrsAge}
+\end{figure}
+
+
+
+\subsubsection{Estimates for Mexico using the age-CFRs from three different countries reveal similar patterns}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor1.png}
+    \caption{The weights of the CFRs by age from South Korea (top), Italy (middle), and China (bottom) were used to estimate the contributions to death cases in Mexico.}
+    \label{fig:cfrsAge}
+\end{figure}
+
+
+\section{Discussion}
+
+
+
+\paragraph{Contributions:} CIH-N,EO-R, and MAH-V  wrote the manuscript; AJH-M, EAH-M, MAH-M, collected data spread sheets, examined maps, websites, performed the exploratory analysis and created the initial plots that gave support to the claims made in this report. CIH-N, MAH-V,and EO-R discussed the results, and formalised the analysis; and MAH-V wrote python scripts and the JuPyTeR notebooks and setup the website for supplementary materials to this report. 
+
+\paragraph{Acknowledgments:} Funding was provided for MAHV by PAPIME-UNAM grant PE-114919.
+
+\newpage
+\section{Appendix}
+\input{tsam_Covid-19_delays2FirstReportsAllCountries}
+
+
+\bibliographystyle{plainnat}
+\bibliography{COVID-19.bib}
+\end{document}
