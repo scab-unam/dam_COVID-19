@@ -11,7 +11,7 @@ Illustrating figures.
 
 - [Delays between case reports, and between first death and first recovery with respect to the first report in all countries](../figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays_caseDeaths.png)
 
-- [Cases vs deaths per 1000 habitants for some countries](../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cases-deaths_x1000000_JHU.png)
+- [Cases vs deaths per 1000 habitants for some countries shifted 18 days](../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cases-deaths_x1_CDdelay18days_day95.png)
 
 - [CFRs for some countries from the first case in China](../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr_relative2d0.png)
 
