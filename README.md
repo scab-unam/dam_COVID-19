@@ -5,7 +5,7 @@
 #### 1. [Estimating the starting date, first wave peaks and relative contributions of subpopulations with different clinical profiles to the COVID-19 pandemic in Mexico](dam_COVID19_models/dam_COVID19_models_ReadMe.md)
 (Herrera-Nolasco CI, Herrera-Valdez MA, *In preparation*)
 
-(a) [Estimating the starting time and peak of the COVID-19 epidemic in Mexico](figures_COVID19_models/COVID19_Mexico_InitialFit_Herrera-Valdez+Herrera-Nolasco_2020.png)
+(a) [Estimating the starting time and peak of the COVID-19 epidemic in Mexico](figures_COVID19_models/dam_COVID19_Mexico_InitialFit_Herrera-Valdez+Herrera-Nolasco_2020.png)
 
 (b) [Phase portrait dynamics from global COVID-19 data](figures_COVID19_dataAnalysis/COVID19_Mexico_InitialFit_Herrera-Valdez+Herrera-Nolasco_2020.png)
 
