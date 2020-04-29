@@ -47,13 +47,15 @@
 # The parameters $\alpha$ and $\beta$ can then be estimated from the data. 
 # 
 
-# In[6]:
+# In[628]:
 
 
 #import sys
 #sys.path.insert(1, './')
 #print(sys.path)
 from dam_COVID19_baseCode import *
+np.seterr(divide='ignore')
+np.seterr(all='ignore')
 import matplotlib.pylab as gr
 small={'family' : 'normal','weight' : 'normal','size'   : 8}
 medium={'family' : 'normal','weight' : 'normal','size'   : 10}
@@ -68,19 +70,19 @@ gr.rc('figure', titlesize=large['size'])  # fontsize of the figure title
 get_ipython().magic(u'matplotlib inline')
 
 
-# In[7]:
+# In[629]:
 
 
 cases, deathCases,recovCases = getCSSEGISandData(urlData=1)
 
 
-# In[8]:
+# In[608]:
 
 
 cases.head(10)
 
 
-# In[493]:
+# In[609]:
 
 
 # ------------------------------
@@ -126,7 +128,7 @@ Pops_Millions = {'Algeria':43851044, 'Argentina':45195774,'Australia':25499884,'
                  'United Kingdom':67886011, 'US':331002651, 'Venezuela':28870195}
 
 
-# In[494]:
+# In[610]:
 
 
 print(type(totCases))
@@ -135,7 +137,7 @@ print(totCases.shape)
 
 # #### Parabola describing the incidence as a function of the cases
 
-# In[495]:
+# In[630]:
 
 
 def getSingleCountryData(G, popSize, cou,b = 0.002):
@@ -145,12 +147,13 @@ def getSingleCountryData(G, popSize, cou,b = 0.002):
     deaths= np.float64(G['cDeaths'][cInd,:])
     print(deaths.shape)
     country= {'cCases':cases,'cDeaths':deaths,'cRecovs':recovs, 'Z':deaths+recovs}
-    country.update({'popSize':popSize[cou], 'cdCases':cases/popSize[cou], 'cdDeaths':deaths/popSize[cou], 'cdRecovs':recovs/popSize[cou], 'name':cou})
+    country.update({'popSize':popSize[cou], 'cdCases':cases/popSize[cou], 'cdDeaths':deaths/popSize[cou], 'cdRecovs':np.divide(recovs,popSize[cou]), 'name':cou})
     return country
     
 def dataSIR_Country(country,a=80,b=0.0002):
     # Prevalence time series
     # The time series of cumulative cases without cumulative recovs and without deaths
+    country['a']=a; country['b']=b
     Y = country['cCases'] - country['cRecovs'] - country['cDeaths'] 
     y = country['cdCases'] - country['cdRecovs'] - country['cdDeaths'] 
     # "Prevalence" of deaths and recoveries 
@@ -163,61 +166,54 @@ def dataSIR_Country(country,a=80,b=0.0002):
     incidence = dY-dZ
     x = 1-z-y
     country.update({'x':x,'y':y,'z':z,'preval':Y, 'Z':Z,'dy':dy,'dz':dz,'dY':dY,'dZ':dZ,'incid':incidence})
-    country['beta']= dz/y
-    country['alpha']=(dy+dz)/(x*y)
-    country['R_t']= country['alpha']*x/country['beta']
+    country['beta']= np.divide(dz,y)
+    country['alpha']=np.divide(dy+dz,x*y)
+    country['R_t']= np.divide(country['alpha']*x,country['beta'])
     country['fy'] = a*y*(b -y) 
     country['fY'] = country['popSize']*country['fy'] 
     country['Deltay']= a*y*(1-z -b -y) 
     country['DeltaY']= country['popSize']* a*y*(1-b-z -y) 
     return country
 
-def beta_Estimate(country):
-    country['beta']= country['dZ']/country['preval']
-    return country
 
-def alpha_Estimate(country):
-    country['alpha']=(country['dY']+country['dZ'])/((1-country['Z']-country['preval'])*country['preval'])
-    return country
-
-def incidenceFit(country,a=1,b=0.0002):
-    # Incidence 
-    country['fy'] = a*country['y']*(b-country['y']) 
-    country['fY'] = country['popSize']*country['fy'] 
-    return country
+# In[631]:
 
 
-# In[498]:
-
-
-def plotDataPhasePortraits(country):
-    maxY=1.1*country['preval'].max()
+def plotDataPhasePortraits(country,densities=1):
     ff =gr.figure(figsize=(17,5)); gr.ioff(); rows=1; cols=3
     ax1= ff.add_subplot(rows,cols,1); tax1= ax1.twinx()
     ax2= ff.add_subplot(rows,cols,2); #tax2= ax2.twiny()
     ax3= ff.add_subplot(rows,cols,3); tax3= ax3.twinx()
     tax1.plot(days, country['R_t'],'o',markeredgecolor='blue', markerfacecolor='white',label=r'$y_k$')
     tax1.plot([days[0],days[-1]], [1,1],'k:')
-    ax1.plot(days, country['preval'],'b.',label=r'$R_t =\alpha (1-z-y)/\beta$')
-    ax1.plot(days, country['cDeaths'],'.',label=r'$D_k$')
-    ax1.plot(days, country['cRecovs'],'.',label=r'$R_k$')
-    ax1.plot(days, country['Z'],'.',label=r'$Z_k=D_k + R_k$')
-    ax2.plot(country['fy'],country['preval'],'o',markeredgecolor='orange', markerfacecolor='white',label=r'$f(y)= a y (b-y)$')
-    #ax2.plot(country['Deltay'],country['preval'],'g.',label=r'$\partial_t y= a y (1-b-z-y)$')
-    ax2.plot(country['incid']/country['popSize'],country['preval'],'.',color='blue',label=r'$(Y_{new,k} -     Y_{new,k-1}, y)$')
-    #ax3.plot(country['dy'],country['preval'],'o',markeredgecolor='blue', markerfacecolor='white',label=r'$(\Delta Y_k , y)$')
-    ax2.plot([0,0],[0,country['preval'].max()],'k:')
-    ax2.plot([0,0],[0,country['preval'].max()],'k:')
+    if densities==0:
+        prev= country['preval']
+        dea = country['cDeaths']
+        rec = country['cRecovs']
+        z = country['Z']
+    elif densities==1:
+        prev= country['y']
+        dea = country['cdDeaths']
+        rec = country['cdRecovs']
+        z = country['z']
+    maxY=1.1*prev.max()
+    maxXPP=np.divide(country['incid'],country['popSize'])
+    ax1.plot(days, prev,'b.',label=r'$R_t =\alpha (1-z-y)/\beta$')
+    ax1.plot(days, dea,'.',label=r'$D_k$')
+    ax1.plot(days, rec,'.',label=r'$R_k$')
+    ax1.plot(days, z,'.',label=r'$Z_k=D_k + R_k$')
+    ax2.plot(country['fy'],prev,'o',markeredgecolor='orange', markerfacecolor='white',label=r'$f(y)= %g y (%g-y)$'%(country['a'],country['b']))
+    ax2.plot(maxXPP,prev,'.',color='blue',label=r'$(Y_{new,k} -     Y_{new,k-1}, y)$')
+    ax2.plot([0,0],[0,prev.max()],'k:')
+    ax2.plot([0,0],[0,prev.max()],'k:')
     ax3.plot(days,country['alpha'],'.',color='blue',label=r'$\alpha$')
     tax3.plot(days,country['beta'],'.',color='orange',label=r'$\beta$')
-    #ax1.set_ylim(0,1.1* country['preval'].max())
-    #ax2.set_ylim(0,1.1* country['preval'].max())    
-    #ax2.set_xlim(dy.min(),1.3*dy.max())
     ax1.set_xlabel(r'$t$ (days)');ax2.set_xlabel(r'$\partial_t y$'); ax3.set_xlabel(r'$t$ (days)');
     ax1.set_ylabel(r'$y_k$');ax2.set_ylabel(r'$y_k$')
     ax1.legend(loc='center left'); tax1.legend(loc='upper left')
     ax1.set_ylim(0,maxY); ax2.set_ylim(0,maxY); tax1.set_ylim(0,10); 
     ax3.set_ylim(0,10);     tax3.set_ylim(0,1)
+    ax2.set_xlim(-0.0001,maxXPP.max())
     ax2.legend(loc='lower right'); 
     ax3.legend(loc='upper left'); tax3.legend(loc='center left'); 
     gr.ion(); gr.draw()
@@ -231,15 +227,15 @@ def plotDataPhasePortraits(country):
 
 # Examples of phase plane dynamics
 
-# In[499]:
+# In[632]:
 
 
 Italy= getSingleCountryData(G, popSize= Pops_Millions, cou='Italy')
-Italy= dataSIR_Country(country=Italy,a=230, b= 0.004)
+Italy= dataSIR_Country(country=Italy,a=170, b= 0.0051)
 fItaly= plotDataPhasePortraits(Italy)
 
 
-# In[500]:
+# In[633]:
 
 
 France= getSingleCountryData(G, popSize= Pops_Millions, cou='France')
@@ -247,23 +243,23 @@ France= dataSIR_Country(country=France,a=480, b= 0.002)
 fFrance= plotDataPhasePortraits(France)
 
 
-# In[509]:
+# In[634]:
 
 
 US= getSingleCountryData(G, popSize= Pops_Millions, cou='US')
-US= dataSIR_Country(US,a=100, b= 0.01)
+US= dataSIR_Country(US,a=75, b= 0.013)
 fUS= plotDataPhasePortraits(US)
 
 
-# In[515]:
+# In[635]:
 
 
 Spain= getSingleCountryData(G, popSize= Pops_Millions, cou='Spain')
-Spain= dataSIR_Country(Spain,a=370, b= 0.003)
+Spain= dataSIR_Country(Spain,a=350, b= 0.0031)
 fSpain= plotDataPhasePortraits(Spain)
 
 
-# In[530]:
+# In[636]:
 
 
 Belgium= getSingleCountryData(G, popSize= Pops_Millions, cou='Belgium')
@@ -271,7 +267,7 @@ Belgium= dataSIR_Country(Belgium,a=310, b= 0.0033)
 fBelgium= plotDataPhasePortraits(Belgium)
 
 
-# In[546]:
+# In[637]:
 
 
 China= getSingleCountryData(G, popSize= Pops_Millions, cou='China')
@@ -279,7 +275,7 @@ China= dataSIR_Country(China,a=900, b= 0.001)
 fChina= plotDataPhasePortraits(China)
 
 
-# In[548]:
+# In[638]:
 
 
 Mexico= getSingleCountryData(G, popSize= Pops_Millions, cou='Mexico')
@@ -287,10 +283,20 @@ Mexico= dataSIR_Country(Mexico,a=350, b= 0.0025)
 fMexico= plotDataPhasePortraits(Mexico)
 
 
-# In[ ]:
+# In[639]:
 
 
+Germany= getSingleCountryData(G, popSize= Pops_Millions, cou='Germany')
+Germany= dataSIR_Country(Germany,a=600, b= 0.0019)
+fGermany= plotDataPhasePortraits(Germany)
 
+
+# In[643]:
+
+
+SK= getSingleCountryData(G, popSize= Pops_Millions, cou='Korea, South')
+SK= dataSIR_Country(SK,a=540, b= 0.0019)
+fSK= plotDataPhasePortraits(SK)
 
 
 # In[ ]:
