@@ -5,7 +5,7 @@
 
 (a) [Estimating the starting time and peak of the Covid-19 epidemic in Mexico](../figures_COVID19_models/dam_COVID19_Mexico_InitialFit_Herrera-Valdez+Herrera-Nolasco_2020.png)
 
-# 2. Stochastic dynamics of the Covid-19 epidemic in Mexico
+# 2. Dynamics of the Covid-19 pandemic in different countries
 
 (a) [Fitting the COVID-19 epidemic with simple SIR dynamics in China](../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_China.png)
 
