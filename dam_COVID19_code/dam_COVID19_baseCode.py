@@ -110,7 +110,7 @@ def gatherDataSingleCountry(df,country, nHeaderCols=4):
     x = list()
     iC= np.where(cc== country)[0]
     a =df.iloc[iC,nHeaderCols:].to_numpy()
-    a.sum(0)
+    a.sum(1)
     return a, iC
 
 
