@@ -9,7 +9,7 @@ Examples:
 
 (a) [Estimating the starting time and peak of the COVID-19 epidemic in Mexico](figures_COVID19_models/dam_COVID19_Mexico_InitialFit_Herrera-Valdez+Herrera-Nolasco_2020.png)
 
-(b) [Phase portrait dynamics from global COVID-19 data](figures_COVID19_dataAnalysis/figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Spain.png)
+(b) [Phase portrait dynamics from global COVID-19 data](figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Spain.png)
 
 #### 2. [Fatality associated to reported cases during the first weeks of the COVID-19 pandemic](dam_COVID19_code/dam_COVID19_cfrAnalysis_ReadMe.md)
 
