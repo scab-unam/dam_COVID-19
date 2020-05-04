@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  20 APR 2020 16:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  4 MAY 2020 07:45
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**tsam_Covid19_Mexico_reporteUNAM.tex
-(./tsam_Covid19_Mexico_reporteUNAM.tex
+**dam_COVID19_Mexico_reporteUNAM.tex
+(./dam_COVID19_Mexico_reporteUNAM.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
@@ -1197,8 +1197,8 @@ File: tikzlibrarypetri.code.tex 2013/07/17 v3.0.0 (rcs-revision 1.3)
 LaTeX Warning: Unused global option(s):
     [8pt].
 
-(./tsam_Covid19_Mexico_reporteUNAM.aux)
-\openout1 = `tsam_Covid19_Mexico_reporteUNAM.aux'.
+(./dam_COVID19_Mexico_reporteUNAM.aux)
+\openout1 = `dam_COVID19_Mexico_reporteUNAM.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
 LaTeX Font Info:    ... okay on input line 16.
@@ -1236,9 +1236,10 @@ LaTeX Info: Redefining \ref on input line 16.
 LaTeX Info: Redefining \pageref on input line 16.
 LaTeX Info: Redefining \nameref on input line 16.
 
-(./tsam_Covid19_Mexico_reporteUNAM.out) (./tsam_Covid19_Mexico_reporteUNAM.out)
+(./dam_COVID19_Mexico_reporteUNAM.out) (./dam_COVID19_Mexico_reporteUNAM.out)
 \@outlinefile=\write7
-\openout7 = `tsam_Covid19_Mexico_reporteUNAM.out'.
+\openout7 = `dam_COVID19_Mexico_reporteUNAM.out'.
+
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -1344,19 +1345,11 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 34.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 13.24796pt on input line 34.
-
-(./tsam_Covid19_Mexico_cfrInferenciaMuertesPorEdad.tex
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 2.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 2.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 11.03998pt on input line 2.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 4.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 35.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.19998pt on input line 4.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 4.
+(Font)              scaled to size 9.19998pt on input line 35.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 35.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -1370,7 +1363,7 @@ Package microtype Info: Loading generic settings for font family
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 4.
+LaTeX Font Info:    Try loading font information for U+msa on input line 35.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1378,7 +1371,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 4.
+LaTeX Font Info:    Try loading font information for U+msb on input line 35.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1386,28 +1379,38 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-<figures/tsam_Covid19_JHU_reportArrivals_AllCountries.png, id=8, 505.89pt x 650
-.43pt>
-File: figures/tsam_Covid19_JHU_reportArrivals_AllCountries.png Graphic file (ty
-pe png)
- <use figures/tsam_Covid19_JHU_reportArrivals_AllCountries.png>
-Package pdftex.def Info: figures/tsam_Covid19_JHU_reportArrivals_AllCountries.p
-ng used on input line 14.
-(pdftex.def)             Requested size: 215.0023pt x 276.43405pt.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 11.03998pt on input line 39.
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 39.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 11.03998pt on input line 39.
 
-<figures/tsam_Covid19_JHU_delays_caseDeaths.png, id=10, 505.89pt x 650.43pt>
-File: figures/tsam_Covid19_JHU_delays_caseDeaths.png Graphic file (type png)
+<../figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays_AllCountries.png, id=8,
+ 505.89pt x 722.7pt>
+File: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays_AllCountries.png G
+raphic file (type png)
 
-<use figures/tsam_Covid19_JHU_delays_caseDeaths.png>
-Package pdftex.def Info: figures/tsam_Covid19_JHU_delays_caseDeaths.png used on
- input line 18.
+<use ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays_AllCountries.png>
+Package pdftex.def Info: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays
+_AllCountries.png used on input line 51.
+(pdftex.def)             Requested size: 215.0023pt x 307.14894pt.
+
+<../figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays_caseDeaths.png, id=10, 
+505.89pt x 650.43pt>
+File: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays_caseDeaths.png Gra
+phic file (type png)
+
+<use ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays_caseDeaths.png>
+Package pdftex.def Info: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays
+_caseDeaths.png used on input line 55.
 (pdftex.def)             Requested size: 215.0023pt x 276.43405pt.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 20.
+(Font)              scaled to size 8.27998pt on input line 57.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <9> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 20.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 57.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.27998pt on input line 20.
+(Font)              scaled to size 8.27998pt on input line 57.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1415,96 +1418,213 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge_China+SKorea+Italy_OneFigure
-.png, id=32, 505.89pt x 650.43pt>
-File: figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge_China+SKorea+Italy_OneF
-igure.png Graphic file (type png)
+<../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr+propDeathCases_ByAge_China
++SKorea+Italy_OneFigure.png, id=32, 505.89pt x 650.43pt>
+File: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr+propDeathCases_ByAge_
+China+SKorea+Italy_OneFigure.png Graphic file (type png)
 
-<use figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge_China+SKorea+Italy_OneFi
-gure.png>
-Package pdftex.def Info: figures/tsam_Covid19_JHU_cfr+propDeathCases_ByAge_Chin
-a+SKorea+Italy_OneFigure.png used on input line 41.
+<use ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr+propDeathCases_ByAge_C
+hina+SKorea+Italy_OneFigure.png>
+Package pdftex.def Info: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr+pr
+opDeathCases_ByAge_China+SKorea+Italy_OneFigure.png used on input line 78.
 (pdftex.def)             Requested size: 193.50075pt x 248.78369pt.
 
-<figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFa
-ctor12.png, id=33, 505.89pt x 650.43pt>
-File: figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subRep
-ortFactor12.png Graphic file (type png)
+<../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr+propDeathCasesByAgeTS_Esti
+matesMexico_subReportFactor12.png, id=33, 505.89pt x 650.43pt>
+File: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr+propDeathCasesByAgeTS
+_EstimatesMexico_subReportFactor12.png Graphic file (type png)
 
-<use figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subRepo
-rtFactor12.png>
-Package pdftex.def Info: figures/tsam_Covid19_JHU_cfr+propDeathCasesByAgeTS_Est
-imatesMexico_subReportFactor12.png used on input line 44.
+<use ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr+propDeathCasesByAgeTS_
+EstimatesMexico_subReportFactor12.png>
+Package pdftex.def Info: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr+pr
+opDeathCasesByAgeTS_EstimatesMexico_subReportFactor12.png used on input line 81
+.
 (pdftex.def)             Requested size: 193.50075pt x 248.78369pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2 <./figures/tsam_Covid19_JHU_reportArrivals_AllCountries.png> <./figures/tsam
-_Covid19_JHU_delays_caseDeaths.png>])
-(./tsam_Covid19_Mexico_modeloGruposInfecciosos.tex [3 <./figures/tsam_Covid19_J
-HU_cfr+propDeathCases_ByAge_China+SKorea+Italy_OneFigure.png> <./figures/tsam_C
-ovid19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor12.png>]
-<figures/Covid19_Mexico_InitialFit_Herrera-Valdez+Herrera-Nolasco_2020.png, id=
-59, 794.97pt x 361.35pt>
-File: figures/Covid19_Mexico_InitialFit_Herrera-Valdez+Herrera-Nolasco_2020.png
+[2 <../figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays_AllCountries.png> <.
+./figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays_caseDeaths.png>] [3 <../f
+igures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr+propDeathCases_ByAge_China+SKor
+ea+Italy_OneFigure.png> <../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr+pr
+opDeathCasesByAgeTS_EstimatesMexico_subReportFactor12.png>]
+
+Package hyperref Warning: Suppressing link with empty target on input line 108.
+
+
+
+<../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Spain.png, id=51, 1
+228.59pt x 361.35pt>
+File: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Spain.png Grap
+hic file (type png)
+
+<use ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Spain.png>
+Package pdftex.def Info: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phaseP
+lane_Spain.png used on input line 112.
+(pdftex.def)             Requested size: 387.00153pt x 113.82585pt.
+
+<../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Belgium.png, id=52,
+ 1228.59pt x 361.35pt>
+File: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Belgium.png Gr
+aphic file (type png)
+
+<use ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Belgium.png>
+Package pdftex.def Info: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phaseP
+lane_Belgium.png used on input line 114.
+(pdftex.def)             Requested size: 387.00153pt x 113.82585pt.
+
+<../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Italy.png, id=53, 1
+228.59pt x 361.35pt>
+File: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Italy.png Grap
+hic file (type png)
+
+<use ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Italy.png>
+Package pdftex.def Info: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phaseP
+lane_Italy.png used on input line 116.
+(pdftex.def)             Requested size: 387.00153pt x 113.82585pt.
+
+<../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Germany.png, id=54,
+ 1228.59pt x 361.35pt>
+File: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Germany.png Gr
+aphic file (type png)
+
+<use ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Germany.png>
+Package pdftex.def Info: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phaseP
+lane_Germany.png used on input line 118.
+(pdftex.def)             Requested size: 387.00153pt x 113.82585pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+<../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_China.png, id=55, 1
+228.59pt x 361.35pt>
+File: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_China.png Grap
+hic file (type png)
+
+<use ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_China.png>
+Package pdftex.def Info: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phaseP
+lane_China.png used on input line 125.
+(pdftex.def)             Requested size: 387.00153pt x 113.82585pt.
+
+<../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_KoreaSouth.png, id=
+56, 1228.59pt x 361.35pt>
+File: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_KoreaSouth.png
  Graphic file (type png)
 
-<use figures/Covid19_Mexico_InitialFit_Herrera-Valdez+Herrera-Nolasco_2020.png>
-Package pdftex.def Info: figures/Covid19_Mexico_InitialFit_Herrera-Valdez+Herre
-ra-Nolasco_2020.png used on input line 13.
-(pdftex.def)             Requested size: 430.00462pt x 195.46243pt.
-[4 <./figures/Covid19_Mexico_InitialFit_Herrera-Valdez+Herrera-Nolasco_2020.png
->]
+<use ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_KoreaSouth.png>
+Package pdftex.def Info: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phaseP
+lane_KoreaSouth.png used on input line 127.
+(pdftex.def)             Requested size: 387.00153pt x 113.82585pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+<../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_US.png, id=57, 1228
+.59pt x 361.35pt>
+File: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_US.png Graphic
+ file (type png)
+
+<use ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_US.png>
+Package pdftex.def Info: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phaseP
+lane_US.png used on input line 134.
+(pdftex.def)             Requested size: 387.00153pt x 113.82585pt.
+
+<../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Mexico.png, id=58, 
+1228.59pt x 361.35pt>
+File: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Mexico.png Gra
+phic file (type png)
+
+<use ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Mexico.png>
+Package pdftex.def Info: ../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phaseP
+lane_Mexico.png used on input line 136.
+(pdftex.def)             Requested size: 387.00153pt x 113.82585pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 32.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 164.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 9.19998pt on input line 32.
+(Font)              scaled to size 9.19998pt on input line 164.
+[4]
+<../figures_COVID19_models/dam_COVID19_Mexico_InitialFit_Herrera-Valdez+Herrera
+-Nolasco_2020.png, id=73, 794.97pt x 361.35pt>
+File: ../figures_COVID19_models/dam_COVID19_Mexico_InitialFit_Herrera-Valdez+He
+rrera-Nolasco_2020.png Graphic file (type png)
 
-Overfull \hbox (32.30125pt too wide) in paragraph at lines 71--72
- [][] 
- []
+<use ../figures_COVID19_models/dam_COVID19_Mexico_InitialFit_Herrera-Valdez+Her
+rera-Nolasco_2020.png>
+Package pdftex.def Info: ../figures_COVID19_models/dam_COVID19_Mexico_InitialFi
+t_Herrera-Valdez+Herrera-Nolasco_2020.png used on input line 168.
+(pdftex.def)             Requested size: 430.00462pt x 195.46243pt.
 
 
-Overfull \hbox (14.99998pt too wide) in paragraph at lines 38--73
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (14.99998pt too wide) in paragraph at lines 179--213
 []$[]$$[]$ 
  []
 
-[5]) (./tsam_Covid19_Mexico_reporteUNAM.bbl)
-Package atenddvi Info: Last page = 6.
- [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 48.
-Package atveryend Info: Executing hook `AfterLastShipout' on input line 48.
+(./dam_COVID19_Mexico_reporteUNAM.bbl [5]) [6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 220.
+ [7 <../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Spain.png> <../
+figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Belgium.png> <../figure
+s_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Italy.png> <../figures_COVID1
+9_dataAnalysis/dam_COVID19_JHU_phasePlane_Germany.png>] [8 <../figures_COVID19_
+dataAnalysis/dam_COVID19_JHU_phasePlane_China.png> <../figures_COVID19_dataAnal
+ysis/dam_COVID19_JHU_phasePlane_KoreaSouth.png> <../figures_COVID19_dataAnalysi
+s/dam_COVID19_JHU_phasePlane_US.png> <../figures_COVID19_dataAnalysis/dam_COVID
+19_JHU_phasePlane_Mexico.png>]
+Package atenddvi Info: Last page = 9.
 
-(./tsam_Covid19_Mexico_reporteUNAM.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 48.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 48.
-Package rerunfilecheck Info: File `tsam_Covid19_Mexico_reporteUNAM.out' has not
- changed.
+[9 <../figures_COVID19_models/dam_COVID19_Mexico_InitialFit_Herrera-Valdez+Herr
+era-Nolasco_2020.png>]
+Package atveryend Info: Executing hook `AfterLastShipout' on input line 220.
+ (./dam_COVID19_Mexico_reporteUNAM.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 220.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 220.
+Package rerunfilecheck Info: File `dam_COVID19_Mexico_reporteUNAM.out' has not 
+changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 48.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 220.
  ) 
 Here is how much of TeX's memory you used:
- 25896 strings out of 493089
- 461445 string characters out of 6134842
- 610254 words of memory out of 5000000
- 28717 multiletter control sequences out of 15000+600000
- 35353 words of font info for 121 fonts, out of 8000000 for 9000
+ 25940 strings out of 493089
+ 464661 string characters out of 6134842
+ 612730 words of memory out of 5000000
+ 28751 multiletter control sequences out of 15000+600000
+ 35228 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,11n,75p,1337b,929s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts
-/type1/urw/helvetic/uhvro8a.pfb>
-Output written on tsam_Covid19_Mexico_reporteUNAM.pdf (6 pages, 448217 bytes).
+ 57i,13n,75p,1284b,929s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{figure.caption.16} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.8} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.6} has been referenced but does not 
+exist, replaced by a fixed one
+
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/
+2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dist/
+fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
+ype1/urw/helvetic/uhvro8a.pfb>
+Output written on dam_COVID19_Mexico_reporteUNAM.pdf (9 pages, 648016 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 99 compressed objects within 1 object stream
- 23 named destinations out of 1000 (max. 500000)
- 18982 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 157 PDF objects out of 1000 (max. 8388607)
+ 110 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
+ 19022 words of extra memory for PDF output out of 20736 (max. 10000000)
 

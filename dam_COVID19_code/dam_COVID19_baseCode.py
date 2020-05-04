@@ -27,33 +27,36 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 # Indexing and gathering of data
 
 
-datosAbiertosCovid19Mexico='http://187.191.75.115/gobmx/salud/datos_abiertos/datos_abiertos_covid19.zip'
-datosMexico=pd.read_csv(datosAbiertosCovid19Mexico, compression='zip',encoding='latin-1')
-mexReference="""Data for Mexico obtained from http://187.191.75.115/gobmx/salud/datos_abiertos/datos_abiertos_covid19.zip"""
-print(mexReference)
-strReference="""Data obtained from https://github.com/CSSEGISandData/COVID-19/"""
-print(strReference)
+import pandas as pd
+
+def openCSV_DB(path,comp='zip',enc='latin-1'):
+    data=pd.read_csv(path, compression=comp,encoding=enc)
+    print('Data obtained from %s'%path)
+    return data
+
 
 def getCSSEGISandData(urlData=1):
     if urlData==1:
         localData=1-urlData
         srcDir='https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/'
-        urlCases = srcDir+'time_series_covid19_confirmed_global.csv'
-        cases = pd.read_csv(urlCases,index_col=None)
-        urlDeaths = srcDir+'time_series_covid19_deaths_global.csv'
-        deathCases = pd.read_csv(urlDeaths,index_col=None)
-        urlRecov = srcDir+'time_series_covid19_recovered_global.csv'
-        recovCases = pd.read_csv(urlRecov,index_col=None)
 
     if localData==1:
         srcDir='./Covid-19/csse_covid_19_data/csse_covid_19_time_series/'
-        casesF='time_series_covid19_confirmed_global.csv'
-        deathsF='time_series_covid19_deaths_global.csv'
-        recovF='time_series_covid19_recovered_global.csv'
-        cases=pd.read_csv(srcDir+casesF)
-        deathCases=pd.read_csv(srcDir+deathsF)
-        recov=pd.read_csv(srcDir+recovF)
+
+    pathCases=srcDir+'time_series_covid19_confirmed_global.csv'
+    pathDeaths=srcDir+'time_series_covid19_deaths_global.csv'
+    pathRecov=srcDir+'time_series_covid19_recovered_global.csv'
+
+    cases = openCSV_DB(path=pathCases,comp=None,enc='latin-1')
+    deathCases = openCSV_DB(path=pathDeaths,comp=None,enc='latin-1')
+    recovCases = openCSV_DB(path=pathRecov,comp=None,enc='latin-1')
     return cases,deathCases,recovCases
+
+if 0:
+    datosAbiertosCovid19Mexico='http://187.191.75.115/gobmx/salud/datos_abiertos/datos_abiertos_covid19.zip'
+    srcDir='https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/'
+    dMexico = openCSV_DB(path=datosAbiertosCovid19Mexico,comp='zip',enc='latin-1')
+    cases, deathCases,recovCases = getCSSEGISandData(urlData=1)
 
 def getTestData():
     urlTests='https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/testing/'
@@ -61,10 +64,11 @@ def getTestData():
     tests = pd.read_csv(urlTests+testsF,index_col=None)
     return test
     #world population Data
+
 def getTestData():
     urlWorldPop='https://stats.oecd.org/sdmx-json/data/DP_LIVE/.POP.../OECD?contentType=csv&detail=code&separator=comma&csv-lang=en'
     worldPops = pd.read_csv(urlWorldPop,index_col=None)
-
+    return worlPops
 
 def findFirstCaseDates(a):
     fIndex = list()
