@@ -105,6 +105,70 @@ def randNIWDynamics(p, rhs=randNIWIncidence, nonAutPars={}):
 
 
 
+def plotEpidemic(N,W,I,p,casesData, maxCases=10000,maxDeaths=1000):
+    INon= np.array([I[m][0] for m in range(len(I))])
+    IMild= np.array([I[m][1] for m in range(len(I))])
+    ISevere= np.array([I[m][2] for m in range(len(I))])
+    IFatal= np.array([I[m][3] for m in range(len(I))])
+    ITot = INon+IMild+ISevere+IFatal
+    dead = list()
+    for nn in range(p['nI']):
+        dead.append(p['pDeath'][nn]*W)
+    days = np.arange(0,len(N)) +p['offset']
+    daysMexico = np.arange(0,len(MexicoCases_April16))
+    peakInd =ITot.argmax()
+    peakDay = days[peakInd]
+
+    fig= gr.figure(figsize=(11,5)); gr.ioff()
+    rows=1;cols=1; ax=list()
+
+    for rc in range(rows*cols):
+        ax.append(fig.add_subplot(rows,cols,rc+1))
+
+    cax=inset_axes(parent_axes=ax[0],
+                            width="30%", # width = 30% of parent_bbox
+                            height="40%", # height : 1 inch
+                            loc='center right')
+    #dax=inset_axes(parent_axes=ax[2],
+    #                        width="30%", # width = 30% of parent_bbox
+    #                        height="50%", # height : 1 inch
+    #                        loc='center left')
+    #ax[1].plot(days, N,label='$N$ (no infectados)')
+    #ax[1].plot(days, W,label='$W$ (recuperados)')
+    ax[0].plot(days, INon,label=r'$I_{Non}$')
+    ax[0].plot(days, IMild,label=r'$I_{Mild}$')
+    ax[0].plot(days, ISevere,label=r'$I_{Severe}$')
+    ax[0].plot(days, IFatal,label=r'$I_{Fatal}$')
+    ax[0].plot(days, ITot,label=r'$Tot Cases$')
+    str1=r'Confirmed cases x %d, S. Salud Mexico (04/16/2020)'%p['underReport']
+    ax[0].plot(daysMexico, p['underReport']*casesData,'o',ms=2,label=str1)
+    cax.plot(days, INon)
+    cax.plot(days, IMild)
+    cax.plot(days, ISevere)
+    cax.plot(days, IFatal)
+    cax.plot(days, ITot)
+    cax.plot(daysMexico, p['underReport']* MexicoCases_April16,'o',ms=2,)
+    #for rc in range(p['nI']):
+    #    ax[2].plot(days, dead[rc],label=r'$Fallecidos_{%s}$'%p['stagesISpanish'][rc])
+    #ax[2].plot(days, dead[rc].sum(0),label=r'$Fallecidos_{%s}$'%p['stagesISpanish'][rc])
+    #dax.plot(days, dead[rc].sum(0))
+    #ax[2].plot(daysMexico, underReport*MexicoDeaths_April16,label=r'$Fallecidos_{04/16}$')
+    #dax.plot(daysMexico, underReport*MexicoDeaths_April16,label=r'$Fallecidos_{04/16}$')
+    for rc in range(rows*cols):
+        ax[rc].legend()
+    cax.set_xlim(0,50); cax.set_ylim(0,maxCases)
+    ax[0].set_ylabel('Confirmed cases')
+    ax[0].set_xlabel('Days from first report on Feb 27, 2020')
+    #dax.set_xlim(0,50); dax.set_ylim(0,maxDeaths)
+    strTit= '''Covid-19 dynamics from the contribution of infectious individuals with different contagion intervals \n
+    (Herrera-Nolasco, Herrera-Valdez, 2020)'''
+    ax[0].text(peakInd+5, ITot.max()*.95, '%d days, %d infected'%(peakDay,ITot[peakInd]))
+    ax[0].text(peakInd+5, ITot.max()*.9, 'Peak estimated around May 13, 2020')
+    fig.subplots_adjust(left=0.075,bottom=0.075,right=0.97,top=0.85,wspace=0.2,hspace=0.25)
+    fig.suptitle(strTit)
+    gr.ion(); gr.draw(); gr.show()
+    return fig
+
 
 def uvField(ax,beta=0.5, delta=0.1, parts=100j):
     V,U=sc.mgrid[0:1:parts, 0:1:parts]

@@ -1,7 +1,6 @@
 import os
 import numpy as np
 import urllib
-import pandas as pd
 import zipfile
 import datetime
 from ipywidgets import widgets

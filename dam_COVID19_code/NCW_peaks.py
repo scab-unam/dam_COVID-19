@@ -12,11 +12,57 @@ gr.rc('xtick', labelsize=small['size'])    # fontsize of the tick labels
 gr.rc('ytick', labelsize=small['size'])    # fontsize of the tick labels
 gr.rc('legend', fontsize=small['size'])    # legend fontsize
 gr.rc('figure', titlesize=large['size'])  # fontsize of the figure title
-
+from dam_COVID19_baseCode import *
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+datosAbiertosCovid19Mexico='http://187.191.75.115/gobmx/salud/datos_abiertos/datos_abiertos_covid19.zip'
+srcDir='https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/'
+dMexico = openCSV_DB(path=datosAbiertosCovid19Mexico,comp='zip',enc='latin-1')
+cases, deathCases,recovCases = getCSSEGISandData(urlData=1)
+# ------------------------------
+# Description of the data so that the headers and the columns
+# without case data are distinguished
+# ------------------------------
+nRows,nCols=cases.shape
+cases.head(10)
+nHeaderRows=1;
+#
+nHeaderCols=3
+# how to generate date lists from a baseline using the datetime
+dates = cases.columns[4:]
+nDays = len(dates)
+days = np.arange(nDays)
+print('Got data from %d days between %s and %s'%(nDays,dates[0],dates[-1]))
+# -------------------
+print("""""")
+# -------------------
+npCases = cases.to_numpy()
+countries = np.unique(npCases[:,1])
+nCountries = len(countries)
+print('Considering data from {d} countries'.format(d=nCountries))
+# -------------------
+# Sum the counts from each country and construct a new array
+# -------------------
+# These arrays have the same size as the countries array (unique countries)
+totCases=gatherDataByCountry(df=cases,nHeaderCols=4)
+totDeathCases=gatherDataByCountry(df=deathCases,nHeaderCols=4)
+totRecovCases=gatherDataByCountry(df=recovCases,nHeaderCols=4)
+# Save all into a dictionary
+G = {'cCases':totCases.transpose(), 'cDeaths':totDeathCases.transpose(),'cRecovs':totRecovCases.transpose(), 'countries':countries.transpose()}
+# -------------------
+# Search regions to illustrate the case-fatality ratios
+# -------------------
+Pops_Millions = {'Algeria':43851044, 'Argentina':45195774,'Australia':25499884,'Belgium':11433256,
+                 'Brazil':212559417,
+                 'Canada':37742154, 'China':1439323776, 'Colombia':50882891,'Egypt':102334404,
+                 'France':67886011,'Germany':83783942, 'Japan':126476461,'Korea, South':51269185,
+                 'Indonesia':273523615, 'Iran':83992949,'Israel':8655535,'Italy':60461826,
+                 'Mexico':128932753, 'Niger':24206644, 'Pakistan':220892340,'Poland':37846611,'Singapore':5850342,
+                 'South Africa':59308690,'Spain':46754778, 'Sweden': 10099265,
+                 'United Kingdom':67886011, 'US':331002651, 'Venezuela':28870195}
 
 
-p = {'N0':120**6, 'I0':np.array([0,1,2,0]),'W0':0,'transmissionGExposure':0.5,
+
+p = {'N0':120*(10**6), 'I0':np.array([0,1,2,0]),'W0':0,'transmissionGExposure':0.5,
 'exposure_N':0.455, 'exposure_I':np.array([1,1,0.1,0]),
 'weight_I':np.array([0.3,0.55,0.1,0.05]), 'nI':4,
 'stagesI':['Non severe','Mild/Moderate','Severe','Fatal'],
@@ -25,7 +71,7 @@ p = {'N0':120**6, 'I0':np.array([0,1,2,0]),'W0':0,'transmissionGExposure':0.5,
 'pDeath':np.array([0.00001,0.0001,0.0005,0.001]),
 'offset':-40, 'underReport':12}
 
-p['timeStamps']= np.arange(0,10,)
+p['timeStamps']= np.arange(0,10)
 p['tGe'] = p['timeStep']* p['transmissionGExposure']
 p['pWithdraw'] = p['timeStep'] / np.array(p['infectiousTime'])
 p['iC'] = np.array([p['N0'],p['W0'],p['I0']])
@@ -36,10 +82,10 @@ randNIWIncidence(Z=p['iC'], p=p)
 MexicoCases_April16 =np.array ([3, 4, 5, 6, 7, 11, 15, 26, 41, 53, 82, 93, 118, 164, 203, 251, 316, 367, 405, 475, 585, 717, 848, 993, 1094, 1215, 1378, 1510, 1688, 1890, 2143, 2439, 2785, 3181, 3441, 3844, 4219, 4661, 5014, 5399, 5847, 6297])
 MexicoDeaths_April16=np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 4, 5, 6, 8, 12, 16, 20, 28, 29, 37, 50, 60, 79, 94, 125, 141, 174, 194, 233, 273, 296, 332, 406, 449, 486])
 
-N,W,I= randNIWDynamics(p, rhs=randNIWIncidence, nonAutPars={})
 
 
-def plotEpidemic(N,W,I,p,maxCases=10000,maxDeaths=1000):
+
+def plotEpidemic(N,W,I,p,casesData, maxCases=10000,maxDeaths=1000):
     INon= np.array([I[m][0] for m in range(len(I))])
     IMild= np.array([I[m][1] for m in range(len(I))])
     ISevere= np.array([I[m][2] for m in range(len(I))])
@@ -74,8 +120,8 @@ def plotEpidemic(N,W,I,p,maxCases=10000,maxDeaths=1000):
     ax[0].plot(days, ISevere,label=r'$I_{Severe}$')
     ax[0].plot(days, IFatal,label=r'$I_{Fatal}$')
     ax[0].plot(days, ITot,label=r'$Tot Cases$')
-    str1=r'Confirmed cases, S. Salud Mexico (04/16/2020)'
-    ax[0].plot(daysMexico, p['underReport']*MexicoCases_April16,'o',ms=2,label=str1)
+    str1=r'Confirmed cases x %d, S. Salud Mexico (04/16/2020)'%p['underReport']
+    ax[0].plot(daysMexico, p['underReport']*casesData,'o',ms=2,label=str1)
     cax.plot(days, INon)
     cax.plot(days, IMild)
     cax.plot(days, ISevere)
@@ -104,4 +150,5 @@ def plotEpidemic(N,W,I,p,maxCases=10000,maxDeaths=1000):
     return fig
 
 p['offset']=-40
+N,W,I= randNIWDynamics(p, rhs=randNIWIncidence, nonAutPars={})
 fig = plotEpidemic(N,W,I,p,maxCases=40000,maxDeaths=2000)

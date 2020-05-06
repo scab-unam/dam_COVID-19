@@ -2,12 +2,14 @@
 \input{mahvPreamble}
 \input{mahvLaTeXCommands}
 \usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
 \usepackage[position=top]{subfig}
 \usepackage{tkz-berge}
 \usetikzlibrary{arrows,petri,topaths}
 \tikzstyle{vertex}=[circle, draw, inner sep=3pt, minimum size=5pt]
 \newcommand{\vertex}{\node[vertex]}
-\setstretch{1.3}
+\setstretch{1.2}
+\geometry{left=3cm,right=3cm}
 %
 \title{Dinámica inicial de la epidemia de Covid-19 en en mundo y en México }
 \author{Marco Arieli Herrera-Valdez}
@@ -15,53 +17,60 @@
 %
 \begin{document}
 %
-%\begin{flushleft}
-%\begin{Large}
-%{Estimaciones y análisis de la dinámica inicial de la mortalidad de casos epidemia de Covid-19 en México a partir de los datos mundiales}
-%\end{Large}\\
-%\smallskip
-%\begin{large}
-%Carlos Ignacio Herrera-Nolasco$^1$, Eugenia O'Reilly-Regueiro$^{4,\email}$,
-%Marco Arieli Herrera-Valdez$^{1,\email}$
-%\end{large}\\
-%\smallskip
-%$^1$ Departamento de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México\\
-%$^4$ Instituto de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México\\
-%$\email$ marcoh@ciencias.unam.mx, eugenia@im.unam.mx
-%\end{flushleft}
+\begin{flushleft}
+\textbf{Reporte técnico. Grupo de análisis estadístico  y modelos COVID-19, UNAM. Mayo 4, 2020.}\\
+\smallskip 
+\begin{Large}
+\textbf{Estudio de dinámica global y local de propagación de COVID-19 con apoyo de modelos estocásticos y en datos globales. }
+\end{Large}\\
+\smallskip
+\begin{large}
+Estephanie Escobar Sánchez$^1$, José Guiral Barajas$^1$, Carlos Ignacio Herrera-Nolasco$^1$, Marco Arieli Herrera-Valdez$^{1,\email}$, Sergio Iván López-Ortega$^1$, Eugenia O'Reilly-Regueiro$^{4}$,
+\end{large}\\
+\smallskip
+$^1$ Departamento de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México\\
+$^2$ Instituto de Matemáticas, Facultad de Ciencias, Universidad Nacional Autónoma de México\\
+$\email$ marcoh@ciencias.unam.mx
+\end{flushleft}
 %
 % ---------------------------------------------------------
-\section*{Estudio de dinámica global y local de propagación de COVID-19 con apoyo de modelos estocásticos y en datos globales}
-\paragraph{Participantes.} Carlos Ignacio Herrera-Nolasco, Sergio Iván López-Ortega, Marco Arieli Herrera-Valdez. Este reporte técnico es parte de lineas de trabajo que están en proceso de edición para su revisión por pares. Se pueden encontrar más detalles y referencias en \url{https://scab-unam.github.io/dam_COVID-19}.
+%\section*{}
+%\paragraph{Participantes.} Estephanie Escobar Sánchez, Carlos Ignacio Herrera-Nolasco, Marco Arieli Herrera-Valdez, José Guiral Barajas, Sergio Iván López-Ortega, Eugenia O'Reilly-Regueiro.  Este reporte técnico es parte de lineas de trabajo que están en proceso de edición para su revisión por pares. Se pueden encontrar más detalles y referencias en \url{https://scab-unam.github.io/dam_COVID-19}.
 
-Los datos presentados aquí fueron obtenidos del 
-% !TEX root = tsam_Covid19_Mexico.tex
-\subsection*{Inferencia de características del curso temporal de Covid-19 a partir de medidas macroscópicas de reportes de casos, recuperaciones y muertes}
+Los datos presentados aquí fueron obtenidos de la base de datos (\url{https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/})
 
+\subsection*{Inferencia de características del curso temporal de COVID-19 a partir de medidas macroscópicas de reportes de casos, recuperaciones y muertes}
+
+%
+\begin{wrapfigure}{left}{0.5\textwidth}
+\centering
+\includegraphics[width=0.5\textwidth]
+{figures/dam_COVID19_JHU_delays_caseDeaths}
+\caption{Retrasos entre primeros reportes reportes de casos y muertes (arriba),  y entre casos y recuperaciones (abajo). }. \label{fig:reportArrivals}
+\end{wrapfigure}
 
 \paragraph{Retrasos entre comienzo de síntomas y recuperación o muerte a partir de los primeros reportes de caso en el mundo}
 
-
 ?`Es posible observar en los reportes de casos hechos a nivel mundial indicaciones del tiempo que tarda una persona en morir por complicaciones de COVID-19 a partir comienza a tener síntomas? Es decir, ?`es posible estimar el retraso en entre la muerte y la manifestación de síntomas desde una perspectiva macroscópica de los casos y los decesos por caso en distintos países? ?`Se puede hacer el mismo tipo de inferencia tomando en cuenta retrasos entre recuperaciones y confirmaciones de caso?
 
+La respuesta está en analizar el retraso entre primer reporte de casos y el primer reporte de muertes en distintos países. La mayoría de los países que primero reportaron casos también reportó muertes (sin retraso). Sin embargo, a medida que pasaron las semanas, se fue observando una tendencia que arroja un retraso promedio de 18 días entre primer caso confirmado y primera muerte en varios países (\figref{fig:reportArrivals}). 
 
-%
-\begin{figure}[h]
+Los retrasos se pueden inferir utilizando distintos métodos, entre los cuales está simplemente medir la distancia horizontal entre las gráficas acumuladas del número de países que han reportado primer caso o muerte, respectivamente (\figref{fig:reportArrivals}, en medio izquierda, y arriba a la derecha). 
+El retraso correspondiente entre entre primeros reportes de casos y primera recuperación, es aproximadamente 12 días  (\figref{fig:reportArrivals} paneles de abajo).
+
+
+\begin{figure}[th]
+\centering
 \begin{minipage}{0.5\textwidth}
-\includegraphics[width=\textwidth]{../figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays_AllCountries}
+\includegraphics[width=0.9\textwidth]{figures/dam_COVID19_JHU_cfr+propDeathCases_ByAge_China+SKorea+Italy_OneFigure.png}
 \end{minipage}%
 \begin{minipage}{0.5\textwidth}
-\includegraphics[width=\textwidth]
-{../figures_COVID19_dataAnalysis/dam_COVID19_JHU_delays_caseDeaths}
-\end{minipage}%
-\caption{Retrasos entre reportes de casos (arriba), muertes (en medio), y recuperaciones (abajo). }. \label{fig:reportArrivals}
+\includegraphics[width=0.9\textwidth] {figures/dam_COVID19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor12.png}
+\end{minipage}
+\caption{(Izquierda) Contribuciones de distintos grupos de edad a la fatalidad por casos en China, Korea del Sur, e Italia. (Derecha) Estimaciones de fatalidad para México tomando en cuenta grupos de edad, con los datos de China, Korea del Sur, e Italia, calculado hasta el 11 de abril de 2020, y usando un factor de ajuste por subreporte igual a 12. }\label{fig:estimates}
 \end{figure}
 
-
-La respuesta está en analizar el retraso entre primer reporte de casos y el primer reporte de muertes en distintos países. La mayoría de los países que primero reportaron casos también reportó muertes (sin retraso). Sin embargo, a medida que pasaron las semanas, se fue observando una tendencia que arroja un retraso promedio de 18 días entre primer caso confirmado y primera muerte en varios países (\figref{fig:reportArrivals}). Es posible medir dicha diferencia utilizando distintos métodos, entre los cuales está simplemente medir la distancia horizontal entre las gráficas acumuladas del número de países que han reportado primer caso o muerte, respectivamente (\figref{fig:reportArrivals}, en medio izquierda, y arriba a la derecha). 
-De esa forma también es posible medir el retraso entre reportes de casos y primera recuperación, que resulta ser de aproximadamente 12 días  (\figref{fig:reportArrivals} paneles de abajo).
-
-\bigskip
+\vspace{0.5cm}
 \paragraph{Contribución de grupos de riesgo por edad a la dinámica de fallecimientos por caso.}
 La fatalidad en casos confirmados depende de factores que incluyen la calidad de los servicios de salud, y el acceso a dichos servicios, entre otros. 
 Sin embargo, es posible observar algunas similitudes macroscópicas en el comportamiento de las defunciones por COVID-19 en lugares que podría pensarse que los fallecimientos presentarían comportamientos muy distintos , como China y Korea del Sur por un lado, o lugares como Italia, por el otro. 
@@ -72,104 +81,34 @@ Sin embargo, en los tres paises el cociente de fatalidad de casos (CFR por sus s
 Por su similitud, es posible usar los pesos relativos de las defunciones de los distintos grupos de edad y  hacer distintas predicciones para el caso de México (\figref{fig:estimates}).
 
 
-\begin{figure}[h]
-\centering
-\begin{minipage}{0.5\textwidth}
-\includegraphics[width=0.9\textwidth]{../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr+propDeathCases_ByAge_China+SKorea+Italy_OneFigure.png}
-\end{minipage}%
-\begin{minipage}{0.5\textwidth}
-\includegraphics[width=0.9\textwidth] {../figures_COVID19_dataAnalysis/dam_COVID19_JHU_cfr+propDeathCasesByAgeTS_EstimatesMexico_subReportFactor12.png}
-\end{minipage}
-\caption{(Izquierda) Contribuciones de distintos grupos de edad a la fatalidad por casos en China, Korea del Sur, e Italia. (Derecha) Estimaciones de fatalidad para México tomando en cuenta grupos de edad, con los datos de China, Korea del Sur, e Italia, calculado hasta el 11 de abril de 2020, y usando un factor de ajuste por subreporte igual a 12. }\label{fig:estimates}
-\end{figure}
 
 Las proyecciones obtenidas usando los datos de los distintos países son similares. Hay que tomar en cuenta que estos datos no han sido ajustados con respecto a subreporte. Por ejemplo, ajustando los datos con un factor de 12 por subreporte, la estimación de  muertes de adultos de más de 70 años para México es  de alrededor 4000 para el 19 de abril de 2020. 
-
 
 Es importante mencionar que estas estimaciones no toman en cuenta la estructura poblacional en México, o la de los países tomados para el análisis, pero esa información está normalizada en el cálculo de los cocientes de fatalidad por caso (\figref{fig:estimates}). 
 
 
-
-
-
-
 % --------------------------------------------------------------------------
-\subsection*{Monitoreo de datos de casos, recuperaciones y defunciones desde una perspectiva téorica} 
+\begin{figure}[th!] \centering
+\includegraphics[width=0.8\textwidth]{figures/InfectiousPeriods_NYCguidelines}
+\caption{Periodos infecciosos para distintos tipos de casos de COVID-19.}\label{fig:dataNIW}
+
+\end{figure}
 % --------------------------------------------------------------------------
 
 
-
-Después de un análisis preliminar sobre retrasos entre reportes y contribuciones a las defunciones de grupos de edad, es notorio que comportamiento de la prevalencia de casos en distintos lugares del mundo es muy parecido, pese a diferencias en sistemas de salud, estructuras poblacionales, métodos de intervención y vigilancia epidemiológica, etcétera. En particular, las trayectorias de las curvas de casos confirmados, recuperados, y defunciones muestran comportamientos similares a los predichos desde una perspectiva cualitativa con modelos simples de tipo SIR. Lo anterior es cierto para varios países que llevan ya varias semanas reportando casos, y constituye una evidencia de que la dinámica macroscópica (a nivel de país) no varía mucho en el mundo, independientemente de las particularidades de cada lugar. 
-
-Nos enfocamos entonces a la tarea de caracterizar primero la dinámica epidémica en términos generales, tomando en cuenta datos globales, para después hacer estimaciones de carácter puntual que permitan entender mejor el caso de México y plantear estrategias de mitigación, además de estimaciones de eventos importantes como máximos locales de prevalencia, inicio de la epidemia, etcétera. Para hacerlo, tomamos datos de distintos lugares del mundo, estudiamos su dinámica desde una perspectiva teórica (en consideración de predicciones cualitativas hechas por modelos), y obtenemos patrones de comportamiento que nos permitan modelar y estimar distintos escenarios. El último punto se basará en modelaje de la dinámica de COVID-19 a nivel de país, y luego para el caso de México, tomando en cuenta regiones en todo el país. 
-
-\paragraph{?`Es la dinámica de propagación de COVID-19 a nivel de país similar a la predicha en modelos?}
-
-A partir de datos globales (\href{}), calculamos el número básico de reproducción, las prevalencias, incidencias de los datos de distintos países, incluyendo México. 
-
-\begin{figure}[h] \label{Planos fase y obtención de parámetros a partir de dinámica de casos observada en algunos países de Europa}
-\begin{tabular}{c}
-\includegraphics[width=0.9\textwidth]{../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Spain}
-\\
-\includegraphics[width=0.9\textwidth]{../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Belgium}
-\\
-\includegraphics[width=0.9\textwidth]{../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Italy}
-\\
-\includegraphics[width=0.9\textwidth]{../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Germany}
-\end{tabular}
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{figures/dam_COVID19_Mexico_InitialFit_Herrera-Valdez+Herrera-Nolasco_2020}
+\caption{Estimación de la fecha de inicio y pico de la epidemia ajustando los datos iniciales de la epidemia de Covid-19 en México. La fecha cero representa el 27 de febrero de 2020. Para estas simulaciones los infectados de los grupos severo y crítico en las simulaciones tienen exposición nula a otros grupos poblacionales. } \label{fig:inicioPicoNIW}
 \end{figure}
-
-
-\begin{figure}[h] \label{Planos fase y obtención de parámetros a partir de dinámica de casos observada en algunos países de Asia}
-\begin{tabular}{c}
-\includegraphics[width=0.9\textwidth]{../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_China}
-\\
-\includegraphics[width=0.9\textwidth]{../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_KoreaSouth}
-\end{tabular}
-\end{figure}
-
-
-\begin{figure}[h] \label{Planos fase y obtención de parámetros a partir de dinámica de casos observada en algunos países de América}
-\begin{tabular}{c}
-\includegraphics[width=0.9\textwidth]{../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_US}
-\\
-\includegraphics[width=0.9\textwidth]{../figures_COVID19_dataAnalysis/dam_COVID19_JHU_phasePlane_Mexico}
-\end{tabular}
-\end{figure}
-
-
-
-\paragraph{Modelo estocástico para definición de intervalos y rangos de acción}
-Sea 
-\begin{eqnarray}
-N(t+h) &=& N(t) - X(t)
- \label{eq:N} \\
-I(t+h) &=& X(t) - Y(t)
-\label{eq:I}\\
-W(t+h) &=& W(t) + Y(t) - D(t)
-\label{eq:W}
-\end{eqnarray}
-donde $X(t)$, $Y(t)$, y $D(t)$ son variables aleatorias entera que representan, respectivamente, la incidencia de infección, los nuevos casos removidos del la cadena de infección al cumplir su periodo infeccioso (recuperados), y los nuevos fallecidos. Los miembros del grupo $W$ ya no participan en la cadena de transmisión. El total poblacional $N+I+T$ no es constante. La dinámica de la epidemia está supuesta como un proceso estocástico no homogéneo en el que no necesariamente hay mezcla homogénea entre infectados y no infectados (Herrera-Nolasco, 2020, En preparación). Las simulaciones están basadas en muestreos binomiales o Poisson, dependiendo de la cantidad de ensayos requeridos en cada muestreo.
-
- La probabilidad de éxito para cada muestreo puede depender de la cantidad de infectados y su posible contribución (por exposición) a la cadena de transmisión (para $X$), o de tiempos de recuperación y posiblemente muerte (para $Y$). El modelo mostrado en las ecuaciones \eqref{eq:N}-\eqref{eq:W} también permite simular dinámicas epidémicas en poblaciones pequeñas, y controlar de forma independiente  factores como la exposición de los susceptibles al contagio y la contribución de los infectados de distintos grupos, lo que permite considerar escenarios de distanciamiento social, aislamiento de casos sospechosos, aislamiento de casos y la posible contribución de grupos de individuos asintomáticos.
-
-
 
 
 
 % ---------------------------------------------------------
 \subsection*{Estimación de fecha de inicio y pico de la epidemia de COVID-19 en México}
+% ---------------------------------------------------------
 
 
  Por el momento, hemos encontrado regímenes de parámetros al rededor de los cuales podemos simular la dinámica macroscópica de la epidemia en México ajustada con los datos de la Secretaría de Salud de México (\figref{fig:inicioPicoNIW}). Por construcción, sólo una proporción de los susceptibles y una proporción de los infectados están en contacto. Con el fin de dar estimaciones conservadoras de inicio, hemos realizado simulaciones en las que la exposición de susceptibles al contagio es constante, ajustando los datos de la Secretaría de salud  con un factor de 12, y  suponiendo una  población expuesta al 10\%. En esas condiciones, una estimación \textit{conservadora} de la fecha de inicio de la epidemia es aproximadamente 40 días antes del 27 de febrero. Es decir, aproximadamente el 20 de enero de 2020. El pico de la infección estaría estimado para ocurrir al rededor de 75 días después del día 0. Es decir, al rededor de Mayo 14 de 2020. La tendencia de los datos de los últimos días es de crecimiento menor en comparación a las simulaciones. Esto indica que posiblemente haya un retraso aún mayor para observar el pico de la epidemia y con un número de casos menor.
- 
- 
-\begin{figure}[h]
-\includegraphics[width=\textwidth]{../figures_COVID19_models/dam_COVID19_Mexico_InitialFit_Herrera-Valdez+Herrera-Nolasco_2020}
-\caption{Estimación de la fecha de inicio y pico de la epidemia ajustando los datos iniciales de la epidemia de Covid-19 en México. La fecha cero representa el 27 de febrero de 2020. Para estas simulaciones los infectados de los grupos severo y crítico en las simulaciones tienen exposición nula a otros grupos poblacionales. } \label{fig:inicioPicoNIW}
-\end{figure}
-
-
  
 
 En esta dirección, ha resultado útil un caso particular del modelo en las ecuaciones \eqref{eq:N}-\eqref{eq:W}  para explorar escenarios en grandes números.
@@ -212,9 +151,141 @@ donde $\vec{y}$ y  $\vec{\gamma}$  son  vectores que representan, respectivament
 \end{minipage}%
 
 
+
+
+\paragraph{Modelo estocástico para definición de intervalos y rangos de acción} (trabajo en progreso)
+Sea 
+\begin{eqnarray}
+N(t+h) &=& N(t) - X(t)
+ \label{eq:N} \\
+I(t+h) &=& X(t) - Y(t)
+\label{eq:I}\\
+W(t+h) &=& W(t) + Y(t) - D(t)
+\label{eq:W}
+\end{eqnarray}
+donde $X(t)$, $Y(t)$, y $D(t)$ son variables aleatorias entera que representan, respectivamente, la incidencia de infección, los nuevos casos removidos del la cadena de infección al cumplir su periodo infeccioso (recuperados), y los nuevos fallecidos. Los miembros del grupo $W$ ya no participan en la cadena de transmisión. El total poblacional $N+I+T$ no es constante. La dinámica de la epidemia está supuesta como un proceso estocástico no homogéneo en el que no necesariamente hay mezcla homogénea entre infectados y no infectados (Herrera-Nolasco, 2020, En revisión). Las simulaciones están basadas en muestreos binomiales o Poisson, dependiendo de la cantidad de ensayos requeridos en cada muestreo.
+
+ La probabilidad de éxito para cada muestreo puede depender de la cantidad de infectados y su posible contribución (por exposición) a la cadena de transmisión (para $X$), o de tiempos de recuperación y posiblemente muerte (para $Y$). El modelo mostrado en las ecuaciones \eqref{eq:N}-\eqref{eq:W} también permite simular dinámicas epidémicas en poblaciones pequeñas, y controlar de forma independiente  factores como la exposición de los susceptibles al contagio y la contribución de los infectados de distintos grupos, lo que permite considerar escenarios de distanciamiento social, aislamiento de casos sospechosos, aislamiento de casos y la posible contribución de grupos de individuos asintomáticos.
+
+
+
+
+% --------------------------------------------------------------------------
+\begin{figure}[th!] \centering
+\includegraphics[width=0.8\textwidth]{figures/dam_COVID19_JHU_dynamicsDataSIR_globalSample}
+\caption{Prevalencia (puntos azules), remoción (círculos verdes), y número efectivo de reproducción (puntos naranjas) de COVID-19 en distintos países del mundo. Países como México, Venezuela, Algeria, y Sudáfrica resaltan por su comportamiento cualitativamente distinto al resto de los países mostrados.}\label{fig:dataNIW}
+
+\end{figure}
+% --------------------------------------------------------------------------
+
+Es importante recalcar que los periodos de infectividad de los casos de COVID-19 son de un mínimo de 2 semanas para el caso asintomático, y hasta 25 días para casos graves \citep{liu2020viral,zhou2020clinical}. Por tanto, las tasas de remoción del grupo de los infectados deber de tomar en cuenta periodos por lo menos comparables. 
+
+
+
+% --------------------------------------------------------------------------
+\subsection*{Monitoreo de casos, recuperaciones y defunciones desde una perspectiva téorica, global y en México} 
+% --------------------------------------------------------------------------
+
+
+
+Después de un análisis preliminar sobre retrasos entre reportes y contribuciones a las defunciones de grupos de edad, es notorio que comportamiento de la prevalencia de casos en distintos lugares del mundo es muy parecido (Fig.~\ref{fig:dataNIW}), pese a diferencias en sistemas de salud, estructuras poblacionales, métodos de intervención y vigilancia epidemiológica, etcétera. En particular, las trayectorias de las curvas de casos confirmados, recuperados, y defunciones muestran comportamientos similares a los predichos desde una perspectiva cualitativa con modelos simples de tipo SIR (Fig.~\ref{fig:dataPPNIW}). 
+Lo anterior es cierto para varios países que llevan ya varias semanas reportando casos, y constituye una evidencia de que la dinámica macroscópica (a nivel de país) no varía mucho en el mundo, independientemente de las particularidades de cada lugar. 
+
+% --------------------------------------------------------------------------
+\begin{figure}[th] 
+\centering
+\includegraphics[width=0.8\textwidth]{figures/dam_COVID19_JHU_dynamicsDataSIRPP_globalSample}
+\caption{Retrato de fase entre prevalencia e incidencia (naranja) y entre prevalencia y cambio en la prevalencia (azul),  en distintos países del mundo. Compare los retratos de fase de México, Venezuela, Algeria, y Sudáfrica con el resto de la muestra.}\label{fig:dataPPNIW}
+\end{figure}
+% --------------------------------------------------------------------------
+
+Primero caracterizamos la dinámica epidémica en términos generales, tomando en cuenta datos globales, para después hacer estimaciones de carácter puntual que permitan entender mejor el caso de México y plantear estrategias de mitigación, además de estimaciones de eventos importantes como máximos locales de prevalencia, inicio de la epidemia, etcétera. Para hacerlo, tomamos datos de distintos lugares del mundo, estudiamos su dinámica desde una perspectiva teórica (en consideración de predicciones cualitativas hechas por modelos), y obtenemos patrones de comportamiento que nos permitan modelar y estimar distintos escenarios. El último punto se basará en modelaje de la dinámica de COVID-19 a nivel de país, y luego para el caso de México, tomando en cuenta regiones en todo el país. 
+
+
+\paragraph{?`Es la dinámica de propagación de COVID-19 observada en distintos países similar a la predicha en modelos?}
+
+A partir de datos globales (\url{https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/}), calculamos el número efectivo de reproducción, las prevalencias, incidencias de los datos de distintos países\ref{fig:dataNIW}, \ref{fig:dataPPNIW} y), incluyendo México.
+
+La dinámica macroscópica de propagación en varios países tiene las características esenciales que predicen el modelo NIW (non-infected, infected, withdrawn por sus siglas en inglés) como el propuesto aquí. 
+En aquellos países donde no es así, cabe preguntarse si los reportes, y no la epidemia, están causando que la tendencia predicha por un modelo simple predice. 
+
+
+
+En breve, si la population se divide en tres subconjuntos representando no infectados y susceptibles, los infectados, y los que dejaron de ser infectados porque se recuperaron y adquirieron inmunidad, o murieron (ya no participan en la cadena de infección). Supongamos que las densidades de los tres grupos son respectivamente $x$, $y$, y $w$, con $1=x+y+w$ y que  $\alpha$ y $\tau$ representan la tasa de infección dado un contacto infeccioso, y el tiempo promedio de espera para dejar de estar en el grupo infeccioso. La dinámica de $(x,y,w)$ se puede describir usando el SIR clásico como  
+\begin{equation}
+\partial_t y = \alpha y \bigg( 1- w - y \bigg) - \frac{y}{\tau},
+\end{equation}
+and the evolution for $z$ is then
+\begin{equation}
+\partial_t w = \frac{y}{\tau}
+\end{equation}
+con $\partial_t x =-\partial_t y - \partial_t w $. 
+La incidencia de casos (los casos nuevos) es entonces 
+\begin{equation}
+\partial_{t} y + \partial_{t} w =\alpha y \bigg( 1- w - y \bigg)
+\end{equation}
+Entonces la incidencia es una función cuadrática de la prevalencia, pero también depende de los removidos de la cadena de infección (muertos e inmunes). Como $w$ es una función creciente, la gráfica de la incidencia se puede pensar como una curva en 3D con forma cuadrática.
+En teoría, se puede entonces calcular 
+\begin{equation}
+\alpha = \frac{\partial_{t} y + \partial_{t} w}{\partial_{t} w} 
+\end{equation}
+y 
+\begin{equation}
+\tau = \frac{y}{\partial_{t} w}. 
+\end{equation}
+
+
+
+\begin{figure}[h] \caption{Dinámica de epidemia de COVID-19 en México. Dinámica de prevalencia (puntos azules), remoción (muertes y recuperaciones de casos confirmados, círculos verdes), y número efectivo de reproducción (puntos naranjas).  Retrato de fase entre prevalencia e incidencia (naranja) y entre prevalencia y cambio en la prevalencia (azul).}\label{fig:dataPPNIW_Mexico}
+\centering
+\includegraphics[width=0.8\textwidth]{figures/dam_COVID19_JHU_dynamicsDataSIRPP_Mexico}
+\end{figure}
+
+
+\textit{Parámetros para modelar a partir de datos.}
+
+De forma parecida a la técnica propuesta por \cite{lega2016data}, y con base en el desarrollo explicado arriba, es posible obtener series de tiempo ${y_{k}: k =1,...,d}$ para la prevalencia,  ${z_{k}: k =1,...,d}$ para la incidencia, y ${w_{k}: k =1,...,d}$ para los removidos, con $d$ representando los días desde el inicio de la pandemia. 
+Con esas series de tiempo, se pueden calcular coeficientes 
+\begin{equation}a_{k} = \frac{z}{\delta w},\end{equation} 
+y 
+\begin{equation}b(t) = \frac{y}{\delta w}. \end{equation} 
+análogos a $\alpha$ y $\tau$ con los que puede construirse un modelo con coeficientes variables en el tiempo. 
+En particular, se puede \textit{estimar} el número efectivo de reproducción dividiendo la incidencia entre el cambio en los removidos (Fig.~\ref{fig:dataPPNIW_Mexico}). \textbf{\textit{El número efectivo de reproducción en México en la última semana de abril y la primera de mayo está entre 1.64 y 1.5. }}
+
+Para fines de comparación, considere las dinámicas de Corea del Sur,  China (Fig.~\ref{fig:dataPPNIW_SKChina}) y en Italia y España (Fig.~\ref{fig:dataPPNIW_ItalySpain}). 
+
+\begin{figure}[h] 
+\centering
+\includegraphics[width=\textwidth]{figures/dam_COVID19_JHU_dynamicsDataSIRPP_China}
+\\
+\includegraphics[width=\textwidth]{figures/dam_COVID19_JHU_dynamicsDataSIRPP_SouthKorea}
+\\
+\caption{Epidemia de COVID-19 en China y Corea del Sur. 
+Dinámica de prevalencia (puntos azules), remoción (muertes y recuperaciones de casos confirmados, círculos verdes), y número efectivo de reproducción (puntos naranjas).  Retrato de fase entre prevalencia e incidencia (naranja) y entre prevalencia y cambio en la prevalencia (azul).}\label{fig:dataPPNIW_SKChina}
+\end{figure}
+
+\begin{figure}[h] 
+\centering
+\includegraphics[width=\textwidth]{figures/dam_COVID19_JHU_dynamicsDataSIRPP_Italy}
+\\
+\includegraphics[width=\textwidth]{figures/dam_COVID19_JHU_dynamicsDataSIRPP_Spain}
+\\
+\caption{Epidemia de COVID-19 en Italia y España.
+Dinámica de prevalencia (puntos azules), remoción (muertes y recuperaciones de casos confirmados, círculos verdes), y número efectivo de reproducción (puntos naranjas).  Retrato de fase entre prevalencia e incidencia (naranja) y entre prevalencia y cambio en la prevalencia (azul).}\label{fig:dataPPNIW_ItalySpain}
+\end{figure}
+
+
+
+\paragraph{Trabajo en progreso.}
+La inferencia sobre características globales de la epidemia y propiedades específicas sobre el COVID-19 a nivel de un sólo país, inclusive desde perspectivas de provincias (estados en el caso de México)
+ está siendo abordada por nuestro equipo con la idea de calibrar modelos para explicar la dependencia de la propagación con respecto a grupos de distintas vulnerabilidades, y también para proponer y evaluar estrategias de mitigación.
+
+
+
+
 %\paragraph{Acknowledgments:}
 
-
+\newpage
 \bibliographystyle{plainnat}
-\bibliography{Covid19,epidemiology}
+\bibliography{COVID19}
 \end{document}

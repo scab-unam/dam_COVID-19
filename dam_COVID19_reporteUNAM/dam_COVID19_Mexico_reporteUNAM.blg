@@ -1,47 +1,46 @@
 This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: tsam_Covid19_Mexico_reporteUNAM.aux
+The top-level auxiliary file: dam_COVID19_Mexico_reporteUNAM.aux
 The style file: plainnat.bst
-Database file #1: Covid19.bib
-Database file #2: epidemiology.bib
+Database file #1: COVID19.bib
 You've used 3 entries,
             2773 wiz_defined-function locations,
-            609 strings with 5571 characters,
-and the built_in function-call counts, 1432 in all, are:
-= -- 109
-> -- 121
-< -- 2
-+ -- 42
-- -- 39
-* -- 112
-:= -- 247
+            609 strings with 5572 characters,
+and the built_in function-call counts, 1982 in all, are:
+= -- 151
+> -- 206
+< -- 1
++ -- 69
+- -- 66
+* -- 184
+:= -- 336
 add.period$ -- 9
 call.type$ -- 3
-change.case$ -- 21
+change.case$ -- 30
 chr.to.int$ -- 3
 cite$ -- 6
-duplicate$ -- 58
-empty$ -- 92
-format.name$ -- 42
-if$ -- 279
+duplicate$ -- 60
+empty$ -- 100
+format.name$ -- 71
+if$ -- 384
 int.to.chr$ -- 1
 int.to.str$ -- 1
 missing$ -- 3
 newline$ -- 23
 num.names$ -- 12
-pop$ -- 44
+pop$ -- 58
 preamble$ -- 1
-purify$ -- 18
+purify$ -- 27
 quote$ -- 0
-skip$ -- 50
+skip$ -- 61
 stack$ -- 0
-substring$ -- 6
+substring$ -- 25
 swap$ -- 3
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 33
 warning$ -- 0
-while$ -- 9
+while$ -- 11
 width$ -- 0
-write$ -- 43
+write$ -- 44

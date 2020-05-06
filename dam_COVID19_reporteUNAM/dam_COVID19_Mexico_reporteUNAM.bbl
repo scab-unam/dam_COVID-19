@@ -5,16 +5,18 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[CI~Herrera-Nolasco(2020)]{herrera2020pNIW}
-MA~Herrera-Valdez CI~Herrera-Nolasco, SI López-Ortega.
-\newblock A stochastic model for the study of infectious disease dynamics.
-\newblock \emph{In revision}, 2020.
+\bibitem[Lega and Brown(2016)]{lega2016data}
+Joceline Lega and Heidi~E Brown.
+\newblock Data-driven outbreak forecasting with a simple nonlinear growth
+  model.
+\newblock \emph{Epidemics}, 17:\penalty0 19--26, 2016.
 
-\bibitem[Herrera-Nolasco(2020)]{herrera2020tesis}
-CI~Herrera-Nolasco.
-\newblock Modelo probabilista de dinámica de propagación de infecciones.
-\newblock \emph{Tesis de Licenciatura en Matemáticas, Facultad de Ciencias},
-  2020.
+\bibitem[Liu et~al.(2020)Liu, Yan, Wan, Xiang, Le, Liu, Peiris, Poon, and
+  Zhang]{liu2020viral}
+Yang Liu, Li-Meng Yan, Lagen Wan, Tian-Xin Xiang, Aiping Le, Jia-Ming Liu,
+  Malik Peiris, Leo~LM Poon, and Wei Zhang.
+\newblock Viral dynamics in mild and severe cases of covid-19.
+\newblock \emph{The Lancet Infectious Diseases}, 2020.
 
 \bibitem[Zhou et~al.(2020)Zhou, Yu, Du, Fan, Liu, Liu, Xiang, Wang, Song, Gu,
   et~al.]{zhou2020clinical}
