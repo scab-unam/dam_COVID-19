@@ -372,7 +372,7 @@ def final_populations(Population):
         T days of contacts, infections and recoveries. 
 
     """
-    Sf = 0; If = 0; Rf = 0;
+    Sf = 0; If = 0; Rf = 0
     for person in Population:
         if person.status[365] == 'S':
             Sf += 1
@@ -395,9 +395,9 @@ def Plot_Dynamics(simulation, T):
         Number of days in the simulation
     """
         
-    S = []; I = []; R = [];
+    S = []; I = []; R = []
     for t in range(T+1):
-        St = 0; It = 0; Rt = 0;
+        St = 0; It = 0; Rt = 0
         for person in simulation:
             if person.status[t] == 'S':
                 St += 1
